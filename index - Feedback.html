@@ -303,6 +303,160 @@
             font-size: 14px;
         }
 
+        /* === KALENDER === */
+        .calendar-layout {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 24px;
+            align-items: start;
+        }
+        .calendar-shell,
+        .calendar-details {
+            background: var(--white);
+            border-radius: 14px;
+            box-shadow: 0 2px 14px rgba(0,0,0,0.07);
+            padding: 20px;
+        }
+        .calendar-toolbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 14px;
+        }
+        .calendar-month {
+            font-family: 'Playfair Display', serif;
+            font-size: 26px;
+            color: var(--green-dark);
+            text-transform: capitalize;
+        }
+        .calendar-nav {
+            display: flex;
+            gap: 8px;
+        }
+        .calendar-nav-btn {
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            border: 1px solid var(--gray-pale);
+            background: var(--off-white);
+            color: var(--green-dark);
+            font-size: 18px;
+            cursor: pointer;
+            transition: background 0.2s, border-color 0.2s;
+        }
+        .calendar-nav-btn:hover {
+            background: var(--green-pale);
+            border-color: var(--green-light);
+        }
+        .calendar-weekdays,
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 6px;
+        }
+        .calendar-weekdays {
+            margin-bottom: 8px;
+        }
+        .calendar-weekday {
+            text-align: center;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--gray-mid);
+            padding: 6px 0;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+        }
+        .calendar-cell {
+            position: relative;
+            border: 1px solid var(--gray-pale);
+            border-radius: 10px;
+            min-height: 68px;
+            background: var(--white);
+            text-align: left;
+            padding: 8px;
+            cursor: pointer;
+            transition: border-color 0.2s, transform 0.2s, background 0.2s;
+            font-family: 'Inter', sans-serif;
+            color: var(--gray-dark);
+        }
+        .calendar-cell:hover {
+            border-color: var(--green-light);
+            transform: translateY(-1px);
+            background: #fdfefc;
+        }
+        .calendar-cell.outside {
+            color: var(--gray-light);
+            background: #fcfcfb;
+        }
+        .calendar-cell.today {
+            border-color: var(--wood);
+        }
+        .calendar-cell.selected {
+            border-color: var(--green-mid);
+            background: var(--green-pale);
+        }
+        .calendar-cell.has-events::after {
+            content: '';
+            position: absolute;
+            right: 8px;
+            bottom: 8px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--wood);
+        }
+        .calendar-day-number {
+            font-size: 14px;
+            font-weight: 600;
+        }
+        .calendar-details h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--green-dark);
+            font-size: 24px;
+            margin-bottom: 6px;
+        }
+        .calendar-details .subtitle {
+            color: var(--gray-mid);
+            font-size: 14px;
+            margin-bottom: 16px;
+        }
+        .calendar-events {
+            display: grid;
+            gap: 12px;
+        }
+        .calendar-event {
+            border: 1px solid var(--gray-pale);
+            border-left: 4px solid var(--green-mid);
+            border-radius: 10px;
+            padding: 12px;
+            background: #fcfdfb;
+        }
+        .calendar-event .title {
+            font-weight: 600;
+            color: var(--green-dark);
+            margin-bottom: 2px;
+        }
+        .calendar-event .meta {
+            color: var(--gray-mid);
+            font-size: 13px;
+            margin-bottom: 4px;
+        }
+        .calendar-event .desc {
+            color: var(--gray-dark);
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        .calendar-empty {
+            border: 1px dashed var(--gray-pale);
+            border-radius: 10px;
+            padding: 14px;
+            color: var(--gray-mid);
+            font-size: 14px;
+            background: #fff;
+        }
+
         /* === VERKSAMHETER CARDS === */
         .verk-grid {
             display: grid;
@@ -605,6 +759,8 @@
             .about-section:nth-child(even) .about-text { order: 0; }
             .contact-wrapper { grid-template-columns: 1fr; }
             .undervisning-grid { grid-template-columns: 1fr; }
+            .calendar-layout { grid-template-columns: 1fr; }
+            .calendar-cell { min-height: 56px; }
         }
 
         /* === ANIMATION === */
@@ -646,6 +802,7 @@
             <li><a onclick="navigate('hem')" class="active" data-page="hem">Hem</a></li>
             <li><a onclick="navigate('om-oss')" data-page="om-oss">Om oss</a></li>
             <li><a onclick="navigate('verksamheter')" data-page="verksamheter">Verksamheter</a></li>
+            <li><a onclick="navigate('kalender')" data-page="kalender">Kalender</a></li>
             <li><a onclick="navigate('undervisning')" data-page="undervisning">Undervisning</a></li>
             <li><a onclick="navigate('kontakt')" data-page="kontakt">Kontakt</a></li>
         </ul>
@@ -859,6 +1016,53 @@
                 <h3>Förbön</h3>
                 <p>Bön och förbön för varandra och vår omvärld. Alla är välkomna att be och bli bedda för.</p>
             </div>
+        </div>
+    </section>
+</div>
+
+<!-- ==================== KALENDER ==================== -->
+<div class="page" id="page-kalender">
+    <section class="subpage-hero">
+        <h1>Kalender</h1>
+        <p>Kommande samlingar och händelser i Elimkyrkan</p>
+    </section>
+
+    <section class="section section-alt">
+        <div class="section-header fade-in">
+            <h2>Vad händer framåt?</h2>
+            <p>Här ser du planerade event och viktiga datum den kommande tiden.</p>
+        </div>
+
+        <div class="calendar-layout">
+            <div class="calendar-shell fade-in">
+                <div class="calendar-toolbar">
+                    <h3 class="calendar-month" id="calendarMonthLabel">Maj 2026</h3>
+                    <div class="calendar-nav">
+                        <button type="button" class="calendar-nav-btn" onclick="shiftCalendarMonth(-1)" aria-label="Föregående månad">‹</button>
+                        <button type="button" class="calendar-nav-btn" onclick="shiftCalendarMonth(1)" aria-label="Nästa månad">›</button>
+                    </div>
+                </div>
+
+                <div class="calendar-weekdays" aria-hidden="true">
+                    <div class="calendar-weekday">Mån</div>
+                    <div class="calendar-weekday">Tis</div>
+                    <div class="calendar-weekday">Ons</div>
+                    <div class="calendar-weekday">Tor</div>
+                    <div class="calendar-weekday">Fre</div>
+                    <div class="calendar-weekday">Lör</div>
+                    <div class="calendar-weekday">Sön</div>
+                </div>
+
+                <div class="calendar-grid" id="calendarGrid"></div>
+            </div>
+
+            <aside class="calendar-details fade-in" aria-live="polite">
+                <h3 id="selectedDateTitle">Välj en dag</h3>
+                <p class="subtitle" id="selectedDateSubtitle">Klicka på en dag i kalendern för att se detaljer.</p>
+                <div class="calendar-events" id="selectedDateEvents">
+                    <div class="calendar-empty">Här visas aktiviteter för den valda dagen.</div>
+                </div>
+            </aside>
         </div>
     </section>
 </div>
@@ -1104,6 +1308,7 @@
             <p><a onclick="navigate('hem')" style="cursor:pointer;">Hem</a></p>
             <p><a onclick="navigate('om-oss')" style="cursor:pointer;">Om oss</a></p>
             <p><a onclick="navigate('verksamheter')" style="cursor:pointer;">Verksamheter</a></p>
+            <p><a onclick="navigate('kalender')" style="cursor:pointer;">Kalender</a></p>
             <p><a onclick="navigate('undervisning')" style="cursor:pointer;">Undervisning</a></p>
             <p><a onclick="navigate('kontakt')" style="cursor:pointer;">Kontakt</a></p>
         </div>
@@ -1140,7 +1345,7 @@
 
         // Update nav links
         document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
-        const mainPages = ['hem', 'om-oss', 'verksamheter', 'undervisning', 'kontakt'];
+        const mainPages = ['hem', 'om-oss', 'verksamheter', 'kalender', 'undervisning', 'kontakt'];
         let navPage = pageId;
         if (pageId.startsWith('verk-')) navPage = 'verksamheter';
         const navLink = document.querySelector(`.nav-links a[data-page="${navPage}"]`);
@@ -1185,6 +1390,172 @@
     }, { threshold: 0.1 });
 
     document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    // Calendar data and behavior
+    const CALENDAR_EVENTS = {
+        '2026-05-18': [
+            {
+                title: 'Gemenskapskväll',
+                time: '18:30 - 20:30',
+                location: 'Elimkyrkan Mantorp',
+                desc: 'En kväll för hela församlingen med fika, samtal och bön.'
+            }
+        ],
+        '2026-05-24': [
+            {
+                title: 'Lovsångsgudstjänst',
+                time: '10:00 - 11:30',
+                location: 'Stora salen',
+                desc: 'Söndagsgudstjänst med extra fokus på lovsång och förbön.'
+            }
+        ],
+        '2026-06-07': [
+            {
+                title: 'Familjedag i parken',
+                time: '11:00 - 15:00',
+                location: 'Mantorpsparken',
+                desc: 'Lekar, grill och aktiviteter för hela familjen.'
+            }
+        ],
+        '2026-06-14': [
+            {
+                title: 'Missionssöndag',
+                time: '10:00 - 12:00',
+                location: 'Elimkyrkan Mantorp',
+                desc: 'Gudstjänst med fokus på mission, vittnesbörd och insamling.'
+            }
+        ],
+        '2026-06-28': [
+            {
+                title: 'Sommaravslutning',
+                time: '16:00 - 19:00',
+                location: 'Kyrkans innergård',
+                desc: 'Musik, andakt, grill och gemenskap för hela församlingen.'
+            }
+        ]
+    };
+
+    const today = new Date();
+    let calendarViewDate = new Date(today.getFullYear(), today.getMonth(), 1);
+    let selectedDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+
+    function dateToKey(date) {
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        return `${year}-${month}-${day}`;
+    }
+
+    function isSameDate(a, b) {
+        return a.getFullYear() === b.getFullYear()
+            && a.getMonth() === b.getMonth()
+            && a.getDate() === b.getDate();
+    }
+
+    function renderCalendar() {
+        const monthLabel = document.getElementById('calendarMonthLabel');
+        const grid = document.getElementById('calendarGrid');
+        if (!monthLabel || !grid) return;
+
+        monthLabel.textContent = calendarViewDate.toLocaleDateString('sv-SE', {
+            month: 'long',
+            year: 'numeric'
+        });
+
+        grid.innerHTML = '';
+
+        const year = calendarViewDate.getFullYear();
+        const month = calendarViewDate.getMonth();
+        const firstOfMonth = new Date(year, month, 1);
+        const offset = (firstOfMonth.getDay() + 6) % 7;
+        const startDate = new Date(year, month, 1 - offset);
+
+        for (let i = 0; i < 42; i++) {
+            const cellDate = new Date(startDate);
+            cellDate.setDate(startDate.getDate() + i);
+            const key = dateToKey(cellDate);
+
+            const button = document.createElement('button');
+            button.type = 'button';
+            button.className = 'calendar-cell';
+            button.innerHTML = `<span class="calendar-day-number">${cellDate.getDate()}</span>`;
+
+            if (cellDate.getMonth() !== month) button.classList.add('outside');
+            if (isSameDate(cellDate, today)) button.classList.add('today');
+            if (isSameDate(cellDate, selectedDate)) button.classList.add('selected');
+            if (CALENDAR_EVENTS[key]) button.classList.add('has-events');
+
+            button.setAttribute('aria-label', cellDate.toLocaleDateString('sv-SE', {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            }));
+
+            button.addEventListener('click', () => {
+                selectedDate = new Date(cellDate);
+                calendarViewDate = new Date(cellDate.getFullYear(), cellDate.getMonth(), 1);
+                renderCalendar();
+                renderSelectedDateEvents();
+            });
+
+            grid.appendChild(button);
+        }
+    }
+
+    function renderSelectedDateEvents() {
+        const title = document.getElementById('selectedDateTitle');
+        const subtitle = document.getElementById('selectedDateSubtitle');
+        const eventsContainer = document.getElementById('selectedDateEvents');
+        if (!title || !subtitle || !eventsContainer) return;
+
+        const key = dateToKey(selectedDate);
+        const events = CALENDAR_EVENTS[key] || [];
+
+        title.textContent = selectedDate.toLocaleDateString('sv-SE', {
+            weekday: 'long',
+            day: 'numeric',
+            month: 'long'
+        });
+
+        subtitle.textContent = events.length
+            ? `${events.length} aktivitet${events.length > 1 ? 'er' : ''} planerad${events.length > 1 ? 'e' : ''}`
+            : 'Inga aktiviteter planerade för denna dag.';
+
+        if (!events.length) {
+            eventsContainer.innerHTML = '<div class="calendar-empty">Inga händelser denna dag.</div>';
+            return;
+        }
+
+        eventsContainer.innerHTML = events.map(event => `
+            <article class="calendar-event">
+                <div class="title">${event.title}</div>
+                <div class="meta">${event.time} | ${event.location}</div>
+                <div class="desc">${event.desc}</div>
+            </article>
+        `).join('');
+    }
+
+    function shiftCalendarMonth(delta) {
+        calendarViewDate = new Date(calendarViewDate.getFullYear(), calendarViewDate.getMonth() + delta, 1);
+        renderCalendar();
+    }
+
+    function initCalendar() {
+        if (!document.getElementById('calendarGrid')) return;
+
+        const earliestEventKey = Object.keys(CALENDAR_EVENTS).sort()[0];
+        if (earliestEventKey) {
+            const [year, month, day] = earliestEventKey.split('-').map(Number);
+            calendarViewDate = new Date(year, month - 1, 1);
+            selectedDate = new Date(year, month - 1, day);
+        }
+
+        renderCalendar();
+        renderSelectedDateEvents();
+    }
+
+    initCalendar();
 
     // Initial animation
     setTimeout(() => {
