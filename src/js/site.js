@@ -5,6 +5,14 @@ document.addEventListener('DOMContentLoaded', () => {
         if (culture) localStorage.setItem('lang', culture);
     } catch (e) { /* ignore */ }
 
+    // Spara språkvalet direkt vid klick i språkmenyn — annars hinner
+    // startsidans omdirigering skicka tillbaka besökaren till det gamla språket
+    document.querySelectorAll('.lang-menu a').forEach((a) =>
+        a.addEventListener('click', () => {
+            try { localStorage.setItem('lang', a.getAttribute('hreflang')); } catch (e) { /* ignore */ }
+        })
+    );
+
     const nav = document.getElementById('navbar');
     if (nav) {
         window.addEventListener('scroll', () => {
