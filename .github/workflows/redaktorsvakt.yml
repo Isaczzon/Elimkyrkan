@@ -1,0 +1,142 @@
+name: Redaktörsvakt
+
+# Vakt som ser till att redaktörer bara ändrar de sidor de fått tilldelade
+# i .github/redaktorer.json. Otillåtna ändringar återställs automatiskt och
+# redaktören får en vänlig notis via ett GitHub-ärende.
+
+on:
+  push:
+    branches: [main, elim-github-pages-sveltia]
+
+permissions:
+  contents: write
+  issues: write
+  actions: write
+
+concurrency:
+  group: redaktorsvakt-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  granska:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.ref_name }}
+
+      - name: Granska ändringar mot redaktörslistan
+        id: granska
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const cfg = JSON.parse(fs.readFileSync('.github/redaktorer.json', 'utf8'));
+            const admins = (cfg.admins || []).map((s) => s.toLowerCase());
+            const gemensamt = cfg.gemensamt || [];
+            const redaktorer = Object.fromEntries(
+              Object.entries(cfg.redaktorer || {}).map(([k, v]) => [k.toLowerCase(), v])
+            );
+            const bots = ['github-actions[bot]', 'web-flow', 'dependabot[bot]'];
+
+            const globTillRegex = (glob) =>
+              new RegExp(
+                '^' +
+                  glob
+                    .replace(/[.+^${}()|[\]\\]/g, '\\$&')
+                    .split('**').join('\u0001')
+                    .replace(/\*/g, '[^/]*')
+                    .split('\u0001').join('.*') +
+                  '$'
+              );
+
+            const overtramp = [];
+            for (const c of context.payload.commits || []) {
+              const login = ((c.author && c.author.username) || '').toLowerCase();
+              if (!login) continue; // commit utan kopplat GitHub-konto – hanteras inte av vakten
+              if (bots.includes(login) || admins.includes(login)) continue;
+
+              const filer = [...(c.added || []), ...(c.modified || []), ...(c.removed || [])];
+              const tillatna = [...(redaktorer[login] || []), ...gemensamt].map(globTillRegex);
+              const otillatna = filer.filter((f) => !tillatna.some((re) => re.test(f)));
+              if (otillatna.length) {
+                overtramp.push({
+                  sha: c.id,
+                  login: c.author.username,
+                  otillatna,
+                  tillatna: redaktorer[login] || [],
+                });
+              }
+            }
+
+            core.setOutput('overtramp', JSON.stringify(overtramp));
+            core.info(overtramp.length ? `Hittade ${overtramp.length} otillåtna commit(s)` : 'Allt ser bra ut');
+
+      - name: Återställ otillåtna ändringar
+        id: aterstall
+        if: steps.granska.outputs.overtramp != '[]'
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          misslyckade=()
+          # Återställ i omvänd ordning (nyaste först) för att minimera konflikter
+          for sha in $(echo '${{ steps.granska.outputs.overtramp }}' | jq -r 'reverse | .[].sha'); do
+            if ! git revert --no-edit "$sha"; then
+              git revert --abort || true
+              misslyckade+=("$sha")
+            fi
+          done
+
+          git push
+          echo "misslyckade=${misslyckade[*]:-}" >> "$GITHUB_OUTPUT"
+
+      - name: Meddela redaktören och bygg om sajten
+        if: steps.granska.outputs.overtramp != '[]'
+        uses: actions/github-script@v7
+        env:
+          OVERTRAMP: ${{ steps.granska.outputs.overtramp }}
+          MISSLYCKADE: ${{ steps.aterstall.outputs.misslyckade }}
+        with:
+          script: |
+            const overtramp = JSON.parse(process.env.OVERTRAMP);
+            const misslyckade = (process.env.MISSLYCKADE || '').split(' ').filter(Boolean);
+
+            for (const o of overtramp) {
+              const manuellt = misslyckade.includes(o.sha);
+              const body = [
+                `Hej @${o.login}!`,
+                '',
+                manuellt
+                  ? `Din ändring (\`${o.sha.slice(0, 7)}\`) rörde sidor utanför din behörighet och kunde inte återställas automatiskt – en administratör behöver titta på den.`
+                  : `Din ändring (\`${o.sha.slice(0, 7)}\`) rörde sidor utanför din behörighet och har därför återställts automatiskt. Ingen fara – inget är trasigt!`,
+                '',
+                '**Filer utanför din behörighet:**',
+                ...o.otillatna.map((f) => `- \`${f}\``),
+                '',
+                o.tillatna.length
+                  ? '**Du har behörighet att redigera:**\n' + o.tillatna.map((f) => `- \`${f}\``).join('\n')
+                  : '**Du finns ännu inte med i redaktörslistan.** Kontakta administratören så läggs du till.',
+                '',
+                'Behöver du redigera fler sidor? Hör av dig till administratören så uppdaterar vi din behörighet.',
+              ].join('\n');
+
+              await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title: `Återställd ändring av @${o.login}`,
+                body,
+                labels: ['redaktorsvakt'],
+              });
+            }
+
+            // Bygg om sajten så att den återställda versionen publiceras direkt
+            // (push från GITHUB_TOKEN triggar inte deploy-workflowen av sig själv)
+            await github.rest.actions.createWorkflowDispatch({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              workflow_id: 'deploy.yml',
+              ref: context.ref.replace('refs/heads/', ''),
+            });

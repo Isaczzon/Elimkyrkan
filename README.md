@@ -59,6 +59,36 @@ Gå till [Settings → Collaborators](https://github.com/Isaczzon/Elimkyrkan/set
 2. Klicka **Sign in with GitHub**
 3. Redigera och klicka **Spara** – ändringen syns på sajten efter någon minut.
 
+## Redaktörsbehörigheter (Redaktörsvakten)
+
+Alla inbjudna redaktörer kan tekniskt sett redigera allt – GitHub har inga behörigheter per sida. Därför finns **Redaktörsvakten** ([.github/workflows/redaktorsvakt.yml](.github/workflows/redaktorsvakt.yml)): en automatisk vakt som återställer ändringar utanför redaktörens tilldelade sidor och meddelar redaktören vänligt via ett GitHub-ärende.
+
+Behörigheterna styrs i [.github/redaktorer.json](.github/redaktorer.json):
+
+```json
+{
+  "admins": ["Isaczzon"],
+  "gemensamt": ["images/uploads/**"],
+  "redaktorer": {
+    "anna-svensson": ["src/verksamheter/*/barn.md"],
+    "erik-larsson": ["src/handelser/**", "src/_data/pages/*/kalender.json"]
+  }
+}
+```
+
+- **admins** får ändra allt (lägg till fler administratörer här).
+- **gemensamt** gäller alla redaktörer (bilduppladdningar är tillåtna som standard).
+- **redaktorer**: GitHub-användarnamn → lista med tillåtna filer. `*` matchar ett steg (t.ex. alla språk), `**` matchar allt under en mapp. Flera personer kan ha samma sida och en person kan ha flera sidor.
+- En redaktör som **inte** finns med i listan får alla sina ändringar återställda – lägg alltså till raden i samband med inbjudan.
+
+Så här lägger du till en ny redaktör:
+1. Bjud in via [Settings → Collaborators](https://github.com/Isaczzon/Elimkyrkan/settings/access) → **Add people** → e-postadress.
+2. Lägg till en rad i `.github/redaktorer.json` med personens användarnamn och sidor.
+
+> **Obs:** Vakten skyddar mot misstag, inte mot illvilliga angripare – en tekniskt kunnig person med write-behörighet kan kringgå den. För en församlings redaktörer är det rätt skyddsnivå; kräver ni hård åtkomstkontroll är ett betal-CMS med roller (t.ex. CloudCannon) alternativet.
+
+Logiken kan testas lokalt med `node scripts/test-vakt.mjs`.
+
 ## Innehållstyper i CMS:et
 
 | Meny | Vad det styr |
