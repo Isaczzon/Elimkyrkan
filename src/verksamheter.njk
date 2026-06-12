@@ -1,0 +1,22 @@
+---
+layout: layout.njk
+aktiv: verksamheter
+titel: Verksamheter
+permalink: /verksamheter/
+---
+<section class="subpage-hero">
+    <h1>{{ pages.verksamheter.hero.rubrik }}</h1>
+    <p>{{ pages.verksamheter.hero.undertitel }}</p>
+</section>
+
+<section class="section">
+    <div class="verk-grid">
+        {% for verk in collections.verksamheterSorterade %}
+        <a class="verk-card fade-in" href="{{ verk.url }}">
+            <div class="verk-icon">{{ verk.data.ikon }}</div>
+            <h3>{{ verk.data.titel }}</h3>
+            <p>{{ verk.data.kort }}</p>
+        </a>
+        {% endfor %}
+    </div>
+</section>

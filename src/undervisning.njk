@@ -1,0 +1,33 @@
+---
+layout: layout.njk
+aktiv: undervisning
+titel: Undervisning
+permalink: /undervisning/
+---
+<section class="subpage-hero">
+    <h1>{{ pages.undervisning.hero.rubrik }}</h1>
+    <p>{{ pages.undervisning.hero.undertitel }}</p>
+</section>
+
+<section class="section">
+    <div class="undervisning-grid">
+        {% for kort in pages.undervisning.kort %}
+        <div class="undervisning-card fade-in">
+            <div class="undervisning-card-header {{ kort.stil }}">
+                <div class="icon">{{ kort.ikon }}</div>
+                <h3>{{ kort.titel }}</h3>
+            </div>
+            <div class="undervisning-card-body">
+                {% for stycke in kort.stycken %}
+                <p>{{ stycke }}</p>
+                {% endfor %}
+                {% if kort.lank %}
+                <a href="{{ kort.lank }}">{{ kort.lanktext }}</a>
+                {% elif kort.lanktext %}
+                <a>{{ kort.lanktext }}</a>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>

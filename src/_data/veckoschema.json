@@ -1,0 +1,40 @@
+{
+  "pass": [
+    {
+      "dag": "Söndag",
+      "titel": "Gudstjänst",
+      "tid": "10:00 – 11:30",
+      "beskrivning": "Gudstjänst med lovsång, predikan och gemenskap. Söndagsskola för barnen."
+    },
+    {
+      "dag": "Tisdag",
+      "titel": "Tisdagscafé",
+      "tid": "19:00 – 21:00",
+      "beskrivning": "Öppet café med fika och gemenskap. Alla är välkomna!"
+    },
+    {
+      "dag": "Onsdag",
+      "titel": "Hemgrupper",
+      "tid": "19:00 – 21:00",
+      "beskrivning": "Bibelstudium och gemenskap i mindre grupper runt om i Mantorp."
+    },
+    {
+      "dag": "Lördag",
+      "titel": "Mansfrukost",
+      "tid": "07:00 – 09:00",
+      "beskrivning": "Frukost och samtal för män. En stund att ladda under veckan."
+    },
+    {
+      "dag": "Fredag",
+      "titel": "Next Generation",
+      "tid": "20:00 – 00:00",
+      "beskrivning": "Ungdomskväll med aktiviteter, samtal och gemenskap."
+    },
+    {
+      "dag": "Lördag",
+      "titel": "Loppis Axplocket",
+      "tid": "10:00 – 14:00",
+      "beskrivning": "Second hand och fynd. Välkommen att fika och fynda!"
+    }
+  ]
+}

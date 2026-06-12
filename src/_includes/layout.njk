@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% if titel %}{{ titel }} – {% endif %}{{ site.namn }}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&family=Caveat:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/site.css">
+</head>
+<body>
+
+<nav id="navbar">
+    <div class="nav-inner">
+        <a class="logo" href="/">
+            <span class="logo-top">Elimkyrkan</span>
+            <span class="logo-bottom">Mantorp</span>
+        </a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="/" {% if aktiv == 'hem' %}class="active"{% endif %}>Hem</a></li>
+            <li><a href="/om-oss/" {% if aktiv == 'om-oss' %}class="active"{% endif %}>Om oss</a></li>
+            <li><a href="/verksamheter/" {% if aktiv == 'verksamheter' %}class="active"{% endif %}>Verksamheter</a></li>
+            <li><a href="/undervisning/" {% if aktiv == 'undervisning' %}class="active"{% endif %}>Undervisning</a></li>
+            <li><a href="/kontakt/" {% if aktiv == 'kontakt' %}class="active"{% endif %}>Kontakt</a></li>
+        </ul>
+        <div class="hamburger">
+            <span></span><span></span><span></span>
+        </div>
+    </div>
+</nav>
+
+<main>
+{{ content | safe }}
+</main>
+
+<footer>
+    <div class="footer-inner">
+        <div>
+            <div class="logo" style="margin-bottom:16px;">
+                <span class="logo-top" style="color:white;">Elimkyrkan</span>
+                <span class="logo-bottom" style="color:rgba(255,255,255,0.8);">Mantorp</span>
+            </div>
+            <p>En del av Evangeliska Frikyrkan.<br>Mitt i Mantorp – för alla generationer.</p>
+        </div>
+        <div>
+            <h4>Snabblänkar</h4>
+            <p><a href="/">Hem</a></p>
+            <p><a href="/om-oss/">Om oss</a></p>
+            <p><a href="/verksamheter/">Verksamheter</a></p>
+            <p><a href="/undervisning/">Undervisning</a></p>
+            <p><a href="/kontakt/">Kontakt</a></p>
+        </div>
+        <div>
+            <h4>Verksamheter</h4>
+            {% for verk in collections.verksamheterSorterade %}{% if loop.index <= 4 %}
+            <p><a href="{{ verk.url }}">{{ verk.data.titel }}</a></p>
+            {% endif %}{% endfor %}
+        </div>
+        <div>
+            <h4>Kontakt</h4>
+            <p>{{ site.adress | replace(", ", "<br>") | safe }}</p>
+            <p>{{ site.telefon }}</p>
+            <p>{{ site.epost }}</p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>© 2026 {{ site.namn }}. En del av Evangeliska Frikyrkan (EFK).</p>
+    </div>
+</footer>
+
+<script src="/js/site.js"></script>
+</body>
+</html>

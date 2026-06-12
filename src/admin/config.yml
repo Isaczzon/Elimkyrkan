@@ -1,0 +1,197 @@
+# Sveltia CMS-konfiguration för Elimkyrkan Mantorp
+#
+# OBS! base_url måste peka på er OAuth-proxy (Cloudflare Worker) innan
+# inloggningen fungerar. Se README.md för instruktioner.
+
+backend:
+  name: github
+  repo: Isaczzon/Elimkyrkan
+  branch: main
+  base_url: https://BYT-UT-MIG.workers.dev # TODO: er sveltia-cms-auth Worker-URL
+
+media_folder: images/uploads
+public_folder: /images/uploads
+
+slug:
+  encoding: ascii
+  clean_accents: true
+
+collections:
+  - name: sidor
+    label: Sidor
+    icon: web
+    files:
+      - name: hem
+        label: Startsidan
+        file: src/_data/pages/hem.json
+        fields:
+          - name: hero
+            label: Toppsektion
+            widget: object
+            fields:
+              - { name: rubrik, label: Rubrik, widget: string }
+              - { name: ingress, label: Ingress, widget: text }
+              - { name: knapptext, label: Knapptext, widget: string }
+          - name: veckoschema
+            label: Veckoschema (rubriker)
+            widget: object
+            fields:
+              - { name: rubrik, label: Rubrik, widget: string }
+              - { name: undertitel, label: Undertitel, widget: string }
+          - name: handelser
+            label: Vad som händer (rubriker)
+            widget: object
+            fields:
+              - { name: rubrik, label: Rubrik, widget: string }
+              - { name: undertitel, label: Undertitel, widget: string }
+              - { name: tomtext, label: Text när inga händelser finns, widget: string }
+          - name: cta
+            label: Avslutande sektion
+            widget: object
+            fields:
+              - { name: rubrik, label: Rubrik, widget: string }
+              - { name: text, label: Text, widget: text }
+              - { name: knapptext, label: Knapptext, widget: string }
+
+      - name: omoss
+        label: Om oss
+        file: src/_data/pages/omoss.json
+        fields:
+          - name: hero
+            label: Toppsektion
+            widget: object
+            fields:
+              - { name: rubrik, label: Rubrik, widget: string }
+              - { name: undertitel, label: Undertitel, widget: string }
+          - name: sektioner
+            label: Sektioner
+            widget: list
+            fields:
+              - { name: ikon, label: Ikon (emoji), widget: string, hint: "Visas om ingen bild är vald" }
+              - { name: bild, label: Bild, widget: image, required: false }
+              - { name: rubrik, label: Rubrik, widget: string }
+              - { name: stycken, label: Stycken, widget: list, field: { name: stycke, label: Stycke, widget: text } }
+
+      - name: verksamheter
+        label: Verksamheter (sidhuvud)
+        file: src/_data/pages/verksamheter.json
+        fields:
+          - name: hero
+            label: Toppsektion
+            widget: object
+            fields:
+              - { name: rubrik, label: Rubrik, widget: string }
+              - { name: undertitel, label: Undertitel, widget: string }
+
+      - name: undervisning
+        label: Undervisning
+        file: src/_data/pages/undervisning.json
+        fields:
+          - name: hero
+            label: Toppsektion
+            widget: object
+            fields:
+              - { name: rubrik, label: Rubrik, widget: string }
+              - { name: undertitel, label: Undertitel, widget: string }
+          - name: kort
+            label: Kort
+            widget: list
+            fields:
+              - name: stil
+                label: Färg
+                widget: select
+                options:
+                  - { label: "Mörkgrön", value: predikan }
+                  - { label: "Trä/beige", value: foraldrar }
+                  - { label: "Mellangrön", value: hemgrupper }
+              - { name: ikon, label: Ikon (emoji), widget: string }
+              - { name: titel, label: Titel, widget: string }
+              - { name: stycken, label: Stycken, widget: list, field: { name: stycke, label: Stycke, widget: text } }
+              - { name: lanktext, label: Länktext, widget: string, required: false }
+              - { name: lank, label: Länk (URL), widget: string, required: false }
+
+      - name: kontakt
+        label: Kontakt
+        file: src/_data/pages/kontakt.json
+        fields:
+          - name: hero
+            label: Toppsektion
+            widget: object
+            fields:
+              - { name: rubrik, label: Rubrik, widget: string }
+              - { name: undertitel, label: Undertitel, widget: string }
+          - { name: intro, label: Introtext, widget: text }
+          - { name: formular_rubrik, label: Formulärets rubrik, widget: string }
+          - name: amnen
+            label: Ämnen i formuläret
+            widget: list
+            field: { name: amne, label: Ämne, widget: string }
+
+  - name: veckoschema
+    label: Veckoschema
+    icon: calendar_view_week
+    files:
+      - name: veckoschema
+        label: Veckans aktiviteter
+        file: src/_data/veckoschema.json
+        fields:
+          - name: pass
+            label: Aktiviteter
+            widget: list
+            fields:
+              - { name: dag, label: Dag, widget: string }
+              - { name: titel, label: Titel, widget: string }
+              - { name: tid, label: Tid, widget: string, hint: "T.ex. 10:00 – 11:30" }
+              - { name: beskrivning, label: Beskrivning, widget: text }
+
+  - name: kalender
+    label: Kalender
+    icon: event
+    folder: src/kalender
+    create: true
+    extension: md
+    format: yaml-frontmatter
+    identifier_field: titel
+    summary: "{{titel}} – {{datum}}"
+    sortable_fields: [datum, titel]
+    fields:
+      - { name: titel, label: Titel, widget: string }
+      - { name: datum, label: Datum, widget: datetime, format: "YYYY-MM-DD", time_format: false, hint: "Händelsen döljs automatiskt när datumet passerat" }
+      - { name: visningsdatum, label: Visningstext för datum, widget: string, required: false, hint: "Valfritt, t.ex. 'Varje tisdag'. Visas i stället för datumet." }
+      - { name: ikon, label: Ikon (emoji), widget: string, default: "📅", hint: "Visas om ingen bild är vald" }
+      - { name: bild, label: Bild, widget: image, required: false }
+      - { name: beskrivning, label: Beskrivning, widget: text }
+
+  - name: verksamhet
+    label: Verksamheter
+    icon: groups
+    folder: src/verksamheter
+    create: true
+    extension: md
+    format: yaml-frontmatter
+    identifier_field: titel
+    summary: "{{titel}}"
+    sortable_fields: [ordning, titel]
+    fields:
+      - { name: titel, label: Titel, widget: string }
+      - { name: undertitel, label: Undertitel, widget: string }
+      - { name: ikon, label: Ikon (emoji), widget: string }
+      - { name: kort, label: Kort beskrivning (visas i rutnätet), widget: text }
+      - { name: ordning, label: Ordning, widget: number, value_type: int, hint: "Lägre nummer visas först" }
+      - { name: body, label: Innehåll, widget: markdown }
+
+  - name: installningar
+    label: Inställningar
+    icon: settings
+    files:
+      - name: site
+        label: Webbplatsens uppgifter
+        file: src/_data/site.json
+        fields:
+          - { name: namn, label: Namn, widget: string }
+          - { name: adress, label: Adress, widget: string }
+          - { name: telefon, label: Telefon, widget: string }
+          - { name: epost, label: E-post, widget: string }
+          - { name: expedition, label: Expeditionens öppettider, widget: string }
+          - { name: formspree_id, label: Formspree-ID, widget: string, hint: "ID:t från formspree.io för kontaktformuläret" }
+          - { name: karta_embed, label: "Google Maps-inbäddning (URL)", widget: string, required: false, hint: "Klistra in src-adressen från Google Maps 'Bädda in karta'" }

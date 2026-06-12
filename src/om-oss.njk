@@ -1,0 +1,30 @@
+---
+layout: layout.njk
+aktiv: om-oss
+titel: Om oss
+permalink: /om-oss/
+---
+<section class="subpage-hero">
+    <h1>{{ pages.omoss.hero.rubrik }}</h1>
+    <p>{{ pages.omoss.hero.undertitel }}</p>
+</section>
+
+<section class="section">
+    {% for sektion in pages.omoss.sektioner %}
+    <div class="about-section fade-in">
+        <div class="about-img">
+            {%- if sektion.bild -%}
+            <img src="{{ sektion.bild }}" alt="{{ sektion.rubrik }}">
+            {%- else -%}
+            {{ sektion.ikon }}
+            {%- endif -%}
+        </div>
+        <div class="about-text">
+            <h2>{{ sektion.rubrik }}</h2>
+            {% for stycke in sektion.stycken %}
+            <p>{{ stycke }}</p>
+            {% endfor %}
+        </div>
+    </div>
+    {% endfor %}
+</section>

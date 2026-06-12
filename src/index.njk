@@ -1,0 +1,68 @@
+---
+layout: layout.njk
+aktiv: hem
+---
+<section class="hero">
+    <div class="hero-content">
+        <h1>{{ pages.hem.hero.rubrik }}</h1>
+        <p>{{ pages.hem.hero.ingress }}</p>
+        <a class="hero-btn" href="/om-oss/">{{ pages.hem.hero.knapptext }}</a>
+    </div>
+</section>
+
+<!-- Veckoschema -->
+<section class="section">
+    <div class="section-header fade-in">
+        <h2>{{ pages.hem.veckoschema.rubrik }}</h2>
+        <p>{{ pages.hem.veckoschema.undertitel }}</p>
+    </div>
+    <div class="schedule-grid">
+        {% for pass in veckoschema.pass %}
+        <div class="schedule-card fade-in">
+            <div class="schedule-day">{{ pass.dag }}</div>
+            <div class="schedule-title">{{ pass.titel }}</div>
+            <div class="schedule-time">{{ pass.tid }}</div>
+            <div class="schedule-desc">{{ pass.beskrivning }}</div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<!-- Vad som händer -->
+<section class="section-alt">
+    <div class="section">
+        <div class="section-header fade-in">
+            <h2>{{ pages.hem.handelser.rubrik }}</h2>
+            <p>{{ pages.hem.handelser.undertitel }}</p>
+        </div>
+        <div class="events-list">
+            {% for handelse in collections.kommande %}{% if loop.index <= 6 %}
+            <div class="event-card fade-in">
+                <div class="event-img">
+                    {%- if handelse.data.bild -%}
+                    <img src="{{ handelse.data.bild }}" alt="{{ handelse.data.titel }}">
+                    {%- else -%}
+                    {{ handelse.data.ikon or "📅" }}
+                    {%- endif -%}
+                </div>
+                <div class="event-body">
+                    <div class="event-date">{{ handelse.data.visningsdatum or (handelse.data.datum | svDatum) }}</div>
+                    <h3>{{ handelse.data.titel }}</h3>
+                    <p>{{ handelse.data.beskrivning }}</p>
+                </div>
+            </div>
+            {% endif %}{% else %}
+            <p style="text-align:center; color:var(--gray-mid); grid-column: 1 / -1;">{{ pages.hem.handelser.tomtext }}</p>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="section" style="text-align:center;">
+    <div class="fade-in">
+        <h2 style="font-family:'Playfair Display',serif; font-size:clamp(1.5rem,4vw,2.25rem); color:var(--green-dark); margin-bottom:16px;">{{ pages.hem.cta.rubrik }}</h2>
+        <p style="color:var(--gray-mid); max-width:500px; margin:0 auto 24px;">{{ pages.hem.cta.text }}</p>
+        <a class="hero-btn" href="/kontakt/" style="background:var(--green-dark);">{{ pages.hem.cta.knapptext }}</a>
+    </div>
+</section>

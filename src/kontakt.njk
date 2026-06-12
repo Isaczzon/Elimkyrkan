@@ -1,0 +1,88 @@
+---
+layout: layout.njk
+aktiv: kontakt
+titel: Kontakt
+permalink: /kontakt/
+---
+<section class="subpage-hero">
+    <h1>{{ pages.kontakt.hero.rubrik }}</h1>
+    <p>{{ pages.kontakt.hero.undertitel }}</p>
+</section>
+
+<section class="section">
+    <div class="contact-wrapper">
+        <div class="contact-info fade-in">
+            <h3>{{ site.namn }}</h3>
+            <p>{{ pages.kontakt.intro }}</p>
+
+            <div class="contact-detail">
+                <div class="icon">📍</div>
+                <div>
+                    <strong>Adress</strong><br>
+                    {{ site.adress }}
+                </div>
+            </div>
+            <div class="contact-detail">
+                <div class="icon">📞</div>
+                <div>
+                    <strong>Telefon</strong><br>
+                    {{ site.telefon }}
+                </div>
+            </div>
+            <div class="contact-detail">
+                <div class="icon">✉️</div>
+                <div>
+                    <strong>E-post</strong><br>
+                    {{ site.epost }}
+                </div>
+            </div>
+            <div class="contact-detail">
+                <div class="icon">🕐</div>
+                <div>
+                    <strong>Expedition</strong><br>
+                    {{ site.expedition }}
+                </div>
+            </div>
+
+            {% if site.karta_embed %}
+            <iframe class="map-embed" src="{{ site.karta_embed }}" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Karta till {{ site.namn }}"></iframe>
+            {% else %}
+            <div class="map-placeholder">
+                📍 Karta – Google Maps inbäddning här
+            </div>
+            {% endif %}
+        </div>
+
+        <div class="fade-in">
+            <h3 style="font-family:'Playfair Display',serif; font-size:22px; color:var(--green-dark); margin-bottom:24px;">{{ pages.kontakt.formular_rubrik }}</h3>
+            <form action="https://formspree.io/f/{{ site.formspree_id }}" method="POST">
+                <input type="hidden" name="_subject" value="Nytt meddelande via webbplatsen – {{ site.namn }}">
+                <div class="form-group">
+                    <label for="namn">Namn</label>
+                    <input type="text" id="namn" name="namn" placeholder="Ditt namn" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">E-post</label>
+                    <input type="email" id="email" name="email" placeholder="din@epost.se" required>
+                </div>
+                <div class="form-group">
+                    <label for="telefon">Telefon (valfritt)</label>
+                    <input type="tel" id="telefon" name="telefon" placeholder="07X-XXX XX XX">
+                </div>
+                <div class="form-group">
+                    <label for="amne">Ämne</label>
+                    <select id="amne" name="amne">
+                        {% for amne in pages.kontakt.amnen %}
+                        <option>{{ amne }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="meddelande">Meddelande</label>
+                    <textarea id="meddelande" name="meddelande" placeholder="Skriv ditt meddelande här..." required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Skicka meddelande</button>
+            </form>
+        </div>
+    </div>
+</section>

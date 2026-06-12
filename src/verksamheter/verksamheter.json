@@ -1,0 +1,6 @@
+{
+  "tags": "verksamhet",
+  "layout": "verksamhet.njk",
+  "aktiv": "verksamheter",
+  "permalink": "/verksamheter/{{ page.fileSlug }}/"
+}
