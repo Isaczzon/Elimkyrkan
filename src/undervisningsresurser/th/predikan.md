@@ -2,7 +2,7 @@
 titel: คำเทศนา
 rubrik: คำเทศนา
 undertitel: คำเทศนาในอดีตและปัจจุบัน
-bild: /images/Sermon.png
+bild: /images/Sermon.webp
 videor:
   - titel: ""
     url: https://www.youtube.com/watch?v=Nq8cxDtnik0

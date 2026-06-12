@@ -3,7 +3,7 @@ titel: คาเฟ่วันอังคาร
 undertitel: คาเฟ่เปิด – ทุกคนยินดีต้อนรับ
 ikon: ☕
 kort: กาแฟและการพบปะแบบไม่ต้องนัดหมายทุกเย็นวันอังคาร
-bild: /images/Thuseday_cafe.png
+bild: /images/Thuseday_cafe.webp
 ordning: 5
 ---
 <div class="tisdagscafe-content" data-v="2">

@@ -3,7 +3,7 @@ titel: กลุ่มในบ้าน
 undertitel: ชุมชนในชีวิตประจำวัน
 ikon: 🏡
 kort: กลุ่มเล็ก ๆ ที่พบกันที่บ้านเพื่อศึกษาพระคัมภีร์ อธิษฐาน และมีสามัคคีธรรม
-bild: /images/Home_group.png
+bild: /images/Home_group.webp
 ordning: 2
 ---
 <div class="two-col">

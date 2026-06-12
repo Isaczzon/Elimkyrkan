@@ -6,8 +6,9 @@
     --wood: #C49A6C;
     --wood-light: #D4B896;
     --wood-pale: #F5EDE3;
+    --wood-dark: #8C5E2F; /* träfärg mörk nog för text/knappar (WCAG AA mot vitt) */
     --gray-dark: #4A4A4A;
-    --gray-mid: #7A7A7A;
+    --gray-mid: #666666;
     --gray-light: #B0B0B0;
     --gray-pale: #EDEDED;
     --off-white: #FAFAF8;
@@ -154,7 +155,7 @@ main { padding-top: 72px; }
     text-align: center;
     background-image:
         linear-gradient(180deg, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.55) 100%),
-        url('../images/Elimkyrkan_bulding.png');
+        url('../images/Elimkyrkan_bulding.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -185,7 +186,7 @@ main { padding-top: 72px; }
 .hero-btn {
     display: inline-block;
     padding: 14px 36px;
-    background: var(--wood);
+    background: var(--wood-dark);
     color: var(--white);
     text-decoration: none;
     border-radius: 6px;
@@ -194,7 +195,7 @@ main { padding-top: 72px; }
     transition: background 0.2s, transform 0.2s;
     cursor: pointer;
 }
-.hero-btn:hover { background: var(--wood-light); transform: translateY(-1px); }
+.hero-btn:hover { background: var(--wood); transform: translateY(-1px); }
 
 /* === SECTIONS === */
 .section {
@@ -272,7 +273,7 @@ main { padding-top: 72px; }
     color: white; font-size: 48px;
 }
 .event-body { padding: 24px; }
-.event-date { font-size: 13px; color: var(--wood); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+.event-date { font-size: 13px; color: var(--wood-dark); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
 .event-body h3 { font-family: 'Playfair Display', serif; font-size: 20px; margin: 8px 0; }
 .event-body p { color: var(--gray-mid); font-size: 14px; }
 
@@ -346,9 +347,9 @@ main { padding-top: 72px; }
     color: var(--gray-dark);
 }
 .calendar-cell:hover { border-color: var(--green-light); transform: translateY(-1px); background: #fdfefc; }
-.calendar-cell.outside { color: var(--gray-light); background: #fcfcfb; }
-.calendar-cell.past { opacity: 0.45; }
-.calendar-cell.past:hover { opacity: 0.7; }
+.calendar-cell.outside { color: #6F6F6F; background: #fcfcfb; }
+.calendar-cell.past { color: #6F6F6F; background: #fcfcfb; }
+.calendar-cell.past:hover { color: var(--gray-dark); }
 .calendar-cell.today {
     border-color: var(--wood);
     border-width: 2px;
@@ -431,7 +432,7 @@ main { padding-top: 72px; }
     margin: 0 auto 16px;
     font-size: 28px;
 }
-.verk-card h3 { font-family: 'Playfair Display', serif; font-size: 18px; margin-bottom: 8px; color: var(--green-dark); }
+.verk-card h2 { font-family: 'Playfair Display', serif; font-size: 18px; margin-bottom: 8px; color: var(--green-dark); }
 .verk-card p { color: var(--gray-mid); font-size: 14px; line-height: 1.5; }
 
 /* === SUBPAGE === */
@@ -447,7 +448,7 @@ main { padding-top: 72px; }
 .subpage-hero--about {
     background-image:
         linear-gradient(180deg, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.55) 100%),
-        url('../images/People_talking_inside_church.png');
+        url('../images/People_talking_inside_church.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -456,7 +457,7 @@ main { padding-top: 72px; }
 .subpage-hero--teaching {
     background-image:
         linear-gradient(180deg, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.55) 100%),
-        url('../images/Teachings.png');
+        url('../images/Teachings.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -465,7 +466,7 @@ main { padding-top: 72px; }
 .subpage-hero--contact {
     background-image:
         linear-gradient(180deg, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.55) 100%),
-        url('../images/Contact.png');
+        url('../images/Contact.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -474,7 +475,7 @@ main { padding-top: 72px; }
 .subpage-hero--activities {
     background-image:
         linear-gradient(180deg, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.55) 100%),
-        url('../images/Activities.png');
+        url('../images/Activities.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -483,7 +484,7 @@ main { padding-top: 72px; }
 .subpage-hero--calendar {
     background-image:
         linear-gradient(180deg, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.55) 100%),
-        url('../images/Calendar.png');
+        url('../images/Calendar.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -492,7 +493,7 @@ main { padding-top: 72px; }
 .subpage-hero--mission {
     background-image:
         linear-gradient(180deg, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.55) 100%),
-        url('../images/Missionary_work.png');
+        url('../images/Missionary_work.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -501,7 +502,7 @@ main { padding-top: 72px; }
 .subpage-hero--hemgrupper {
     background-image:
         linear-gradient(180deg, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.55) 100%),
-        url('../images/Home_group.png');
+        url('../images/Home_group.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -510,7 +511,7 @@ main { padding-top: 72px; }
 .subpage-hero--familjeraadgivning {
     background-image:
         linear-gradient(180deg, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.55) 100%),
-        url('../images/Teaching_parents.png');
+        url('../images/Teaching_parents.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -519,7 +520,7 @@ main { padding-top: 72px; }
 .subpage-hero--next-generation {
     background-image:
         linear-gradient(180deg, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.55) 100%),
-        url('../images/Next_Generation.png');
+        url('../images/Next_Generation.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -528,7 +529,7 @@ main { padding-top: 72px; }
 .subpage-hero--barn {
     background-image:
         linear-gradient(180deg, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.55) 100%),
-        url('../images/Children_playing.png');
+        url('../images/Children_playing.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -537,7 +538,7 @@ main { padding-top: 72px; }
 .subpage-hero--mansfrukost {
     background-image:
         linear-gradient(180deg, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.55) 100%),
-        url('../images/Mens_breakfast.png');
+        url('../images/Mens_breakfast.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -546,7 +547,7 @@ main { padding-top: 72px; }
 .subpage-hero--loppis-axplocket {
     background-image:
         linear-gradient(180deg, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.55) 100%),
-        url('../images/Axplocket_entry.png');
+        url('../images/Axplocket_entry.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -555,7 +556,7 @@ main { padding-top: 72px; }
 .subpage-hero--foerboen {
     background-image:
         linear-gradient(180deg, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.55) 100%),
-        url('../images/Prayer.png');
+        url('../images/Prayer.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -564,7 +565,7 @@ main { padding-top: 72px; }
 .subpage-hero--tisdagscafe {
     background-image:
         linear-gradient(180deg, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.55) 100%),
-        url('../images/Thuseday_cafe.png');
+        url('../images/Thuseday_cafe.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -573,7 +574,7 @@ main { padding-top: 72px; }
 .subpage-hero--predikan {
     background-image:
         linear-gradient(180deg, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.55) 100%),
-        url('../images/Sermon.png');
+        url('../images/Sermon.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -582,7 +583,7 @@ main { padding-top: 72px; }
 .subpage-hero--foeraeldrar {
     background-image:
         linear-gradient(180deg, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.55) 100%),
-        url('../images/Teaching_parents.png');
+        url('../images/Teaching_parents.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -1032,7 +1033,7 @@ main { padding-top: 72px; }
 .undervisning-card-header.predikan {
     background-image:
         linear-gradient(180deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.55) 100%),
-        url('../images/Sermon.png');
+        url('../images/Sermon.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -1040,7 +1041,7 @@ main { padding-top: 72px; }
 .undervisning-card-header.foraldrar {
     background-image:
         linear-gradient(180deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.55) 100%),
-        url('../images/Teaching_parents.png');
+        url('../images/Teaching_parents.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -1048,12 +1049,12 @@ main { padding-top: 72px; }
 .undervisning-card-header.hemgrupper {
     background-image:
         linear-gradient(180deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.55) 100%),
-        url('../images/Home_group.png');
+        url('../images/Home_group.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
 }
-.undervisning-card-header h3 { font-family: 'Playfair Display', serif; font-size: 22px; margin-top: 8px; }
+.undervisning-card-header h2 { font-family: 'Playfair Display', serif; font-size: 22px; margin-top: 8px; }
 .undervisning-card-header .icon { font-size: 36px; }
 .undervisning-card-body { padding: 24px; }
 .undervisning-card-body p { color: var(--gray-dark); font-size: 14px; margin-bottom: 16px; line-height: 1.7; }
@@ -1067,7 +1068,7 @@ main { padding-top: 72px; }
     gap: 48px;
     align-items: start;
 }
-.contact-info h3 { font-family: 'Playfair Display', serif; font-size: 22px; color: var(--green-dark); margin-bottom: 16px; }
+.contact-info h2 { font-family: 'Playfair Display', serif; font-size: 22px; color: var(--green-dark); margin-bottom: 16px; }
 .contact-info p { color: var(--gray-dark); margin-bottom: 12px; line-height: 1.7; }
 .contact-detail {
     display: flex;
@@ -1135,7 +1136,7 @@ footer {
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 40px;
 }
-footer h4 { color: var(--white); font-family: 'Playfair Display', serif; font-size: 18px; margin-bottom: 16px; }
+footer .footer-rubrik { color: var(--white); font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; margin-bottom: 16px; }
 footer p, footer a { font-size: 14px; line-height: 1.8; color: rgba(255,255,255,0.7); text-decoration: none; }
 footer a:hover { color: var(--white); }
 .footer-bottom {
@@ -1239,6 +1240,7 @@ footer a:hover { color: var(--white); }
     border-color: var(--border-soft);
 }
 [data-theme="dark"] .calendar-cell.outside { background: #181b20; color: var(--text-muted); }
+[data-theme="dark"] .calendar-cell.past { background: #181b20; color: var(--text-muted); }
 [data-theme="dark"] .calendar-event { background: #242932; border-color: var(--border-soft); }
 [data-theme="dark"] .calendar-event .meta,
 [data-theme="dark"] .calendar-event .desc { color: var(--text-body); }
@@ -1252,9 +1254,9 @@ footer a:hover { color: var(--white); }
 [data-theme="dark"] .schedule-day,
 [data-theme="dark"] .schedule-title,
 [data-theme="dark"] .event-body h3,
-[data-theme="dark"] .verk-card h3,
+[data-theme="dark"] .verk-card h2,
 [data-theme="dark"] .subpage-content h2,
-[data-theme="dark"] .contact-info h3,
+[data-theme="dark"] .contact-info h2,
 [data-theme="dark"] .calendar-month,
 [data-theme="dark"] .calendar-details h3,
 [data-theme="dark"] .calendar-event .title,
@@ -1391,3 +1393,39 @@ footer a:hover { color: var(--white); }
     box-shadow: 0 0 0 1px rgba(0,0,0,0.08);
     flex-shrink: 0;
 }
+
+/* === YOUTUBE-FASAD (iframe laddas först vid klick — snabbare och inga kakor) === */
+.video-fasad {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+    background: #000;
+}
+.video-fasad img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.85;
+}
+.video-fasad .video-spela {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 68px;
+    height: 48px;
+    border-radius: 12px;
+    background: rgba(0,0,0,0.75);
+    color: #fff;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+}
+.video-fasad:hover .video-spela,
+.video-fasad:focus-visible .video-spela { background: var(--green-mid); }

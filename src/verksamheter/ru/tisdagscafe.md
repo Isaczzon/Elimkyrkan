@@ -3,7 +3,7 @@ titel: Кафе по вторникам
 undertitel: Открытое кафе – добро пожаловать всем
 ikon: ☕
 kort: Чай и общение каждый вторник во второй половине дня.
-bild: /images/Thuseday_cafe.png
+bild: /images/Thuseday_cafe.webp
 ordning: 5
 ---
 <div class="tisdagscafe-content" data-v="2">

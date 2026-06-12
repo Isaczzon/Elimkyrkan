@@ -2,7 +2,7 @@
 titel: Sermons
 rubrik: Sermons
 undertitel: Past and current sermons
-bild: /images/Sermon.png
+bild: /images/Sermon.webp
 videor:
   - titel: ""
     url: https://www.youtube.com/watch?v=Nq8cxDtnik0

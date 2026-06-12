@@ -3,7 +3,7 @@ titel: Prayer
 undertitel: Prayer for one another and our world
 ikon: 🙏
 kort: Prayer and intercession for one another and the world around us.
-bild: /images/Prayer.png
+bild: /images/Prayer.webp
 ordning: 8
 bibelverser:
   - referens: Fil. 4:6–7

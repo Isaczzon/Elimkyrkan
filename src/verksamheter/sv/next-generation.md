@@ -3,7 +3,7 @@ titel: Next Generation
 undertitel: Ungdomsverksamhet med energi och gemenskap
 ikon: 🔥
 kort: Ungdomsverksamhet med aktiviteter, samtal om tro och gemenskap för unga.
-bild: /images/Next_Generation.png
+bild: /images/Next_Generation.webp
 ordning: 1
 ---
 <div class="nextgen-content" data-v="1">

@@ -1,4 +1,6 @@
+import { readFileSync } from "node:fs";
 import { HtmlBasePlugin } from "@11ty/eleventy";
+import CleanCSS from "clean-css";
 
 // Måndag = 0 … Söndag = 6 (samma ordning som Umbraco-vyerna sorterade på)
 const DAG_INDEX = {
@@ -67,8 +69,15 @@ export default function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("docs");
   eleventyConfig.addPassthroughCopy({ "src/admin": "admin" });
   eleventyConfig.addPassthroughCopy({ "src/favicon.svg": "favicon.svg" });
-  eleventyConfig.addPassthroughCopy({ "src/css": "css" });
   eleventyConfig.addPassthroughCopy({ "src/js": "js" });
+  eleventyConfig.ignores.add("src/css/**");
+  eleventyConfig.addWatchTarget("src/css/");
+
+  // CSS:en är liten (~6 KB gzippad) — minifieras och inlineas i <head>,
+  // vilket tar bort en renderblockerande nätverksrunda
+  eleventyConfig.addGlobalData("inlineCss", () =>
+    new CleanCSS({}).minify(readFileSync("src/css/site.css", "utf8")).styles
+  );
   eleventyConfig.ignores.add("src/admin/**");
 
   // Gör att alla länkar fungerar även när sajten ligger under /Elimkyrkan/ på GitHub Pages

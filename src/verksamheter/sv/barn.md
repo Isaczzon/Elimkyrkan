@@ -3,7 +3,7 @@ titel: Barn
 undertitel: En trygg plats för de yngsta
 ikon: 👶
 kort: Verksamhet för de yngsta med lek, sång och bibelberättelser i en trygg miljö.
-bild: /images/Children_playing.png
+bild: /images/Children_playing.webp
 ordning: 0
 ---
 <div class="barn-content" data-v="2">

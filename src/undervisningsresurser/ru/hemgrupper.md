@@ -2,7 +2,7 @@
 titel: Домашние группы
 rubrik: Домашние группы
 undertitel: Учебные материалы и ресурсы
-bild: /images/Home_group.png
+bild: /images/Home_group.webp
 resurskort:
   - ikon: 📖
     titel: Upptäckande bibelläsning

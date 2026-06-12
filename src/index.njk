@@ -6,6 +6,9 @@ pagination:
   size: 1
   alias: loc
 permalink: "/{{ loc.prefix }}index.html"
+eleventyComputed:
+  beskrivning: "{{ pages[loc.code].hem.hero.undertitel }}"
+  heroBild: "{{ pages[loc.code].hem.hero.bild }}"
 ---
 {%- set kod = loc.code -%}
 {%- set sidan = pages[kod].hem -%}

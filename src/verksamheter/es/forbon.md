@@ -3,7 +3,7 @@ titel: Oración
 undertitel: Oración por los demás y por nuestro mundo
 ikon: 🙏
 kort: Oración e intercesión por los demás y por el mundo que nos rodea.
-bild: /images/Prayer.png
+bild: /images/Prayer.webp
 ordning: 8
 bibelverser:
   - referens: Fil. 4:6–7

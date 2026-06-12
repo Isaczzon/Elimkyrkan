@@ -8,6 +8,8 @@ pagination:
 permalink: "/{{ loc.prefix }}om-oss/index.html"
 eleventyComputed:
   titel: "{{ pages[loc.code].omoss.navnamn }}"
+  beskrivning: "{{ pages[loc.code].omoss.hero.undertitel }}"
+  heroBild: "{{ pages[loc.code].omoss.hero.bild }}"
 ---
 {%- set kod = loc.code -%}
 {%- set sidan = pages[kod].omoss -%}

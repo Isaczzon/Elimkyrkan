@@ -8,6 +8,8 @@ pagination:
 permalink: "/{{ loc.prefix }}kontakt/index.html"
 eleventyComputed:
   titel: "{{ pages[loc.code].kontakt.navnamn }}"
+  beskrivning: "{{ pages[loc.code].kontakt.hero.undertitel }}"
+  heroBild: "{{ pages[loc.code].kontakt.hero.bild }}"
 ---
 {%- set kod = loc.code -%}
 {%- set sidan = pages[kod].kontakt -%}
@@ -22,7 +24,7 @@ eleventyComputed:
 <section class="section">
     <div class="contact-wrapper">
         <div class="contact-info fade-in">
-            <h3>{{ sajten.logotopp }} {{ sajten.logobotten }}</h3>
+            <h2>{{ sajten.logotopp }} {{ sajten.logobotten }}</h2>
             <p>{{ ui.kontakt.intro }}</p>
 
             {% if sidan.adress %}
@@ -60,7 +62,7 @@ eleventyComputed:
         </div>
 
         <div class="fade-in">
-            <h3 style="font-family:'Playfair Display',serif; font-size:22px; color:var(--green-dark); margin-bottom:24px;">{{ ui.kontakt.skicka }}</h3>
+            <h2 style="font-family:'Playfair Display',serif; font-size:22px; color:var(--green-dark); margin-bottom:24px;">{{ ui.kontakt.skicka }}</h2>
             <form id="contactForm"
                   data-formspree="{{ sajten.formspree_id }}"
                   data-msg-success="{{ ui.kontakt.tack }}"

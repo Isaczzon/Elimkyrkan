@@ -3,7 +3,7 @@ titel: Family Counseling
 undertitel: Support for the whole family
 ikon: 👨‍👩‍👧‍👦
 kort: Professional counseling for couples and families in a safe environment.
-bild: /images/Teaching_parents.png
+bild: /images/Teaching_parents.webp
 ordning: 7
 principer:
   - ikon: ✝️

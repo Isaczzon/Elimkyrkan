@@ -8,6 +8,8 @@ pagination:
 permalink: "/{{ loc.prefix }}undervisning/index.html"
 eleventyComputed:
   titel: "{{ pages[loc.code].undervisning.navnamn }}"
+  beskrivning: "{{ pages[loc.code].undervisning.hero.undertitel }}"
+  heroBild: "{{ pages[loc.code].undervisning.hero.bild }}"
 ---
 {%- set kod = loc.code -%}
 {%- set sidan = pages[kod].undervisning -%}
@@ -22,7 +24,7 @@ eleventyComputed:
         {% for kort in sidan.kort %}
         <div class="undervisning-card fade-in">
             <div class="undervisning-card-header {{ kort.stil }}">
-                <h3>{{ kort.titel }}</h3>
+                <h2>{{ kort.titel }}</h2>
             </div>
             <div class="undervisning-card-body">
                 {% for stycke in kort.stycken %}

@@ -3,7 +3,7 @@ titel: อาหารเช้าผู้ชาย
 undertitel: อาหารเช้าและการรวมตัวสำหรับผู้ชาย
 ikon: 🍳
 kort: อาหารเช้าและการพูดคุยสำหรับผู้ชาย ช่วงเวลาเติมพลังในช่วงสัปดาห์
-bild: /images/Mens_breakfast.png
+bild: /images/Mens_breakfast.webp
 ordning: 4
 ---
 <div class="mansfrukost-content" data-v="2">

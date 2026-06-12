@@ -3,7 +3,7 @@ titel: Consejería familiar
 undertitel: Apoyo para toda la familia
 ikon: 👨‍👩‍👧‍👦
 kort: Asesoramiento profesional para parejas y familias en un entorno seguro.
-bild: /images/Teaching_parents.png
+bild: /images/Teaching_parents.webp
 ordning: 7
 principer:
   - ikon: ✝️

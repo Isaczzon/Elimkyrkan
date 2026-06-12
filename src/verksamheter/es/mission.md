@@ -3,7 +3,7 @@ titel: Misión
 undertitel: Compromiso local y global
 ikon: 🌍
 kort: Nuestro trabajo misionero local y global – compartir fe y cuidado en el mundo.
-bild: /images/Missionary_work.png
+bild: /images/Missionary_work.webp
 ordning: 3
 missionLander:
   - namn: Argentina – Evangelium i bergen

@@ -4,7 +4,7 @@ undertitel: Youth activities with energy and community
 ikon: 🔥
 kort: Youth ministry with activities, faith conversations and community for
   young people.
-bild: /images/Next_Generation.png
+bild: /images/Next_Generation.webp
 ordning: 1
 ---
 <div class="nextgen-content" data-v="1">

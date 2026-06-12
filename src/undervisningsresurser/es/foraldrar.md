@@ -2,7 +2,7 @@
 titel: Padres
 rubrik: Padres
 undertitel: Recursos para padres
-bild: /images/Teaching_parents.png
+bild: /images/Teaching_parents.webp
 videor:
   - titel: Avsnitt 1
     url: https://www.youtube.com/watch?v=AXshLkKoXB4

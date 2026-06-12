@@ -2,7 +2,7 @@
 titel: พ่อแม่
 rubrik: พ่อแม่
 undertitel: ทรัพยากรสำหรับพ่อแม่
-bild: /images/Teaching_parents.png
+bild: /images/Teaching_parents.webp
 videor:
   - titel: Avsnitt 1
     url: https://www.youtube.com/watch?v=AXshLkKoXB4

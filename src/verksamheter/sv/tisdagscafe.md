@@ -3,7 +3,7 @@ titel: Tisdagscafé
 undertitel: Öppet café – alla välkomna
 ikon: ☕
 kort: Drop-in fika och gemenskap varje tisdag kväll.
-bild: /images/Thuseday_cafe.png
+bild: /images/Thuseday_cafe.webp
 ordning: 5
 ---
 <div class="tisdagscafe-content" data-v="2">

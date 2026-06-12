@@ -3,7 +3,7 @@ titel: Mansfrukost
 undertitel: Frukost och gemenskap för män
 ikon: 🍳
 kort: Frukost och samtal för män. En stund att ladda under veckan.
-bild: /images/Mens_breakfast.png
+bild: /images/Mens_breakfast.webp
 ordning: 4
 ---
 <div class="mansfrukost-content" data-v="2">

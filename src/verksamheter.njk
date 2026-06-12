@@ -8,6 +8,8 @@ pagination:
 permalink: "/{{ loc.prefix }}verksamheter/index.html"
 eleventyComputed:
   titel: "{{ pages[loc.code].verksamheter.navnamn }}"
+  beskrivning: "{{ pages[loc.code].verksamheter.hero.undertitel }}"
+  heroBild: "{{ pages[loc.code].verksamheter.hero.bild }}"
 ---
 {%- set kod = loc.code -%}
 {%- set sidan = pages[kod].verksamheter -%}
@@ -22,7 +24,7 @@ eleventyComputed:
         {% for verk in collections.verksamhet | medLang(kod) | sorteraOrdning %}
         <a class="verk-card fade-in" href="{{ verk.url }}">
             <div class="verk-icon">{{ verk.data.ikon }}</div>
-            <h3>{{ verk.data.titel }}</h3>
+            <h2>{{ verk.data.titel }}</h2>
             <p>{{ verk.data.kort }}</p>
         </a>
         {% endfor %}

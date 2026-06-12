@@ -3,7 +3,7 @@ titel: Förbön
 undertitel: Bön för varandra och vår värld
 ikon: 🙏
 kort: Bön och förbön för varandra och vår omvärld.
-bild: /images/Prayer.png
+bild: /images/Prayer.webp
 ordning: 8
 bibelverser:
   - referens: Fil. 4:6–7

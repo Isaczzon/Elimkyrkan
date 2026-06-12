@@ -3,7 +3,7 @@ titel: Home Groups
 undertitel: Community in everyday life
 ikon: 🏡
 kort: Smaller groups meeting in homes for Bible study, prayer and fellowship.
-bild: /images/Home_group.png
+bild: /images/Home_group.webp
 ordning: 2
 ---
 <div class="two-col">

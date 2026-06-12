@@ -3,7 +3,7 @@ titel: Hemgrupper
 undertitel: Gemenskap i vardagen
 ikon: 🏡
 kort: Mindre grupper som träffas i hemmen för bibelstudium, bön och gemenskap.
-bild: /images/Home_group.png
+bild: /images/Home_group.webp
 ordning: 2
 ---
 <div class="two-col">

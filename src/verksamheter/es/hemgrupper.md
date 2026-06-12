@@ -4,7 +4,7 @@ undertitel: Comunidad en la vida cotidiana
 ikon: 🏡
 kort: Grupos pequeños que se reúnen en hogares para estudio bíblico, oración y
   comunión.
-bild: /images/Home_group.png
+bild: /images/Home_group.webp
 ordning: 2
 ---
 <div class="two-col">

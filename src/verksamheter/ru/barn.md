@@ -4,7 +4,7 @@ undertitel: Безопасное место для самых маленьких
 ikon: 👶
 kort: Занятия для самых маленьких с играми, песнями и библейскими историями в
   безопасной обстановке.
-bild: /images/Children_playing.png
+bild: /images/Children_playing.webp
 ordning: 0
 ---
 <div class="barn-content" data-v="2">

@@ -4,7 +4,7 @@ undertitel: Un lugar seguro para los más pequeños
 ikon: 👶
 kort: Actividades para los más pequeños con juegos, canciones e historias
   bíblicas en un entorno seguro.
-bild: /images/Children_playing.png
+bild: /images/Children_playing.webp
 ordning: 0
 ---
 <div class="barn-content" data-v="2">

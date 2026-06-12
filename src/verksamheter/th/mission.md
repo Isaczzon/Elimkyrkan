@@ -3,7 +3,7 @@ titel: พันธกิจ
 undertitel: การมีส่วนร่วมทั้งในท้องถิ่นและทั่วโลก
 ikon: 🌍
 kort: งานพันธกิจของเราทั้งในท้องถิ่นและทั่วโลก – แบ่งปันความเชื่อและการดูแลในโลก
-bild: /images/Missionary_work.png
+bild: /images/Missionary_work.webp
 ordning: 3
 missionLander:
   - namn: Argentina – Evangelium i bergen

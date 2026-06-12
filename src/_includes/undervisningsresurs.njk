@@ -25,13 +25,12 @@ layout: layout.njk
             {% if video.titel %}<h3>{{ video.titel }}</h3>{% endif %}
             {% if videoId %}
             <div class="video-embed">
-                <iframe
-                    src="https://www.youtube-nocookie.com/embed/{{ videoId }}"
-                    title="{{ video.titel or 'YouTube video' }}"
-                    loading="lazy"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    referrerpolicy="strict-origin-when-cross-origin"
-                    allowfullscreen></iframe>
+                <button class="video-fasad" type="button" data-video-id="{{ videoId }}"
+                        data-video-titel="{{ video.titel or 'YouTube video' }}"
+                        aria-label="{{ ui.spela }}: {{ video.titel or 'YouTube video' }}">
+                    <img src="https://i.ytimg.com/vi/{{ videoId }}/hqdefault.jpg" alt="" loading="lazy" width="480" height="360">
+                    <span class="video-spela" aria-hidden="true">▶</span>
+                </button>
             </div>
             {% elif video.url %}
             <p><a href="{{ video.url }}" target="_blank" rel="noopener">{{ video.url }}</a></p>

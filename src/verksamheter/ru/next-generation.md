@@ -4,7 +4,7 @@ undertitel: Молодёжная работа с энергией и общен�
 ikon: 🔥
 kort: Молодёжное служение с мероприятиями, разговорами о вере и общением для
   молодёжи.
-bild: /images/Next_Generation.png
+bild: /images/Next_Generation.webp
 ordning: 1
 ---
 <div class="nextgen-content" data-v="1">

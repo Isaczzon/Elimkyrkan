@@ -3,7 +3,7 @@ titel: Tuesday Café
 undertitel: Open café – all welcome
 ikon: ☕
 kort: Drop-in coffee and community every Tuesday evening.
-bild: /images/Thuseday_cafe.png
+bild: /images/Thuseday_cafe.webp
 ordning: 5
 ---
 <div class="tisdagscafe-content" data-v="2">

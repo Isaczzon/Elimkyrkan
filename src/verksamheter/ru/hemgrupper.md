@@ -4,7 +4,7 @@ undertitel: Общение в повседневной жизни
 ikon: 🏡
 kort: Небольшие группы, которые встречаются по домам для изучения Библии,
   молитвы и общения.
-bild: /images/Home_group.png
+bild: /images/Home_group.webp
 ordning: 2
 ---
 <div class="two-col">

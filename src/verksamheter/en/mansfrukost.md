@@ -3,7 +3,7 @@ titel: Men's Breakfast
 undertitel: Breakfast and community for men
 ikon: 🍳
 kort: Breakfast and conversation for men. A moment to recharge during the week.
-bild: /images/Mens_breakfast.png
+bild: /images/Mens_breakfast.webp
 ordning: 4
 ---
 <div class="mansfrukost-content" data-v="2">

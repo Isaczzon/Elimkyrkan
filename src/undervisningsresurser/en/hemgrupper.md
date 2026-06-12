@@ -2,7 +2,7 @@
 titel: Home Groups
 rubrik: Home Groups
 undertitel: Study material and resources
-bild: /images/Home_group.png
+bild: /images/Home_group.webp
 resurskort:
   - ikon: 📖
     titel: Upptäckande bibelläsning

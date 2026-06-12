@@ -2,7 +2,7 @@
 titel: กลุ่มในบ้าน
 rubrik: กลุ่มในบ้าน
 undertitel: เนื้อหาการศึกษาและทรัพยากร
-bild: /images/Home_group.png
+bild: /images/Home_group.webp
 resurskort:
   - ikon: 📖
     titel: Upptäckande bibelläsning

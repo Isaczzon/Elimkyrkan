@@ -3,7 +3,7 @@ titel: Мужской завтрак
 undertitel: Завтрак и общение для мужчин
 ikon: 🍳
 kort: Завтрак и беседа для мужчин. Возможность перевести дух посреди недели.
-bild: /images/Mens_breakfast.png
+bild: /images/Mens_breakfast.webp
 ordning: 4
 ---
 <div class="mansfrukost-content" data-v="2">

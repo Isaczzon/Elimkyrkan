@@ -1,4 +1,4 @@
-{%- set kod = loc.code if loc else (lang or 'sv') -%}
+﻿{%- set kod = loc.code if loc else (lang or 'sv') -%}
 {%- set lokal = locales | lokalFor(kod) -%}
 {%- set ui = t[kod] -%}
 {%- set sajten = sajt[kod] -%}
@@ -9,13 +9,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% if titel %}{{ titel }} – {% endif %}{{ sajten.logotopp }} {{ sajten.logobotten }}</title>
+    {%- set metaBeskrivning = beskrivning or kort or undertitel %}
+    {%- if metaBeskrivning %}
+    <meta name="description" content="{{ metaBeskrivning }}">
+    {%- endif %}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&family=Caveat:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&family=Caveat&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&family=Caveat&display=swap" rel="stylesheet"></noscript>
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/favicon.svg">
     <meta name="theme-color" content="#2E5339">
-    <link rel="stylesheet" href="/css/site.css">
+    <style>{{ inlineCss | safe }}</style>
     <script>
         (function () {
             try {
@@ -93,7 +98,7 @@
             <p>{{ sajten.tagline | nl2br | safe }}</p>
         </div>
         <div>
-            <h4>{{ ui.snabblankar }}</h4>
+            <h2 class="footer-rubrik">{{ ui.snabblankar }}</h2>
             <p><a href="/{{ lokal.prefix }}">{{ ui.hem }}</a></p>
             <p><a href="/{{ lokal.prefix }}om-oss/">{{ sidor.omoss.navnamn }}</a></p>
             <p><a href="/{{ lokal.prefix }}verksamheter/">{{ sidor.verksamheter.navnamn }}</a></p>
@@ -102,13 +107,13 @@
             <p><a href="/{{ lokal.prefix }}kontakt/">{{ sidor.kontakt.navnamn }}</a></p>
         </div>
         <div>
-            <h4>{{ ui.verksamheterRubrik }}</h4>
+            <h2 class="footer-rubrik">{{ ui.verksamheterRubrik }}</h2>
             {% for verk in collections.verksamhet | medLang(kod) | sorteraOrdning %}{% if loop.index <= 4 %}
             <p><a href="{{ verk.url }}">{{ verk.data.titel }}</a></p>
             {% endif %}{% endfor %}
         </div>
         <div>
-            <h4>{{ ui.kontaktRubrik }}</h4>
+            <h2 class="footer-rubrik">{{ ui.kontaktRubrik }}</h2>
             <p>{{ sajten.adress | nl2br | safe }}</p>
             <p>{{ sajten.telefon }}</p>
             <p>{{ sajten.epost }}</p>
@@ -122,6 +127,6 @@
     </div>
 </footer>
 
-<script src="/js/site.js"></script>
+<script src="/js/site.js" defer></script>
 </body>
 </html>

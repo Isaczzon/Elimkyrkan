@@ -10,6 +10,7 @@
     "tillbakaTill": "← Tillbaka till",
     "markGava": "Märk din gåva med",
     "oppna": "Öppna",
+    "spela": "Spela upp",
     "kalender": {
       "vadHander": "Vad händer framåt?",
       "vadHanderSub": "Här ser du planerade event och viktiga datum den kommande tiden.",
@@ -58,6 +59,7 @@
     "tillbakaTill": "← Back to",
     "markGava": "Mark your gift with",
     "oppna": "Open",
+    "spela": "Play",
     "kalender": {
       "vadHander": "What's coming up?",
       "vadHanderSub": "Here you can see planned events and important dates ahead.",
@@ -106,6 +108,7 @@
     "tillbakaTill": "← Назад к",
     "markGava": "Пометьте ваш дар",
     "oppna": "Открыть",
+    "spela": "Воспроизвести",
     "kalender": {
       "vadHander": "Что впереди?",
       "vadHanderSub": "Здесь вы можете увидеть запланированные события и важные даты на ближайшее время.",
@@ -154,6 +157,7 @@
     "tillbakaTill": "← Volver a",
     "markGava": "Marca tu donación con",
     "oppna": "Abrir",
+    "spela": "Reproducir",
     "kalender": {
       "vadHander": "¿Qué viene a continuación?",
       "vadHanderSub": "Aquí puedes ver los eventos planificados y las fechas importantes próximas.",
@@ -202,6 +206,7 @@
     "tillbakaTill": "← กลับไปที่",
     "markGava": "ทำเครื่องหมายของขวัญด้วย",
     "oppna": "เปิด",
+    "spela": "เล่น",
     "kalender": {
       "vadHander": "มีอะไรกำลังจะเกิดขึ้น?",
       "vadHanderSub": "ที่นี่คุณสามารถเห็นกิจกรรมและวันที่สำคัญที่กำลังจะมาถึง",

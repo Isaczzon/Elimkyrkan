@@ -3,7 +3,7 @@ titel: การให้คำปรึกษาครอบครัว
 undertitel: การสนับสนุนสำหรับทั้งครอบครัว
 ikon: 👨‍👩‍👧‍👦
 kort: การให้คำปรึกษาเชิงวิชาชีพสำหรับคู่รักและครอบครัวในสภาพแวดล้อมที่ปลอดภัย
-bild: /images/Teaching_parents.png
+bild: /images/Teaching_parents.webp
 ordning: 7
 principer:
   - ikon: ✝️

@@ -4,7 +4,7 @@ undertitel: สถานที่ปลอดภัยสำหรับเด�
 ikon: 👶
 kort: กิจกรรมสำหรับเด็กเล็กพร้อมการเล่น เพลง
   และเรื่องราวจากพระคัมภีร์ในสภาพแวดล้อมที่ปลอดภัย
-bild: /images/Children_playing.png
+bild: /images/Children_playing.webp
 ordning: 0
 ---
 <div class="barn-content" data-v="2">

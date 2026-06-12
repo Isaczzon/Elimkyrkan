@@ -3,7 +3,7 @@ titel: Café del martes
 undertitel: Café abierto – todos bienvenidos
 ikon: ☕
 kort: Café y comunidad sin cita previa cada martes por la noche.
-bild: /images/Thuseday_cafe.png
+bild: /images/Thuseday_cafe.webp
 ordning: 5
 ---
 <div class="tisdagscafe-content" data-v="2">

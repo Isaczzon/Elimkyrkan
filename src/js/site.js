@@ -36,6 +36,19 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { threshold: 0.1 });
     document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
+    // YouTube-fasad: ladda iframen först när besökaren klickar (snabbare, inga kakor i förväg)
+    document.querySelectorAll('.video-fasad').forEach((knapp) => {
+        knapp.addEventListener('click', () => {
+            const iframe = document.createElement('iframe');
+            iframe.src = 'https://www.youtube-nocookie.com/embed/' + knapp.dataset.videoId + '?autoplay=1';
+            iframe.title = knapp.dataset.videoTitel || 'YouTube video';
+            iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+            iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+            iframe.allowFullscreen = true;
+            knapp.replaceWith(iframe);
+        });
+    });
+
     const themeToggle = document.getElementById('themeToggle');
     if (themeToggle) {
         const updateIcon = () => {

@@ -3,7 +3,7 @@ titel: Mission
 undertitel: Lokalt och globalt engagemang
 ikon: 🌍
 kort: Vårt missionsengagemang lokalt och globalt – att dela tro och omsorg i världen.
-bild: /images/Missionary_work.png
+bild: /images/Missionary_work.webp
 ordning: 3
 missionLander:
   - namn: Argentina – Evangelium i bergen

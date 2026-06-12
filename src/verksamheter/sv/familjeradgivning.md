@@ -3,7 +3,7 @@ titel: Familjerådgivning
 undertitel: Stöd för hela familjen
 ikon: 👨‍👩‍👧‍👦
 kort: Professionell rådgivning för par och familjer i en trygg miljö.
-bild: /images/Teaching_parents.png
+bild: /images/Teaching_parents.webp
 ordning: 7
 principer:
   - ikon: ✝️

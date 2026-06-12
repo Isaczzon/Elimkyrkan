@@ -3,7 +3,7 @@ titel: Семейное консультирование
 undertitel: Поддержка для всей семьи
 ikon: 👨‍👩‍👧‍👦
 kort: Профессиональное консультирование для пар и семей в безопасной обстановке.
-bild: /images/Teaching_parents.png
+bild: /images/Teaching_parents.webp
 ordning: 7
 principer:
   - ikon: ✝️

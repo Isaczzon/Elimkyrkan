@@ -4,7 +4,7 @@ undertitel: A safe place for the youngest
 ikon: 👶
 kort: Activities for the youngest with play, songs and Bible stories in a safe
   environment.
-bild: /images/Children_playing.png
+bild: /images/Children_playing.webp
 ordning: 0
 ---
 <div class="barn-content" data-v="2">

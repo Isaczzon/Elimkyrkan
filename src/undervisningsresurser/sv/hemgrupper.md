@@ -2,7 +2,7 @@
 titel: Hemgrupper
 rubrik: Hemgrupper
 undertitel: Studiematerial och resurser
-bild: /images/Home_group.png
+bild: /images/Home_group.webp
 resurskort:
   - ikon: 📖
     titel: Upptäckande bibelläsning

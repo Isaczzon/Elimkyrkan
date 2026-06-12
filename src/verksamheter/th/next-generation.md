@@ -3,7 +3,7 @@ titel: Next Generation
 undertitel: กิจกรรมเยาวชนที่เต็มไปด้วยพลังและความเป็นน้ำหนึ่งใจเดียวกัน
 ikon: 🔥
 kort: พันธกิจเยาวชนที่มีกิจกรรม การพูดคุยเรื่องความเชื่อ และการรวมตัวสำหรับคนหนุ่มสาว
-bild: /images/Next_Generation.png
+bild: /images/Next_Generation.webp
 ordning: 1
 ---
 <div class="nextgen-content" data-v="1">

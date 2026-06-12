@@ -3,7 +3,7 @@ titel: Mission
 undertitel: Local and global engagement
 ikon: 🌍
 kort: Our mission work locally and globally – sharing faith and care in the world.
-bild: /images/Missionary_work.png
+bild: /images/Missionary_work.webp
 ordning: 3
 missionLander:
   - namn: Argentina – Evangelium i bergen

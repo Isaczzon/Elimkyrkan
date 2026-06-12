@@ -3,7 +3,7 @@ titel: การอธิษฐาน
 undertitel: การอธิษฐานเพื่อกันและกันและเพื่อโลกของเรา
 ikon: 🙏
 kort: การอธิษฐานและการวิงวอนเพื่อกันและกันและเพื่อโลกรอบตัวเรา
-bild: /images/Prayer.png
+bild: /images/Prayer.webp
 ordning: 8
 bibelverser:
   - referens: Fil. 4:6–7

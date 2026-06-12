@@ -4,7 +4,7 @@ undertitel: Служение здесь и по всему миру
 ikon: 🌍
 kort: Наше миссионерское служение на местном и мировом уровне – делиться верой
   и заботой в мире.
-bild: /images/Missionary_work.png
+bild: /images/Missionary_work.webp
 ordning: 3
 missionLander:
   - namn: Argentina – Evangelium i bergen

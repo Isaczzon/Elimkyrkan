@@ -3,18 +3,18 @@ titel: ตลาดมือสอง Axplocket
 undertitel: 250 ตร.ม. ของสินค้ามือสองคุณภาพดีกลางเมืองมันทอร์ป
 ikon: 🛍️
 kort: ร้านขายของมือสอง รายได้สนับสนุนคริสตจักรและงานพันธกิจ
-bild: /images/Axplocket_entry.png
+bild: /images/Axplocket_entry.webp
 ordning: 6
 galleri:
-  - bild: /images/Axplocket_decoration_area.png
+  - bild: /images/Axplocket_decoration_area.webp
     text: Dekorationer
-  - bild: /images/Axplocket_tableware_and_music_area.png
+  - bild: /images/Axplocket_tableware_and_music_area.webp
     text: Servisgods & musik
-  - bild: /images/Axplocket_toys_area.png
+  - bild: /images/Axplocket_toys_area.webp
     text: Leksaker
-  - bild: /images/Axplocket_technical_area.png
+  - bild: /images/Axplocket_technical_area.webp
     text: Verktyg & prylar
-  - bild: /images/Axplocket_book_area.png
+  - bild: /images/Axplocket_book_area.webp
     text: Böcker
 ---
 <div class="axplocket-content" data-v="3">

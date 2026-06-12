@@ -3,7 +3,7 @@ titel: Молитва
 undertitel: Молитва друг за друга и за наш мир
 ikon: 🙏
 kort: Молитва и ходатайство друг за друга и за мир вокруг нас.
-bild: /images/Prayer.png
+bild: /images/Prayer.webp
 ordning: 8
 bibelverser:
   - referens: Fil. 4:6–7

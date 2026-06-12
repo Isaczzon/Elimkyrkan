@@ -4,7 +4,7 @@ undertitel: Desayuno y comunidad para hombres
 ikon: 🍳
 kort: Desayuno y conversación para hombres. Un momento para recargar durante la
   semana.
-bild: /images/Mens_breakfast.png
+bild: /images/Mens_breakfast.webp
 ordning: 4
 ---
 <div class="mansfrukost-content" data-v="2">

@@ -4,7 +4,7 @@ undertitel: Actividades juveniles con energía y comunidad
 ikon: 🔥
 kort: Ministerio juvenil con actividades, conversaciones de fe y comunidad para
   jóvenes.
-bild: /images/Next_Generation.png
+bild: /images/Next_Generation.webp
 ordning: 1
 ---
 <div class="nextgen-content" data-v="1">

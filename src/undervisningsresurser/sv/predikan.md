@@ -2,7 +2,7 @@
 titel: Predikan
 rubrik: Predikan
 undertitel: Tidigare och aktuella predikningar
-bild: /images/Sermon.png
+bild: /images/Sermon.webp
 videor:
   - titel: ""
     url: https://www.youtube.com/watch?v=Nq8cxDtnik0
