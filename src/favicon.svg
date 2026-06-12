@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Elimkyrkan Mantorp – flik-ikon: kyrka med kors i sajtens färger -->
+  <rect width="64" height="64" rx="12" fill="#2E5339"/>
+  <!-- Kors -->
+  <rect x="30" y="6" width="4" height="13" rx="1" fill="#FAFAF8"/>
+  <rect x="25.5" y="10" width="13" height="4" rx="1" fill="#FAFAF8"/>
+  <!-- Tak -->
+  <path d="M32 20 L50 36 L46 36 L46 40 L18 40 L18 36 L14 36 Z" fill="#FAFAF8"/>
+  <!-- Kyrkokropp -->
+  <rect x="18" y="38" width="28" height="20" fill="#FAFAF8"/>
+  <!-- Dörr i träfärg -->
+  <path d="M28 58 L28 48 Q28 44 32 44 Q36 44 36 48 L36 58 Z" fill="#C49A6C"/>
+</svg>
