@@ -1,0 +1,28 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@using Umbraco.Cms.Core.Models.PublishedContent
+@{
+    var culture = System.Globalization.CultureInfo.CurrentUICulture.Name;
+    var heroTitle = Model.Value<string>("heroTitle", culture) ?? Model.Value<string>("heroTitle") ?? Model.Name;
+    var heroSubtitle = Model.Value<string>("heroSubtitle", culture) ?? Model.Value<string>("heroSubtitle") ?? "";
+    var activities = Model.Children?.Where(c => c.IsVisible() && c.ContentType.Alias == "activity") ?? Enumerable.Empty<IPublishedContent>();
+    var heroImage = Model.Value<IPublishedContent>("heroImage");
+    string heroStyle = heroImage == null ? "" : $"background-image: linear-gradient(180deg, rgba(0,0,0,0.25), rgba(0,0,0,0.55)), url('{heroImage.Url().Webp()}'); background-size: cover; background-position: center;";
+}
+
+<section class="subpage-hero subpage-hero--activities" style="@heroStyle">
+    <h1>@heroTitle</h1>
+    <p>@heroSubtitle</p>
+</section>
+
+<section class="section">
+    <div class="verk-grid">
+        @foreach (var act in activities)
+        {
+            <a class="verk-card fade-in" href="@act.Url(culture: culture)">
+                <div class="verk-icon">@(act.Value<string>("icon"))</div>
+                <h3>@act.Name</h3>
+                <p>@(act.Value<string>("shortDescription", culture))</p>
+            </a>
+        }
+    </div>
+</section>

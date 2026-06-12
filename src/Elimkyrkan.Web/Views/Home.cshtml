@@ -1,0 +1,276 @@
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@using Elimkyrkan.Web.Helpers
+@using Umbraco.Cms.Core.Models.PublishedContent
+@{
+    var culture = System.Globalization.CultureInfo.CurrentUICulture.Name;
+    var cultureInfo = System.Globalization.CultureInfo.CurrentUICulture;
+
+    string V(string alias, string fallback = "") =>
+        Model.Value<string>(alias, culture) ?? Model.Value<string>(alias) ?? fallback;
+
+    var heroTitle = V("heroTitle", "Välkommen till Elimkyrkan Mantorp");
+    var heroSubtitle = V("heroSubtitle");
+    var heroButtonText = V("heroButtonText", I18n.T("Lär känna oss", "Get to know us", "Знайомтесь з нами", "Conócenos", "ทำความรู้จักกับเรา"));
+    var scheduleHeading = V("scheduleHeading", I18n.T("Veckoschema", "Weekly Schedule", "Тижневий розклад", "Horario semanal", "ตารางประจำสัปดาห์"));
+    var scheduleSubheading = V("scheduleSubheading", I18n.T("Här hittar du veckans aktiviteter och sammankomster", "Here you'll find this week's activities and gatherings", "Ось активності та зустрічі цього тижня", "Aquí encontrarás las actividades y encuentros de la semana", "นี่คือกิจกรรมและการรวมตัวประจำสัปดาห์"));
+    var eventsHeading = V("eventsHeading", I18n.T("Vad som händer", "What's happening", "Що відбувається", "Qué está pasando", "กิจกรรมที่จะเกิดขึ้น"));
+    var eventsSubheading = V("eventsSubheading", I18n.T("Kommande händelser och nyheter i församlingen", "Upcoming events and news from the congregation", "Майбутні події та новини громади", "Próximos eventos y noticias de la congregación", "กิจกรรมและข่าวสารที่กำลังจะมาถึงจากคริสตจักร"));
+    var ctaHeading = V("ctaHeading", I18n.T("Välkommen att besöka oss", "Welcome to visit us", "Ласкаво просимо до нас", "Bienvenido a visitarnos", "ยินดีต้อนรับมาเยี่ยมเรา"));
+    var ctaText = V("ctaText");
+    var ctaButtonText = V("ctaButtonText", I18n.T("Hitta hit →", "Find your way →", "Знайти дорогу →", "Cómo llegar →", "เส้นทางมาที่นี่ →"));
+
+    var contactPage = Model.Children?.FirstOrDefault(c => c.ContentType.Alias == "contactPage");
+    var aboutPage = Model.Children?.FirstOrDefault(c => c.ContentType.Alias == "aboutPage");
+    var calendarPage = Model.Children?.FirstOrDefault(c => c.ContentType.Alias == "calendarPage");
+
+    // Events live under Calendar (single source of truth)
+    var allEvents = calendarPage?.Children?.Where(c => c.IsVisible() && c.ContentType.Alias == "event").ToList()
+        ?? new List<IPublishedContent>();
+
+    // Determine the current week (Mon-Sun) for filtering Weekly events
+    var today = DateTime.Today;
+    int delta = ((int)today.DayOfWeek + 6) % 7; // Monday = 0
+    var weekStart = today.AddDays(-delta);
+    var weekEnd = weekStart.AddDays(6);
+
+    // A few of our properties switched from Textstring to Dropdown, so the value converter
+    // returns either a string (legacy) or IEnumerable<string> (dropdown). Read defensively.
+    string ReadString(IPublishedContent e, string alias)
+    {
+        var raw = e.Value(alias);
+        if (raw == null) return "";
+        if (raw is string s) return s.Trim();
+        if (raw is IEnumerable<string> arr) return arr.FirstOrDefault()?.Trim() ?? "";
+        return raw.ToString()?.Trim() ?? "";
+    }
+    string TypeOf(IPublishedContent e) => ReadString(e, "eventType");
+    string DayOfWeekOf(IPublishedContent e) => ReadString(e, "dayOfWeek");
+    bool TypeIs(IPublishedContent e, string label) =>
+        string.Equals(TypeOf(e), label, StringComparison.OrdinalIgnoreCase);
+
+    var currentIsoWeek = System.Globalization.ISOWeek.GetWeekOfYear(today);
+
+    bool ShowsInVeckoschema(IPublishedContent e)
+    {
+        var type = TypeOf(e);
+        // Anything that isn't Monthly counts as weekly-display
+        if (string.Equals(type, "Monthly", StringComparison.OrdinalIgnoreCase)) return false;
+        if (string.IsNullOrWhiteSpace(type)) return false;
+
+        var d = e.Value<DateTime?>("eventDate");
+
+        // If the event has a real date, show only when that date falls within this week
+        if (d.HasValue && d.Value.Date != default)
+        {
+            return d.Value.Date >= weekStart && d.Value.Date <= weekEnd;
+        }
+
+        // Static slot (no date): obey the recurrence pattern using current ISO week
+        return type.ToLowerInvariant() switch
+        {
+            "weekly" => true,
+            "even weeks" => currentIsoWeek % 2 == 0,
+            "odd weeks" => currentIsoWeek % 2 == 1,
+            "every third week" => currentIsoWeek % 3 == 0,
+            _ => false
+        };
+    }
+
+    var weeklyEvents = allEvents.Where(ShowsInVeckoschema).ToList();
+
+    // Monthly: include events without a date (e.g. recurring monthly without specific dates),
+    // and events whose date is today or later. Past-dated events drop off.
+    var monthlyEvents = allEvents
+        .Where(e => TypeIs(e, "Monthly"))
+        .Where(e =>
+        {
+            var d = e.Value<DateTime?>("eventDate");
+            return !d.HasValue || d.Value.Date == default || d.Value.Date >= today;
+        })
+        .OrderBy(e => e.Value<DateTime?>("eventDate") ?? DateTime.MaxValue)
+        .ThenBy(StartMinutes)
+        .Take(6)
+        .ToList();
+
+    int DayOrder(IPublishedContent e)
+    {
+        var d = e.Value<DateTime?>("eventDate");
+        if (d.HasValue && d.Value.Date != default)
+        {
+            return ((int)d.Value.DayOfWeek + 6) % 7; // Mon=0, Sun=6
+        }
+        var day = DayOfWeekOf(e).ToLowerInvariant();
+        return day switch
+        {
+            "måndag" or "monday" => 0,
+            "tisdag" or "tuesday" => 1,
+            "onsdag" or "wednesday" => 2,
+            "torsdag" or "thursday" => 3,
+            "fredag" or "friday" => 4,
+            "lördag" or "saturday" => 5,
+            "söndag" or "sunday" => 6,
+            _ => 99
+        };
+    }
+    int StartMinutes(IPublishedContent e)
+    {
+        var time = e.Value<string>("time");
+        if (string.IsNullOrEmpty(time)) return int.MaxValue;
+        var m = System.Text.RegularExpressions.Regex.Match(time.Trim(), @"^(\d{1,2}):(\d{2})");
+        if (!m.Success) return int.MaxValue;
+        return int.Parse(m.Groups[1].Value) * 60 + int.Parse(m.Groups[2].Value);
+    }
+
+    weeklyEvents = weeklyEvents.OrderBy(DayOrder).ThenBy(StartMinutes).ToList();
+
+    string Child(IPublishedContent c, string alias) =>
+        c.Value<string>(alias, culture) ?? c.Value<string>(alias) ?? "";
+
+    string DayLabel(IPublishedContent e)
+    {
+        var d = e.Value<DateTime?>("eventDate");
+        if (d.HasValue && d.Value.Date != default)
+        {
+            return cultureInfo.DateTimeFormat.GetDayName(d.Value.DayOfWeek);
+        }
+        return DayOfWeekOf(e);
+    }
+
+    string DateLabel(IPublishedContent e)
+    {
+        var d = e.Value<DateTime?>("eventDate");
+        if (d.HasValue && d.Value.Date != default)
+        {
+            return d.Value.ToString("d MMMM yyyy", cultureInfo);
+        }
+        return Child(e, "date"); // fallback for legacy events
+    }
+
+    var heroImage = Model.Value<IPublishedContent>("heroImage");
+    string heroStyle = heroImage == null ? "" : $"background-image: linear-gradient(180deg, rgba(0,0,0,0.25), rgba(0,0,0,0.55)), url('{heroImage.Url().Webp()}'); background-size: cover; background-position: center;";
+}
+
+<section class="hero" style="@heroStyle">
+    <div class="hero-content">
+        <h1>@heroTitle</h1>
+        <p>@heroSubtitle</p>
+        @if (aboutPage != null && !string.IsNullOrWhiteSpace(heroButtonText))
+        {
+            <a class="hero-btn" href="@aboutPage.Url(culture: culture)">@heroButtonText</a>
+        }
+    </div>
+</section>
+
+@if (weeklyEvents.Any())
+{
+    <section class="section">
+        <div class="section-header fade-in">
+            <h2>@scheduleHeading</h2>
+            <p>@scheduleSubheading</p>
+        </div>
+        <div class="schedule-grid">
+            @foreach (var item in weeklyEvents)
+            {
+                var link = item.Value<string>("linkUrl");
+                var isExternal = !string.IsNullOrEmpty(link) && (link.StartsWith("http://") || link.StartsWith("https://"));
+                if (string.IsNullOrEmpty(link))
+                {
+                    <div class="schedule-card fade-in">
+                        <div class="schedule-day">@DayLabel(item)</div>
+                        <div class="schedule-title">@Child(item, "title")</div>
+                        <div class="schedule-time">@(item.Value<string>("time"))</div>
+                        <div class="schedule-desc">@Child(item, "description")</div>
+                    </div>
+                }
+                else
+                {
+                    <a class="schedule-card fade-in" href="@link" @(isExternal ? new Microsoft.AspNetCore.Html.HtmlString("target=\"_blank\" rel=\"noopener\"") : null)>
+                        <div class="schedule-day">@DayLabel(item)</div>
+                        <div class="schedule-title">@Child(item, "title")</div>
+                        <div class="schedule-time">@(item.Value<string>("time"))</div>
+                        <div class="schedule-desc">@Child(item, "description")</div>
+                    </a>
+                }
+            }
+        </div>
+    </section>
+}
+
+@if (monthlyEvents.Any())
+{
+    <section class="section-alt">
+        <div class="section" style="padding-top:0; padding-bottom:0;">
+            <div style="padding: 80px 0;">
+                <div class="section-header fade-in">
+                    <h2>@eventsHeading</h2>
+                    <p>@eventsSubheading</p>
+                </div>
+                <div class="events-list">
+                    @foreach (var item in monthlyEvents)
+                    {
+                        var img = item.Value<IPublishedContent>("heroImage");
+                        var icon = item.Value<string>("icon");
+                        var link = item.Value<string>("linkUrl");
+                        var isExternal = !string.IsNullOrEmpty(link) && (link.StartsWith("http://") || link.StartsWith("https://"));
+                        if (string.IsNullOrEmpty(link))
+                        {
+                            <div class="event-card fade-in">
+                                @if (img != null)
+                                {
+                                    <div class="event-img" style="background-image: url('@img.Url().Webp()'); background-size: cover; background-position: center;"></div>
+                                }
+                                else
+                                {
+                                    <div class="event-img">@icon</div>
+                                }
+                                <div class="event-body">
+                                    <div class="event-date">@DateLabel(item)</div>
+                                    <h3>@Child(item, "title")</h3>
+                                    <p>@Child(item, "description")</p>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <a class="event-card fade-in" href="@link" @(isExternal ? new Microsoft.AspNetCore.Html.HtmlString("target=\"_blank\" rel=\"noopener\"") : null)>
+                                @if (img != null)
+                                {
+                                    <div class="event-img" style="background-image: url('@img.Url().Webp()'); background-size: cover; background-position: center;"></div>
+                                }
+                                else
+                                {
+                                    <div class="event-img">@icon</div>
+                                }
+                                <div class="event-body">
+                                    <div class="event-date">@DateLabel(item)</div>
+                                    <h3>@Child(item, "title")</h3>
+                                    <p>@Child(item, "description")</p>
+                                </div>
+                            </a>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </section>
+}
+
+@if (!string.IsNullOrWhiteSpace(ctaHeading) || !string.IsNullOrWhiteSpace(ctaText))
+{
+    <section class="section" style="text-align:center;">
+        <div class="fade-in">
+            @if (!string.IsNullOrWhiteSpace(ctaHeading))
+            {
+                <h2 style="font-family:'Playfair Display',serif; font-size:clamp(1.5rem,4vw,2.25rem); color:var(--green-dark); margin-bottom:16px;">@ctaHeading</h2>
+            }
+            @if (!string.IsNullOrWhiteSpace(ctaText))
+            {
+                <p style="color:var(--gray-mid); max-width:500px; margin:0 auto 24px;">@ctaText</p>
+            }
+            @if (contactPage != null && !string.IsNullOrWhiteSpace(ctaButtonText))
+            {
+                <a class="hero-btn" href="@contactPage.Url(culture: culture)" style="background:var(--green-dark);">@ctaButtonText</a>
+            }
+        </div>
+    </section>
+}

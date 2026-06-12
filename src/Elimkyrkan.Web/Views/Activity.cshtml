@@ -1,0 +1,157 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@using Elimkyrkan.Web.Helpers
+@using Umbraco.Cms.Core.Models.PublishedContent
+@using Umbraco.Cms.Core.Models.Blocks
+@{
+    var culture = System.Globalization.CultureInfo.CurrentUICulture.Name;
+    var heroSubtitle = Model.Value<string>("heroSubtitle", culture) ?? Model.Value<string>("heroSubtitle") ?? "";
+    var mainContent = Model.Value<string>("mainContent", culture) ?? Model.Value<string>("mainContent") ?? "";
+    var parent = Model.Parent;
+    var name = Model.Name;
+    var parentName = parent?.Name;
+    var slug = Model.UrlSegment ?? "";
+    var heroImage = Model.Value<IPublishedContent>("heroImage");
+    string heroStyle = heroImage == null ? "" : $"background-image: linear-gradient(180deg, rgba(0,0,0,0.25), rgba(0,0,0,0.55)), url('{heroImage.Url().Webp()}'); background-size: cover; background-position: center;";
+
+    var contentBlocks = Model.Value<BlockListModel>("contentBlocks");
+
+    // Marker in mainContent that signals "render Content Blocks at this position".
+    // Pages that have been migrated to use blocks (e.g. Mission) put this comment in
+    // their HTML to control placement; everything before the marker renders before
+    // the blocks, everything after renders after. Pages without the marker render
+    // mainContent in full first, then blocks below as a fallback.
+    const string blockMarker = "<!-- ELIM-BLOCKS -->";
+    var markerIdx = mainContent.IndexOf(blockMarker, System.StringComparison.Ordinal);
+    var preContent = markerIdx >= 0 ? mainContent.Substring(0, markerIdx) : mainContent;
+    var postContent = markerIdx >= 0 ? mainContent.Substring(markerIdx + blockMarker.Length) : "";
+}
+
+<section class="subpage-hero subpage-hero--@slug" style="@heroStyle">
+    <h1>@name</h1>
+    <p>@heroSubtitle</p>
+</section>
+
+<section class="subpage-content">
+    @if (parent != null)
+    {
+        <a class="back-link" href="@parent.Url(culture: culture)">@I18n.T("← Tillbaka till", "← Back to", "← Назад до", "← Volver a", "← กลับไปที่") @parentName?.ToLower()</a>
+    }
+    @Html.Raw(preContent)
+
+    @if (contentBlocks != null && contentBlocks.Any())
+    {
+        <div class="content-blocks">
+            @{
+                var missionBlocks = contentBlocks.Where(b => b.Content?.ContentType?.Alias == "missionCountry").ToList();
+                var verseBlocks = contentBlocks.Where(b => b.Content?.ContentType?.Alias == "bibleVerse").ToList();
+                var principleBlocks = contentBlocks.Where(b => b.Content?.ContentType?.Alias == "counselingPrinciple").ToList();
+                var areaBlocks = contentBlocks.Where(b => b.Content?.ContentType?.Alias == "axplocketArea").ToList();
+                var resourceCardBlocks = contentBlocks.Where(b => b.Content?.ContentType?.Alias == "resourceCard").ToList();
+            }
+
+            @if (missionBlocks.Count > 0)
+            {
+                <div class="mission-countries">
+                    @foreach (var b in missionBlocks)
+                    {
+                        var c = b.Content!;
+                        var countryName = c.Value<string>("countryName") ?? "";
+                        var flagUrl = c.Value<string>("flagUrl") ?? "";
+                        var description = c.Value<string>("description") ?? "";
+                        var giftMark = c.Value<string>("giftMark") ?? "";
+                        <article class="mission-country">
+                            <div class="mission-country-image"><img src="@flagUrl" alt="@countryName" loading="lazy"></div>
+                            <div class="mission-country-body">
+                                <h3>@countryName</h3>
+                                <p>@description</p>
+                                @if (!string.IsNullOrWhiteSpace(giftMark))
+                                {
+                                    <p class="gift-mark">@I18n.T("Märk din gåva med", "Mark your gift with", "Позначте ваш дар", "Marca tu donación con", "ทำเครื่องหมายของขวัญด้วย") <strong>&ldquo;@giftMark&rdquo;</strong>.</p>
+                                }
+                            </div>
+                        </article>
+                    }
+                </div>
+            }
+
+            @if (verseBlocks.Count > 0)
+            {
+                <div class="bible-verses">
+                    @foreach (var b in verseBlocks)
+                    {
+                        var c = b.Content!;
+                        <div class="bible-verse">
+                            <p class="bible-ref">@(c.Value<string>("reference") ?? "")</p>
+                            <p class="bible-text">@(c.Value<string>("verseText") ?? "")</p>
+                        </div>
+                    }
+                </div>
+            }
+
+            @if (principleBlocks.Count > 0)
+            {
+                <ul class="principles-list">
+                    @foreach (var b in principleBlocks)
+                    {
+                        var c = b.Content!;
+                        <li><span class="principle-icon">@(c.Value<string>("icon") ?? "")</span> <strong>@(c.Value<string>("title") ?? "")</strong></li>
+                    }
+                </ul>
+            }
+
+            @if (areaBlocks.Count > 0)
+            {
+                <div class="image-gallery">
+                    @foreach (var b in areaBlocks)
+                    {
+                        var c = b.Content!;
+                        var imageUrl = c.Value<string>("imageUrl") ?? "";
+                        var caption = c.Value<string>("caption") ?? "";
+                        <figure>
+                            <img src="@imageUrl.Webp()" alt="@caption" loading="lazy">
+                            <figcaption>@caption</figcaption>
+                        </figure>
+                    }
+                </div>
+            }
+
+            @if (resourceCardBlocks.Count > 0)
+            {
+                <div class="resource-grid">
+                    @foreach (var b in resourceCardBlocks)
+                    {
+                        var c = b.Content!;
+                        var icon = c.Value<string>("icon") ?? "";
+                        var rTitle = c.Value<string>("title") ?? "";
+                        var rDescription = c.Value<string>("description") ?? "";
+                        var ctaUrl = c.Value<string>("ctaUrl") ?? "";
+                        var ctaLabel = c.Value<string>("ctaLabel") ?? "";
+                        <article class="resource-card">
+                            @if (!string.IsNullOrWhiteSpace(icon))
+                            {
+                                <div class="resource-icon" aria-hidden="true">@icon</div>
+                            }
+                            @if (!string.IsNullOrWhiteSpace(rTitle))
+                            {
+                                <h3>@rTitle</h3>
+                            }
+                            @if (!string.IsNullOrWhiteSpace(rDescription))
+                            {
+                                <p>@rDescription</p>
+                            }
+                            @if (!string.IsNullOrWhiteSpace(ctaUrl))
+                            {
+                                <a class="resource-cta" href="@ctaUrl" target="_blank" rel="noopener">@(string.IsNullOrWhiteSpace(ctaLabel) ? "Öppna" : ctaLabel)</a>
+                            }
+                        </article>
+                    }
+                </div>
+            }
+        </div>
+    }
+
+    @if (!string.IsNullOrEmpty(postContent))
+    {
+        @Html.Raw(postContent)
+    }
+</section>

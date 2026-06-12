@@ -1,0 +1,152 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@using Elimkyrkan.Web.Helpers
+@using Umbraco.Cms.Core.Models.PublishedContent
+@using Umbraco.Cms.Core.Models.Blocks
+@functions {
+    // Extracts the 11-character YouTube video ID from any of the common URL formats:
+    // watch?v=ID, youtu.be/ID, /embed/ID, /shorts/ID. Returns "" if no ID found.
+    static string ExtractYouTubeId(string? url)
+    {
+        if (string.IsNullOrWhiteSpace(url)) return "";
+        var m = System.Text.RegularExpressions.Regex.Match(
+            url,
+            @"(?:youtube\.com\/(?:watch\?(?:.*&)?v=|embed\/|shorts\/)|youtu\.be\/)([A-Za-z0-9_-]{11})");
+        return m.Success ? m.Groups[1].Value : "";
+    }
+}
+@{
+    var culture = System.Globalization.CultureInfo.CurrentUICulture.Name;
+    var heroTitle = Model.Value<string>("heroTitle", culture) ?? Model.Value<string>("heroTitle") ?? Model.Name;
+    var heroSubtitle = Model.Value<string>("heroSubtitle", culture) ?? Model.Value<string>("heroSubtitle") ?? "";
+    var mainContent = Model.Value<string>("mainContent", culture) ?? Model.Value<string>("mainContent") ?? "";
+    var parent = Model.Parent;
+    var parentName = parent?.Name;
+    var slug = Model.UrlSegment ?? "";
+    var heroImage = Model.Value<IPublishedContent>("heroImage");
+    string heroStyle = heroImage == null ? "" : $"background-image: linear-gradient(180deg, rgba(0,0,0,0.25), rgba(0,0,0,0.55)), url('{heroImage.Url().Webp()}'); background-size: cover; background-position: center;";
+
+    var contentBlocks = Model.Value<BlockListModel>("contentBlocks");
+
+    // Two marker variants:
+    //   <!-- ELIM-BLOCKS -->          → blocks render in storage order
+    //   <!-- ELIM-BLOCKS-REVERSED --> → blocks render reversed (newest-first
+    //                                   pages like Predikan, where admin appends
+    //                                   chronologically but display is reverse-chron)
+    const string blockMarker = "<!-- ELIM-BLOCKS -->";
+    const string blockMarkerReversed = "<!-- ELIM-BLOCKS-REVERSED -->";
+
+    var reverseBlocks = false;
+    var markerIdx = mainContent.IndexOf(blockMarkerReversed, System.StringComparison.Ordinal);
+    var markerLen = blockMarkerReversed.Length;
+    if (markerIdx >= 0)
+    {
+        reverseBlocks = true;
+    }
+    else
+    {
+        markerIdx = mainContent.IndexOf(blockMarker, System.StringComparison.Ordinal);
+        markerLen = blockMarker.Length;
+    }
+    var preContent = markerIdx >= 0 ? mainContent.Substring(0, markerIdx) : mainContent;
+    var postContent = markerIdx >= 0 ? mainContent.Substring(markerIdx + markerLen) : "";
+}
+
+<section class="subpage-hero subpage-hero--@slug" style="@heroStyle">
+    <h1>@heroTitle</h1>
+    <p>@heroSubtitle</p>
+</section>
+
+<section class="subpage-content">
+    @if (parent != null)
+    {
+        <a class="back-link" href="@parent.Url(culture: culture)">@I18n.T("← Tillbaka till", "← Back to", "← Назад до", "← Volver a", "← กลับไปที่") @parentName?.ToLower()</a>
+    }
+    @Html.Raw(preContent)
+
+    @if (contentBlocks != null && contentBlocks.Any())
+    {
+        var videoBlocks = contentBlocks.Where(b => b.Content?.ContentType?.Alias == "youtubeVideo").ToList();
+        if (reverseBlocks)
+        {
+            videoBlocks.Reverse();
+        }
+        if (videoBlocks.Count > 0)
+        {
+            <div class="video-list">
+                @foreach (var b in videoBlocks)
+                {
+                    var c = b.Content!;
+                    var url = c.Value<string>("youtubeUrl") ?? "";
+                    var videoId = ExtractYouTubeId(url);
+                    var title = c.Value<string>("title") ?? "";
+                    var description = c.Value<string>("description") ?? "";
+                    <article class="video-block">
+                        @if (!string.IsNullOrWhiteSpace(title))
+                        {
+                            <h3>@title</h3>
+                        }
+                        @if (!string.IsNullOrEmpty(videoId))
+                        {
+                            <div class="video-embed">
+                                <iframe
+                                    src="https://www.youtube-nocookie.com/embed/@videoId"
+                                    title="@(string.IsNullOrWhiteSpace(title) ? "YouTube video" : title)"
+                                    loading="lazy"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    referrerpolicy="strict-origin-when-cross-origin"
+                                    allowfullscreen></iframe>
+                            </div>
+                        }
+                        else if (!string.IsNullOrWhiteSpace(url))
+                        {
+                            <p><a href="@url" target="_blank" rel="noopener">@url</a></p>
+                        }
+                        @if (!string.IsNullOrWhiteSpace(description))
+                        {
+                            <p class="video-description">@description</p>
+                        }
+                    </article>
+                }
+            </div>
+        }
+
+        var resourceCardBlocks = contentBlocks.Where(b => b.Content?.ContentType?.Alias == "resourceCard").ToList();
+        if (resourceCardBlocks.Count > 0)
+        {
+            <div class="resource-grid">
+                @foreach (var b in resourceCardBlocks)
+                {
+                    var c = b.Content!;
+                    var icon = c.Value<string>("icon") ?? "";
+                    var rTitle = c.Value<string>("title") ?? "";
+                    var rDescription = c.Value<string>("description") ?? "";
+                    var ctaUrl = c.Value<string>("ctaUrl") ?? "";
+                    var ctaLabel = c.Value<string>("ctaLabel") ?? "";
+                    <article class="resource-card">
+                        @if (!string.IsNullOrWhiteSpace(icon))
+                        {
+                            <div class="resource-icon" aria-hidden="true">@icon</div>
+                        }
+                        @if (!string.IsNullOrWhiteSpace(rTitle))
+                        {
+                            <h3>@rTitle</h3>
+                        }
+                        @if (!string.IsNullOrWhiteSpace(rDescription))
+                        {
+                            <p>@rDescription</p>
+                        }
+                        @if (!string.IsNullOrWhiteSpace(ctaUrl))
+                        {
+                            <a class="resource-cta" href="@ctaUrl" target="_blank" rel="noopener">@(string.IsNullOrWhiteSpace(ctaLabel) ? "Öppna" : ctaLabel)</a>
+                        }
+                    </article>
+                }
+            </div>
+        }
+    }
+
+    @if (!string.IsNullOrEmpty(postContent))
+    {
+        @Html.Raw(postContent)
+    }
+</section>

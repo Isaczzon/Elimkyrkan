@@ -1,0 +1,194 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@using Elimkyrkan.Web.Helpers
+@using Umbraco.Cms.Core.Models.PublishedContent
+@{
+    var culture = System.Globalization.CultureInfo.CurrentUICulture.Name;
+    var heroTitle = Model.Value<string>("heroTitle", culture) ?? Model.Value<string>("heroTitle") ?? Model.Name;
+    var heroSubtitle = Model.Value<string>("heroSubtitle", culture) ?? Model.Value<string>("heroSubtitle") ?? "";
+    var address = Model.Value<string>("address") ?? "";
+    var phone = Model.Value<string>("phone") ?? "";
+    var email = Model.Value<string>("email") ?? "";
+    var pastorName = Model.Value<string>("pastorName") ?? "";
+
+    var captchaA = Random.Shared.Next(1, 10);
+    var captchaB = Random.Shared.Next(1, 10);
+    var captchaAnswer = captchaA + captchaB;
+
+    var heroImage = Model.Value<IPublishedContent>("heroImage");
+    string heroStyle = heroImage == null ? "" : $"background-image: linear-gradient(180deg, rgba(0,0,0,0.25), rgba(0,0,0,0.55)), url('{heroImage.Url().Webp()}'); background-size: cover; background-position: center;";
+}
+
+<section class="subpage-hero subpage-hero--contact" style="@heroStyle">
+    <h1>@heroTitle</h1>
+    <p>@heroSubtitle</p>
+</section>
+
+<section class="section">
+    <div class="contact-wrapper">
+        <div class="contact-info fade-in">
+            <h3>Elimkyrkan Mantorp</h3>
+            <p>@I18n.T(
+                "Tveka inte att höra av dig om du har frågor, vill veta mer eller behöver stöd. Vi finns här för dig.",
+                "Don't hesitate to reach out if you have questions, want to learn more or need support. We're here for you.",
+                "Не вагайтеся звертатися, якщо у вас є питання, ви хочете дізнатися більше або потребуєте підтримки. Ми тут для вас.",
+                "No dudes en contactarnos si tienes preguntas, quieres saber más o necesitas apoyo. Estamos aquí para ti.",
+                "อย่าลังเลที่จะติดต่อเราหากคุณมีคำถาม ต้องการเรียนรู้เพิ่มเติม หรือต้องการการสนับสนุน เราอยู่ที่นี่เพื่อคุณ")</p>
+
+            @if (!string.IsNullOrWhiteSpace(address))
+            {
+                <div class="contact-detail">
+                    <div class="icon">📍</div>
+                    <div><strong>@I18n.T("Adress", "Address", "Адреса", "Dirección", "ที่อยู่")</strong><br>@Html.Raw(address.Replace("\n", "<br>"))</div>
+                </div>
+            }
+            @if (!string.IsNullOrWhiteSpace(phone))
+            {
+                <div class="contact-detail">
+                    <div class="icon">📞</div>
+                    <div><strong>@I18n.T("Telefon", "Phone", "Телефон", "Teléfono", "โทรศัพท์")</strong><br>@phone</div>
+                </div>
+            }
+            @if (!string.IsNullOrWhiteSpace(email))
+            {
+                <div class="contact-detail">
+                    <div class="icon">✉️</div>
+                    <div><strong>@I18n.T("E-post", "Email", "Електронна пошта", "Correo", "อีเมล")</strong><br>@email</div>
+                </div>
+            }
+            @if (!string.IsNullOrWhiteSpace(pastorName))
+            {
+                <div class="contact-detail">
+                    <div class="icon">⛪</div>
+                    <div><strong>@I18n.T("Pastor", "Pastor", "Пастор", "Pastor", "ศิษยาภิบาล")</strong><br>@pastorName</div>
+                </div>
+            }
+            <iframe
+                src="https://maps.google.com/maps?q=58.3497611,15.2908433&hl=sv&z=17&t=m&output=embed"
+                title="Elimkyrkan Mantorp"
+                width="100%"
+                height="300"
+                style="border:0; border-radius:12px; margin-top:24px;"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+
+        <div class="fade-in">
+            <h3 style="font-family:'Playfair Display',serif; font-size:22px; color:var(--green-dark); margin-bottom:24px;">@I18n.T("Skicka ett meddelande", "Send a message", "Надіслати повідомлення", "Enviar un mensaje", "ส่งข้อความ")</h3>
+            <form id="contactForm" data-captcha-answer="@captchaAnswer"
+                  data-msg-success="@I18n.T("Tack för ditt meddelande! Vi återkommer så snart vi kan.", "Thank you for your message! We'll get back to you as soon as we can.", "Дякуємо за ваше повідомлення! Ми відповімо якнайшвидше.", "¡Gracias por tu mensaje! Te responderemos lo antes posible.", "ขอบคุณสำหรับข้อความของคุณ! เราจะตอบกลับโดยเร็วที่สุด")"
+                  data-msg-captcha-error="@I18n.T("Fel svar – försök igen.", "Wrong answer – try again.", "Неправильна відповідь – спробуйте ще раз.", "Respuesta incorrecta – inténtalo de nuevo.", "คำตอบไม่ถูกต้อง – ลองอีกครั้ง")"
+                  data-msg-send-error="@I18n.T("Något gick fel. Försök igen senare eller maila oss direkt.", "Something went wrong. Please try again later or email us directly.", "Щось пішло не так. Спробуйте пізніше або напишіть нам.", "Algo salió mal. Inténtalo más tarde o escríbenos directamente.", "เกิดข้อผิดพลาด โปรดลองใหม่ภายหลังหรือส่งอีเมลถึงเราโดยตรง")">
+                <div class="form-group">
+                    <label>@I18n.T("Namn", "Name", "Ім'я", "Nombre", "ชื่อ")</label>
+                    <input type="text" name="name" placeholder="@I18n.T("Ditt namn", "Your name", "Ваше ім'я", "Tu nombre", "ชื่อของคุณ")" required>
+                </div>
+                <div class="form-group">
+                    <label>@I18n.T("E-post", "Email", "Електронна пошта", "Correo", "อีเมล")</label>
+                    <input type="email" name="email" placeholder="din@@epost.se" required>
+                </div>
+                <div class="form-group">
+                    <label>@I18n.T("Telefon (valfritt)", "Phone (optional)", "Телефон (необов'язково)", "Teléfono (opcional)", "โทรศัพท์ (ไม่บังคับ)")</label>
+                    <input type="tel" name="phone" placeholder="07X-XXX XX XX">
+                </div>
+                <div class="form-group">
+                    <label>@I18n.T("Ämne", "Subject", "Тема", "Asunto", "หัวข้อ")</label>
+                    <select name="subject">
+                        <option>@I18n.T("Allmän fråga", "General question", "Загальне питання", "Pregunta general", "คำถามทั่วไป")</option>
+                        <option>@I18n.T("Verksamhet", "Activity", "Захід", "Actividad", "กิจกรรม")</option>
+                        <option>@I18n.T("Familjerådgivning", "Family Counseling", "Сімейне консультування", "Consejería familiar", "การให้คำปรึกษาครอบครัว")</option>
+                        <option>@I18n.T("Förbön", "Prayer", "Молитва", "Oración", "การอธิษฐาน")</option>
+                        <option>@I18n.T("Annat", "Other", "Інше", "Otro", "อื่น ๆ")</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>@I18n.T("Meddelande", "Message", "Повідомлення", "Mensaje", "ข้อความ")</label>
+                    <textarea name="message" placeholder="@I18n.T("Skriv ditt meddelande här...", "Write your message here...", "Напишіть ваше повідомлення тут...", "Escribe tu mensaje aquí...", "เขียนข้อความของคุณที่นี่...")" required></textarea>
+                </div>
+
+                <div class="form-group" aria-hidden="true" style="position:absolute; left:-9999px; opacity:0;">
+                    <label>Leave this field empty</label>
+                    <input type="text" name="website" tabindex="-1" autocomplete="off">
+                </div>
+
+                <div class="form-group">
+                    <label>@I18n.T("Säkerhetsfråga: vad är", "Security question: what is", "Питання безпеки: скільки буде", "Pregunta de seguridad: ¿cuánto es", "คำถามความปลอดภัย: เท่ากับเท่าไร") <strong>@captchaA + @captchaB</strong>?</label>
+                    <input id="captchaInput" type="text" inputmode="numeric" pattern="[0-9]*" placeholder="@I18n.T("Svar", "Answer", "Відповідь", "Respuesta", "คำตอบ")" required>
+                    <div id="captchaError" style="color:#b00020; font-size:13px; margin-top:6px; display:none;"></div>
+                </div>
+
+                <button type="submit" class="submit-btn">@I18n.T("Skicka meddelande", "Send message", "Надіслати повідомлення", "Enviar mensaje", "ส่งข้อความ")</button>
+
+                <p class="form-privacy-notice" style="margin-top:14px; font-size:13px; color:var(--text-muted, #666);">
+                    @I18n.T(
+                        "Genom att skicka detta meddelande samtycker du till att vi behandlar dina uppgifter enligt vår",
+                        "By sending this message you consent to us processing your data in accordance with our",
+                        "Надсилаючи це повідомлення, ви погоджуєтеся на обробку ваших даних відповідно до нашої",
+                        "Al enviar este mensaje, aceptas que procesemos tus datos según nuestra",
+                        "การส่งข้อความนี้คือการยินยอมให้เราประมวลผลข้อมูลของคุณตาม")
+                    <a href="/docs/elimkyrkan_behandling_av_personuppgifter_utan_noter.pdf" target="_blank" rel="noopener">@I18n.T("sekretesspolicy", "privacy policy", "політикою конфіденційності", "política de privacidad", "นโยบายความเป็นส่วนตัวของเรา")</a>.
+                </p>
+            </form>
+            <script>
+                (function () {
+                    const form = document.getElementById('contactForm');
+                    if (!form) return;
+                    const submitBtn = form.querySelector('button[type="submit"]');
+                    const originalBtnText = submitBtn ? submitBtn.textContent : '';
+
+                    form.addEventListener('submit', async function (e) {
+                        e.preventDefault();
+                        const expected = form.getAttribute('data-captcha-answer');
+                        const given = (document.getElementById('captchaInput').value || '').trim();
+                        const honeypot = (form.querySelector('input[name="website"]')?.value || '').trim();
+                        const err = document.getElementById('captchaError');
+
+                        if (honeypot !== '') return; // silent drop
+                        if (given !== expected) {
+                            err.textContent = form.getAttribute('data-msg-captcha-error');
+                            err.style.display = 'block';
+                            return;
+                        }
+                        err.style.display = 'none';
+
+                        const payload = {
+                            name: (form.querySelector('input[name="name"]')?.value || '').trim(),
+                            email: (form.querySelector('input[name="email"]')?.value || '').trim(),
+                            phone: (form.querySelector('input[name="phone"]')?.value || '').trim(),
+                            subject: (form.querySelector('select[name="subject"]')?.value || '').trim(),
+                            message: (form.querySelector('textarea[name="message"]')?.value || '').trim(),
+                            website: honeypot,
+                        };
+
+                        if (submitBtn) {
+                            submitBtn.disabled = true;
+                            submitBtn.textContent = '…';
+                        }
+
+                        try {
+                            const resp = await fetch('/api/contact', {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify(payload),
+                            });
+                            if (resp.ok) {
+                                alert(form.getAttribute('data-msg-success'));
+                                form.reset();
+                            } else {
+                                err.textContent = form.getAttribute('data-msg-send-error');
+                                err.style.display = 'block';
+                            }
+                        } catch (ex) {
+                            err.textContent = form.getAttribute('data-msg-send-error');
+                            err.style.display = 'block';
+                        } finally {
+                            if (submitBtn) {
+                                submitBtn.disabled = false;
+                                submitBtn.textContent = originalBtnText;
+                            }
+                        }
+                    });
+                })();
+            </script>
+        </div>
+    </div>
+</section>

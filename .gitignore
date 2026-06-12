@@ -1,0 +1,23 @@
+# .NET build output
+bin/
+obj/
+*.user
+*.suo
+.vs/
+
+# Umbraco runtime data
+**/umbraco/Data/*.sqlite.db
+**/umbraco/Data/*.sqlite.db-shm
+**/umbraco/Data/*.sqlite.db-wal
+**/umbraco/Logs/
+**/umbraco/mediafileuploads/
+**/umbraco/TEMP/
+**/umbraco/models/
+
+# Local config overrides
+**/appsettings.Local.json
+**/appsettings.*.Local.json
+
+# OS / editor
+Thumbs.db
+.DS_Store

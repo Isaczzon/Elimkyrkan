@@ -1,0 +1,90 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@using Elimkyrkan.Web.Helpers
+@using Umbraco.Cms.Core.Models.PublishedContent
+@{
+    var culture = System.Globalization.CultureInfo.CurrentUICulture.Name;
+    var heroTitle = Model.Value<string>("heroTitle", culture) ?? Model.Value<string>("heroTitle") ?? Model.Name;
+    var heroSubtitle = Model.Value<string>("heroSubtitle", culture) ?? Model.Value<string>("heroSubtitle") ?? "";
+
+    var heroImage = Model.Value<IPublishedContent>("heroImage");
+    string heroStyle = heroImage == null ? "" : $"background-image: linear-gradient(180deg, rgba(0,0,0,0.25), rgba(0,0,0,0.55)), url('{heroImage.Url().Webp()}'); background-size: cover; background-position: center;";
+
+    var children = Model.Children?.Where(c => c.ContentType.Alias == "teachingResource").ToList() ?? new();
+    Umbraco.Cms.Core.Models.PublishedContent.IPublishedContent? FindBySwedishName(string svName) =>
+        children.FirstOrDefault(c => c.Cultures.TryGetValue(I18n.Swedish, out var info) && info.Name == svName);
+    var predikan = FindBySwedishName("Predikan");
+    var foraldrar = FindBySwedishName("Föräldrar");
+    var hemgrupperTeaching = FindBySwedishName("Hemgrupper");
+
+    string? UrlOrEmpty(Umbraco.Cms.Core.Models.PublishedContent.IPublishedContent? c) => c?.Url(culture: culture);
+}
+
+<section class="subpage-hero subpage-hero--teaching" style="@heroStyle">
+    <h1>@heroTitle</h1>
+    <p>@heroSubtitle</p>
+</section>
+
+<section class="section">
+    <div class="undervisning-grid">
+        <div class="undervisning-card fade-in">
+            <div class="undervisning-card-header predikan">
+                <h3>@I18n.T("Predikan", "Sermon", "Проповідь", "Predicación", "คำเทศนา")</h3>
+            </div>
+            <div class="undervisning-card-body">
+                <p>@I18n.T(
+                    "Varje söndag förmedlas Guds ord genom predikan. Våra predikanter delar aktuella och livsförvandlande budskap som hjälper dig att växa i tro och vardagsliv.",
+                    "Every Sunday God's word is shared through the sermon. Our preachers deliver timely, life-changing messages that help you grow in faith and everyday life.",
+                    "Щонеділі Боже слово передається через проповідь. Наші проповідники діляться актуальними посланнями, що змінюють життя.",
+                    "Cada domingo se comparte la palabra de Dios a través de la predicación. Nuestros predicadores ofrecen mensajes actuales y transformadores.",
+                    "ทุกวันอาทิตย์ พระวจนะของพระเจ้าถูกถ่ายทอดผ่านคำเทศนา ผู้เทศน์ของเราแบ่งปันข้อความที่ทันสมัยและเปลี่ยนแปลงชีวิต")</p>
+                <p>@I18n.T(
+                    "Här kan du lyssna på tidigare predikningar och följa med i aktuella predikoserier.",
+                    "Listen to previous sermons and follow current sermon series here.",
+                    "Тут ви можете слухати попередні проповіді та слідкувати за поточними серіями.",
+                    "Aquí puedes escuchar sermones anteriores y seguir las series actuales.",
+                    "ที่นี่คุณสามารถฟังคำเทศนาเก่าและติดตามชุดคำเทศนาปัจจุบันได้")</p>
+                @if (predikan != null) { <a href="@UrlOrEmpty(predikan)">@I18n.T("Lyssna på predikningar →", "Listen to sermons →", "Слухати проповіді →", "Escuchar sermones →", "ฟังคำเทศนา →")</a> }
+            </div>
+        </div>
+        <div class="undervisning-card fade-in">
+            <div class="undervisning-card-header foraldrar">
+                <h3>@I18n.T("Föräldrar", "Parents", "Батьки", "Padres", "พ่อแม่")</h3>
+            </div>
+            <div class="undervisning-card-body">
+                <p>@I18n.T(
+                    "Att vara förälder är livets viktigaste uppdrag. Vi erbjuder undervisning och resurser som hjälper dig att bygga en trygg och kärleksfull familj grundad i tro.",
+                    "Being a parent is life's most important task. We offer teaching and resources to help you build a safe, loving family grounded in faith.",
+                    "Бути батьком – найважливіше завдання життя. Ми пропонуємо навчання та ресурси для побудови безпечної, люблячої родини на основі віри.",
+                    "Ser padre o madre es la tarea más importante de la vida. Ofrecemos enseñanza y recursos para construir una familia segura y amorosa basada en la fe.",
+                    "การเป็นพ่อแม่คือภารกิจที่สำคัญที่สุดในชีวิต เรามีการสอนและทรัพยากรที่ช่วยให้คุณสร้างครอบครัวที่ปลอดภัยและเปี่ยมด้วยความรักบนพื้นฐานของความเชื่อ")</p>
+                <p>@I18n.T(
+                    "Kurser, samtalsgrupper och material för föräldrar i alla faser.",
+                    "Courses, discussion groups and material for parents at all stages.",
+                    "Курси, дискусійні групи та матеріали для батьків на всіх етапах.",
+                    "Cursos, grupos de conversación y material para padres en todas las etapas.",
+                    "หลักสูตร กลุ่มสนทนา และเนื้อหาสำหรับพ่อแม่ในทุกช่วงวัย")</p>
+                @if (foraldrar != null) { <a href="@UrlOrEmpty(foraldrar)">@I18n.T("Läs mer om föräldraresurser →", "Read more about parent resources →", "Дізнатися більше про ресурси для батьків →", "Más sobre recursos para padres →", "อ่านเพิ่มเติมเกี่ยวกับทรัพยากรสำหรับพ่อแม่ →")</a> }
+            </div>
+        </div>
+        <div class="undervisning-card fade-in">
+            <div class="undervisning-card-header hemgrupper">
+                <h3>@I18n.T("Hemgrupper", "Home Groups", "Домашні групи", "Grupos en casa", "กลุ่มในบ้าน")</h3>
+            </div>
+            <div class="undervisning-card-body">
+                <p>@I18n.T(
+                    "I hemgrupperna fördjupar vi oss i Bibeln tillsammans. Genom studium, samtal och bön växer vi i förståelse och tro – och stöttar varandra på vägen.",
+                    "In home groups we go deeper into the Bible together. Through study, conversation and prayer we grow in understanding and faith – and support one another along the way.",
+                    "У домашніх групах ми разом заглиблюємось у Біблію. Через вивчення, бесіди та молитву ми зростаємо у розумінні та вірі.",
+                    "En los grupos en casa profundizamos juntos en la Biblia. Mediante estudio, conversación y oración crecemos en entendimiento y fe.",
+                    "ในกลุ่มในบ้าน เราเจาะลึกพระคัมภีร์ด้วยกัน ผ่านการศึกษา การสนทนา และการอธิษฐาน เราเติบโตในความเข้าใจและความเชื่อ")</p>
+                <p>@I18n.T(
+                    "Aktuellt studiematerial och information om hemgruppernas undervisningsplan.",
+                    "Current study material and information about the home groups' teaching plan.",
+                    "Поточні навчальні матеріали та інформація про навчальний план домашніх груп.",
+                    "Material de estudio actual e información sobre el plan de enseñanza de los grupos en casa.",
+                    "เนื้อหาการศึกษาปัจจุบันและข้อมูลเกี่ยวกับแผนการสอนของกลุ่มในบ้าน")</p>
+                @if (hemgrupperTeaching != null) { <a href="@UrlOrEmpty(hemgrupperTeaching)">@I18n.T("Studiematerial och länkar →", "Study material and links →", "Навчальні матеріали та посилання →", "Material y enlaces →", "เนื้อหาและลิงก์ →")</a> }
+            </div>
+        </div>
+    </div>
+</section>

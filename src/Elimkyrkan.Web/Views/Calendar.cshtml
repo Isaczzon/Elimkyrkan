@@ -1,0 +1,297 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@using Elimkyrkan.Web.Helpers
+@using System.Text.Json
+@using Umbraco.Cms.Core.Models.PublishedContent
+@{
+    var culture = System.Globalization.CultureInfo.CurrentUICulture.Name;
+    var heroTitle = Model.Value<string>("heroTitle", culture) ?? Model.Value<string>("heroTitle") ?? Model.Name;
+    var heroSubtitle = Model.Value<string>("heroSubtitle", culture) ?? Model.Value<string>("heroSubtitle") ?? "";
+
+    // Events live directly under Calendar (single source of truth)
+    var calendarEvents = Model.Children?
+        .Where(c => c.IsVisible() && c.ContentType.Alias == "event")
+        .ToList() ?? new List<IPublishedContent>();
+
+    string EvText(IPublishedContent e, string alias) =>
+        e.Value<string>(alias, culture) ?? e.Value<string>(alias) ?? "";
+
+    // Defensive reader — eventType / dayOfWeek properties may return either a bare string
+    // (legacy Textstring) or IEnumerable<string> (Dropdown via Umbraco.DropDown.Flexible).
+    string ReadStr(IPublishedContent e, string alias)
+    {
+        var raw = e.Value(alias);
+        if (raw == null) return "";
+        if (raw is string s) return s.Trim();
+        if (raw is IEnumerable<string> arr) return arr.FirstOrDefault()?.Trim() ?? "";
+        return raw.ToString()?.Trim() ?? "";
+    }
+
+    int DowFromText(string day) => day.ToLowerInvariant() switch
+    {
+        "söndag" or "sunday" => (int)DayOfWeek.Sunday,
+        "måndag" or "monday" => (int)DayOfWeek.Monday,
+        "tisdag" or "tuesday" => (int)DayOfWeek.Tuesday,
+        "onsdag" or "wednesday" => (int)DayOfWeek.Wednesday,
+        "torsdag" or "thursday" => (int)DayOfWeek.Thursday,
+        "fredag" or "friday" => (int)DayOfWeek.Friday,
+        "lördag" or "saturday" => (int)DayOfWeek.Saturday,
+        _ => -1
+    };
+
+    // Parse the leading "HH:MM" of the time string (e.g. "13:00 - 16:00") into minutes so we
+    // can sort events on the same day chronologically. Events without a parseable time sink
+    // to the bottom.
+    int StartMinutes(string? time)
+    {
+        if (string.IsNullOrEmpty(time)) return int.MaxValue;
+        var m = System.Text.RegularExpressions.Regex.Match(time.Trim(), @"^(\d{1,2}):(\d{2})");
+        if (!m.Success) return int.MaxValue;
+        return int.Parse(m.Groups[1].Value) * 60 + int.Parse(m.Groups[2].Value);
+    }
+
+    bool MatchesIsoWeek(int isoWeek, string eventType) => eventType.ToLowerInvariant() switch
+    {
+        "weekly" => true,
+        "even weeks" => isoWeek % 2 == 0,
+        "odd weeks" => isoWeek % 2 == 1,
+        "every third week" => isoWeek % 3 == 0,
+        _ => false
+    };
+
+    // Collect entries: each tuple is (date the entry falls on, source event).
+    var entries = new List<(DateTime Date, IPublishedContent Event)>();
+
+    // 1) Real-dated events (Monthly events with a specific date, plus generated series instances).
+    foreach (var ev in calendarEvents)
+    {
+        var d = ev.Value<DateTime?>("eventDate");
+        if (d.HasValue && d.Value.Date != default)
+        {
+            entries.Add((d.Value.Date, ev));
+        }
+    }
+
+    // 2) Static weekly slots (no date, has dayOfWeek): expand into virtual occurrences over a
+    //    reasonable visible range so the calendar widget can show them.
+    var rangeStart = DateTime.Today.AddMonths(-2);
+    var rangeEnd = DateTime.Today.AddMonths(13);
+
+    foreach (var ev in calendarEvents)
+    {
+        var hasDate = ev.Value<DateTime?>("eventDate").HasValue
+            && ev.Value<DateTime?>("eventDate")!.Value.Date != default;
+        if (hasDate) continue; // already handled in step 1
+
+        var dayText = ReadStr(ev, "dayOfWeek");
+        if (string.IsNullOrEmpty(dayText)) continue;
+        var targetDow = DowFromText(dayText);
+        if (targetDow < 0) continue;
+
+        var typeText = ReadStr(ev, "eventType");
+        for (var d = rangeStart; d <= rangeEnd; d = d.AddDays(1))
+        {
+            if ((int)d.DayOfWeek != targetDow) continue;
+            var isoWeek = System.Globalization.ISOWeek.GetWeekOfYear(d);
+            if (!MatchesIsoWeek(isoWeek, typeText)) continue;
+            entries.Add((d, ev));
+        }
+    }
+
+    var events = entries
+        .GroupBy(x => x.Date)
+        .ToDictionary(
+            g => g.Key.ToString("yyyy-MM-dd"),
+            g => g.OrderBy(x => StartMinutes(x.Event.Value<string>("time")))
+                  .Select(x => (object)new
+                  {
+                      title = EvText(x.Event, "title"),
+                      time = x.Event.Value<string>("time") ?? "",
+                      desc = EvText(x.Event, "description"),
+                      link = x.Event.Value<string>("linkUrl") ?? ""
+                  }).ToArray()
+        );
+
+    var eventsJson = JsonSerializer.Serialize(events);
+
+    // Localised strings the calendar JS uses — JSON-serialised so Swedish characters survive
+    var stringsJson = JsonSerializer.Serialize(new
+    {
+        empty = I18n.T("Inga händelser denna dag.", "No events on this day.", "Немає подій цього дня.", "No hay eventos este día.", "ไม่มีกิจกรรมในวันนี้"),
+        countOne = I18n.T("1 aktivitet planerad", "1 activity planned", "1 запланована подія", "1 actividad planificada", "1 กิจกรรมที่วางแผนไว้"),
+        countManyTemplate = I18n.T("{n} aktiviteter planerade", "{n} activities planned", "{n} запланованих подій", "{n} actividades planificadas", "{n} กิจกรรมที่วางแผนไว้")
+    });
+
+    var heroImage = Model.Value<IPublishedContent>("heroImage");
+    string heroStyle = heroImage == null ? "" : $"background-image: linear-gradient(180deg, rgba(0,0,0,0.25), rgba(0,0,0,0.55)), url('{heroImage.Url().Webp()}'); background-size: cover; background-position: center;";
+}
+
+<section class="subpage-hero subpage-hero--calendar" style="@heroStyle">
+    <h1>@heroTitle</h1>
+    <p>@heroSubtitle</p>
+</section>
+
+<section class="section section-alt">
+    <div class="section-header fade-in">
+        <h2>@I18n.T("Vad händer framåt?", "What's coming up?", "Що буде далі?", "¿Qué viene a continuación?", "มีอะไรกำลังจะเกิดขึ้น?")</h2>
+        <p>@I18n.T(
+            "Här ser du planerade event och viktiga datum den kommande tiden.",
+            "Here you can see planned events and important dates ahead.",
+            "Тут ви можете побачити заплановані події та важливі дати на найближчий час.",
+            "Aquí puedes ver los eventos planificados y las fechas importantes próximas.",
+            "ที่นี่คุณสามารถเห็นกิจกรรมและวันที่สำคัญที่กำลังจะมาถึง")</p>
+    </div>
+
+    <div class="calendar-layout">
+        <div class="calendar-shell fade-in">
+            <div class="calendar-toolbar">
+                <h3 class="calendar-month" id="calendarMonthLabel">—</h3>
+                <div class="calendar-nav">
+                    <button type="button" class="calendar-nav-btn" onclick="shiftCalendarMonth(-1)" aria-label="@I18n.T("Föregående månad", "Previous month", "Попередній місяць", "Mes anterior", "เดือนก่อนหน้า")">‹</button>
+                    <button type="button" class="calendar-nav-btn" onclick="shiftCalendarMonth(1)" aria-label="@I18n.T("Nästa månad", "Next month", "Наступний місяць", "Mes siguiente", "เดือนถัดไป")">›</button>
+                </div>
+            </div>
+
+            <div class="calendar-weekdays" aria-hidden="true">
+                <div class="calendar-weekday">@I18n.T("Mån", "Mon", "Пн", "Lun", "จ.")</div>
+                <div class="calendar-weekday">@I18n.T("Tis", "Tue", "Вт", "Mar", "อ.")</div>
+                <div class="calendar-weekday">@I18n.T("Ons", "Wed", "Ср", "Mié", "พ.")</div>
+                <div class="calendar-weekday">@I18n.T("Tor", "Thu", "Чт", "Jue", "พฤ.")</div>
+                <div class="calendar-weekday">@I18n.T("Fre", "Fri", "Пт", "Vie", "ศ.")</div>
+                <div class="calendar-weekday">@I18n.T("Lör", "Sat", "Сб", "Sáb", "ส.")</div>
+                <div class="calendar-weekday">@I18n.T("Sön", "Sun", "Нд", "Dom", "อา.")</div>
+            </div>
+
+            <div class="calendar-grid" id="calendarGrid"></div>
+        </div>
+
+        <aside class="calendar-details fade-in" aria-live="polite">
+            <h3 id="selectedDateTitle">@I18n.T("Välj en dag", "Pick a day", "Виберіть день", "Elige un día", "เลือกวัน")</h3>
+            <p class="subtitle" id="selectedDateSubtitle">@I18n.T(
+                "Klicka på en dag i kalendern för att se detaljer.",
+                "Click a day in the calendar to see details.",
+                "Натисніть день у календарі, щоб побачити деталі.",
+                "Haz clic en un día del calendario para ver los detalles.",
+                "คลิกวันในปฏิทินเพื่อดูรายละเอียด")</p>
+            <div class="calendar-events" id="selectedDateEvents">
+                <div class="calendar-empty">@I18n.T(
+                    "Här visas aktiviteter för den valda dagen.",
+                    "Activities for the selected day will appear here.",
+                    "Тут будуть показані заходи для обраного дня.",
+                    "Aquí aparecerán las actividades del día seleccionado.",
+                    "ที่นี่จะแสดงกิจกรรมของวันที่เลือก")</div>
+            </div>
+        </aside>
+    </div>
+</section>
+
+<script>
+(function () {
+    const CALENDAR_EVENTS = @Html.Raw(eventsJson);
+    const LOCALE = '@culture';
+    const STRINGS = @Html.Raw(stringsJson);
+
+    const today = new Date();
+    let calendarViewDate = new Date(today.getFullYear(), today.getMonth(), 1);
+    let selectedDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+
+    function dateToKey(date) {
+        const y = date.getFullYear();
+        const m = String(date.getMonth() + 1).padStart(2, '0');
+        const d = String(date.getDate()).padStart(2, '0');
+        return `${y}-${m}-${d}`;
+    }
+    function isSameDate(a, b) {
+        return a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth() && a.getDate() === b.getDate();
+    }
+
+    function renderCalendar() {
+        const monthLabel = document.getElementById('calendarMonthLabel');
+        const grid = document.getElementById('calendarGrid');
+        if (!monthLabel || !grid) return;
+
+        monthLabel.textContent = calendarViewDate.toLocaleDateString(LOCALE, { month: 'long', year: 'numeric' });
+        grid.innerHTML = '';
+
+        const year = calendarViewDate.getFullYear();
+        const month = calendarViewDate.getMonth();
+        const firstOfMonth = new Date(year, month, 1);
+        const offset = (firstOfMonth.getDay() + 6) % 7;
+        const startDate = new Date(year, month, 1 - offset);
+
+        for (let i = 0; i < 42; i++) {
+            const cellDate = new Date(startDate);
+            cellDate.setDate(startDate.getDate() + i);
+            const key = dateToKey(cellDate);
+
+            const button = document.createElement('button');
+            button.type = 'button';
+            button.className = 'calendar-cell';
+            button.innerHTML = `<span class="calendar-day-number">${cellDate.getDate()}</span>`;
+            if (cellDate.getMonth() !== month) button.classList.add('outside');
+            if (isSameDate(cellDate, today)) button.classList.add('today');
+            if (isSameDate(cellDate, selectedDate)) button.classList.add('selected');
+            if (CALENDAR_EVENTS[key]) button.classList.add('has-events');
+
+            // Past dates fade
+            const todayMidnight = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+            if (cellDate < todayMidnight) button.classList.add('past');
+            button.setAttribute('aria-label', cellDate.toLocaleDateString(LOCALE, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }));
+            button.addEventListener('click', () => {
+                selectedDate = new Date(cellDate);
+                calendarViewDate = new Date(cellDate.getFullYear(), cellDate.getMonth(), 1);
+                renderCalendar();
+                renderSelectedDateEvents();
+            });
+            grid.appendChild(button);
+        }
+    }
+
+    function renderSelectedDateEvents() {
+        const title = document.getElementById('selectedDateTitle');
+        const subtitle = document.getElementById('selectedDateSubtitle');
+        const eventsContainer = document.getElementById('selectedDateEvents');
+        if (!title || !subtitle || !eventsContainer) return;
+
+        const key = dateToKey(selectedDate);
+        const events = CALENDAR_EVENTS[key] || [];
+
+        title.textContent = selectedDate.toLocaleDateString(LOCALE, { weekday: 'long', day: 'numeric', month: 'long' });
+        subtitle.textContent = events.length === 0
+            ? STRINGS.empty
+            : (events.length === 1 ? STRINGS.countOne : STRINGS.countManyTemplate.replace('{n}', events.length));
+
+        if (!events.length) {
+            eventsContainer.innerHTML = `<div class="calendar-empty">${STRINGS.empty}</div>`;
+            return;
+        }
+
+        const escapeHtml = (s) => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+        const escapeAttr = (s) => escapeHtml(s);
+        const isExternal = (url) => /^https?:\/\//i.test(url);
+
+        eventsContainer.innerHTML = events.map(ev => {
+            const titleHtml = ev.link
+                ? `<a class="title" href="${escapeAttr(ev.link)}"${isExternal(ev.link) ? ' target="_blank" rel="noopener"' : ''}>${escapeHtml(ev.title)}</a>`
+                : `<div class="title">${escapeHtml(ev.title)}</div>`;
+            return `
+                <article class="calendar-event">
+                    ${titleHtml}
+                    <div class="meta">${escapeHtml(ev.time || '')}</div>
+                    <div class="desc">${escapeHtml(ev.desc)}</div>
+                </article>
+            `;
+        }).join('');
+    }
+
+    function shiftCalendarMonth(delta) {
+        calendarViewDate = new Date(calendarViewDate.getFullYear(), calendarViewDate.getMonth() + delta, 1);
+        renderCalendar();
+    }
+    window.shiftCalendarMonth = shiftCalendarMonth;
+
+    (function init() {
+        renderCalendar();
+        renderSelectedDateEvents();
+    })();
+})();
+</script>

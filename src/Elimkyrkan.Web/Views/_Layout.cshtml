@@ -1,0 +1,223 @@
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@using Elimkyrkan.Web.Helpers
+@using Umbraco.Cms.Core.Models.PublishedContent
+@{
+    var home = Umbraco.ContentAtRoot().FirstOrDefault(c => c.ContentType.Alias == "home");
+    var settings = Umbraco.ContentAtRoot().FirstOrDefault(c => c.ContentType.Alias == "siteSettings");
+    var currentUrl = Model?.Url() ?? Context.Request.Path.ToString();
+    string pageTitle = Model?.Name ?? "Elimkyrkan Mantorp";
+    string siteTitle = home?.Name ?? "Elimkyrkan Mantorp";
+
+    var navContentTypes = new[] { "aboutPage", "activitiesPage", "calendarPage", "teachingPage", "contactPage" };
+    IEnumerable<IPublishedContent> topNav = home?.Children?.Where(c => c.IsVisible() && navContentTypes.Contains(c.ContentType.Alias)) ?? Enumerable.Empty<IPublishedContent>();
+    var verksamheter = home?.Children?.FirstOrDefault(c => c.ContentType.Alias == "activitiesPage");
+    IEnumerable<IPublishedContent> footerVerk = verksamheter?.Children?.Where(c => c.IsVisible()) ?? Enumerable.Empty<IPublishedContent>();
+
+    var currentCulture = System.Globalization.CultureInfo.CurrentUICulture.Name;
+    var languageLabel = I18n.T("Språk", "Language", "Мова", "Idioma", "ภาษา");
+
+    string FlagCode(string iso) => iso.Split('-').Last().ToLowerInvariant();
+    string FlagUrl(string iso) => $"https://flagcdn.com/w40/{FlagCode(iso)}.png";
+
+    // Site Settings (with fallbacks so the site still renders if the node is missing)
+    var logoTop = settings?.Value<string>("logoTopText") ?? "Elimkyrkan";
+    var logoBottom = settings?.Value<string>("logoBottomText") ?? "Mantorp";
+    var footerAddress = settings?.Value<string>("footerAddress") ?? "Kyrkogatan 1\n590 36 Mantorp";
+    var footerPhone = settings?.Value<string>("footerPhone") ?? "0142-XXX XX";
+    var footerEmail = settings?.Value<string>("footerEmail") ?? "info@elimmantorp.se";
+    var footerTagline = settings?.Value<string>("footerTagline", currentCulture) ?? settings?.Value<string>("footerTagline") ?? "";
+    var copyrightSuffix = settings?.Value<string>("copyrightSuffix", currentCulture) ?? settings?.Value<string>("copyrightSuffix") ?? "";
+}
+<!DOCTYPE html>
+<html lang="@System.Globalization.CultureInfo.CurrentUICulture.TwoLetterISOLanguageName" data-culture="@currentCulture">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@pageTitle – @siteTitle</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@@400;600;700&family=Inter:wght@@300;400;500;600&family=Caveat:wght@@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/site.css">
+    <script>
+        (function () {
+            try {
+                // 1. Apply saved theme before paint (avoids flash).
+                //    First-time visitors always default to light; OS preference is ignored.
+                var savedTheme = localStorage.getItem('theme');
+                document.documentElement.setAttribute('data-theme', savedTheme || 'light');
+
+                // 2. If user previously chose a non-default language and is now on the
+                //    default-culture homepage, redirect to their saved language's homepage.
+                //    (We only redirect from "/" so that deep links shared by others are
+                //    respected — slugs differ per language and we can't translate them client-side.)
+                var savedLang = localStorage.getItem('lang');
+                var prefix = ({
+                    'en-US': '/en',
+                    'uk-UA': '/uk',
+                    'es-ES': '/es',
+                    'th-TH': '/th'
+                })[savedLang];
+                var path = window.location.pathname;
+                if (prefix && (path === '/' || path === '')) {
+                    window.location.replace(prefix + '/');
+                }
+            } catch (e) { /* localStorage unavailable; default behavior */ }
+        })();
+    </script>
+    <style>
+        .lang-switch { position: relative; }
+        .lang-switch summary {
+            list-style: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 10px;
+            border: 1px solid var(--gray-pale);
+            border-radius: 6px;
+            font-size: 14px;
+            color: var(--gray-dark);
+        }
+        .lang-switch summary::-webkit-details-marker { display: none; }
+        .lang-switch[open] summary { border-color: var(--green-mid); }
+        .lang-menu {
+            position: absolute;
+            right: 0;
+            top: calc(100% + 8px);
+            background: white;
+            border: 1px solid var(--gray-pale);
+            border-radius: 8px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+            min-width: 160px;
+            padding: 6px 0;
+            list-style: none;
+            z-index: 1100;
+        }
+        .lang-menu a {
+            display: block;
+            padding: 8px 16px;
+            text-decoration: none;
+            color: var(--gray-dark);
+            font-size: 14px;
+        }
+        .lang-menu a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .lang-menu a:hover { background: var(--green-pale); color: var(--green-dark); }
+        .lang-menu a.active { color: var(--green-dark); font-weight: 600; }
+        .lang-flag {
+            width: 22px;
+            height: 16px;
+            object-fit: cover;
+            border-radius: 2px;
+            box-shadow: 0 0 0 1px rgba(0,0,0,0.08);
+            flex-shrink: 0;
+        }
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        @@media (max-width: 768px) {
+            .nav-inner > .lang-switch { display: none; }
+            .nav-links.open .lang-switch-mobile { display: block; }
+        }
+    </style>
+</head>
+<body>
+<nav id="navbar">
+    <div class="nav-inner">
+        <a class="logo" href="@(home?.Url(culture: currentCulture) ?? "/")">
+            <span class="logo-top">@logoTop</span>
+            <span class="logo-bottom">@logoBottom</span>
+        </a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="@(home?.Url(culture: currentCulture) ?? "/")" class="@(currentUrl == (home?.Url(culture: currentCulture) ?? "/") ? "active" : "")">@I18n.T("Hem", "Home", "Головна", "Inicio", "หน้าแรก")</a></li>
+            @foreach (var item in topNav)
+            {
+                var url = item.Url(culture: currentCulture);
+                var isActive = currentUrl == url || currentUrl.StartsWith(url.TrimEnd('/') + "/");
+                <li><a href="@url" class="@(isActive ? "active" : "")">@item.Name</a></li>
+            }
+        </ul>
+
+        <div class="nav-actions">
+            <button id="themeToggle" class="theme-toggle" type="button" aria-label="@I18n.T("Växla tema", "Toggle theme", "Перемкнути тему", "Cambiar tema", "สลับธีม")" title="@I18n.T("Växla tema", "Toggle theme", "Перемкнути тему", "Cambiar tema", "สลับธีม")">🌙</button>
+
+        <details class="lang-switch">
+            <summary>
+                <img class="lang-flag" src="@FlagUrl(currentCulture)" alt="" loading="lazy">
+                <span>@languageLabel</span>
+            </summary>
+            <ul class="lang-menu">
+                @foreach (var (iso, native, _) in I18n.Languages)
+                {
+                    var href = Model?.Url(culture: iso) ?? home?.Url(culture: iso) ?? "/";
+                    if (string.IsNullOrEmpty(href) || href == "#") href = home?.Url(culture: iso) ?? "/";
+                    <li>
+                        <a href="@href" class="@(iso == currentCulture ? "active" : "")" hreflang="@iso">
+                            <img class="lang-flag" src="@FlagUrl(iso)" alt="" loading="lazy">
+                            <span>@native</span>
+                        </a>
+                    </li>
+                }
+            </ul>
+        </details>
+        </div>
+
+        <div class="hamburger">
+            <span></span><span></span><span></span>
+        </div>
+    </div>
+</nav>
+
+<main>
+    @RenderBody()
+</main>
+
+<footer>
+    <div class="footer-inner">
+        <div>
+            <div class="logo" style="margin-bottom:16px;">
+                <span class="logo-top" style="color:white;">@logoTop</span>
+                <span class="logo-bottom" style="color:rgba(255,255,255,0.8);">@logoBottom</span>
+            </div>
+            <p>@Html.Raw(System.Net.WebUtility.HtmlEncode(footerTagline).Replace("\n", "<br>"))</p>
+        </div>
+        <div>
+            <h4>@I18n.T("Snabblänkar", "Quick Links", "Швидкі посилання", "Enlaces rápidos", "ลิงก์ด่วน")</h4>
+            <p><a href="@(home?.Url(culture: currentCulture) ?? "/")">@I18n.T("Hem", "Home", "Головна", "Inicio", "หน้าแรก")</a></p>
+            @foreach (var item in topNav)
+            {
+                <p><a href="@item.Url(culture: currentCulture)">@item.Name</a></p>
+            }
+        </div>
+        <div>
+            <h4>@I18n.T("Verksamheter", "Activities", "Заходи", "Actividades", "กิจกรรม")</h4>
+            @foreach (var v in footerVerk.Take(4))
+            {
+                <p><a href="@v.Url(culture: currentCulture)">@v.Name</a></p>
+            }
+        </div>
+        <div>
+            <h4>@I18n.T("Kontakt", "Contact", "Контакти", "Contacto", "ติดต่อ")</h4>
+            <p>@Html.Raw(System.Net.WebUtility.HtmlEncode(footerAddress).Replace("\n", "<br>"))</p>
+            <p>@footerPhone</p>
+            <p>@footerEmail</p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>© @DateTime.Now.Year @logoTop @logoBottom. @copyrightSuffix</p>
+        <p>
+            <a href="/docs/elimkyrkan_behandling_av_personuppgifter_utan_noter.pdf" target="_blank" rel="noopener">
+                @I18n.T("Sekretesspolicy", "Privacy Policy", "Політика конфіденційності", "Política de privacidad", "นโยบายความเป็นส่วนตัว")
+            </a>
+        </p>
+    </div>
+</footer>
+
+<script src="/js/site.js"></script>
+</body>
+</html>

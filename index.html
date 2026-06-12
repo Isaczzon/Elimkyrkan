@@ -1,0 +1,1196 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elimkyrkan Mantorp</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&family=Caveat:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --green-dark: #2E5339;
+            --green-mid: #4A7C59;
+            --green-light: #6B9F7E;
+            --green-pale: #E8F0EB;
+            --wood: #C49A6C;
+            --wood-light: #D4B896;
+            --wood-pale: #F5EDE3;
+            --gray-dark: #4A4A4A;
+            --gray-mid: #7A7A7A;
+            --gray-light: #B0B0B0;
+            --gray-pale: #EDEDED;
+            --off-white: #FAFAF8;
+            --white: #FFFFFF;
+            --black: #1A1A1A;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--black);
+            background: var(--off-white);
+            line-height: 1.6;
+        }
+
+        /* === NAVIGATION === */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255,255,255,0.97);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--gray-pale);
+            transition: box-shadow 0.3s;
+        }
+        nav.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.08); }
+
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 72px;
+        }
+
+        .logo {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            line-height: 1;
+            cursor: pointer;
+        }
+        .logo-top {
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            font-size: 18px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--black);
+        }
+        .logo-bottom {
+            font-family: 'Caveat', cursive;
+            font-size: 20px;
+            color: var(--black);
+            margin-top: -2px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--gray-dark);
+            font-size: 15px;
+            font-weight: 500;
+            transition: color 0.2s;
+            position: relative;
+            cursor: pointer;
+        }
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--green-dark);
+        }
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--green-mid);
+            border-radius: 1px;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 8px;
+        }
+        .hamburger span {
+            width: 24px;
+            height: 2px;
+            background: var(--black);
+            transition: 0.3s;
+        }
+
+        /* === PAGES === */
+        .page {
+            display: none;
+            padding-top: 72px;
+        }
+        .page.active { display: block; }
+
+        /* === HERO === */
+        .hero {
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(135deg, var(--green-dark) 0%, var(--green-mid) 60%, var(--green-light) 100%);
+            color: var(--white);
+            padding: 80px 24px;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 700px;
+        }
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 16px;
+            line-height: 1.15;
+        }
+        .hero p {
+            font-size: clamp(1rem, 2.5vw, 1.25rem);
+            opacity: 0.9;
+            margin-bottom: 32px;
+            font-weight: 300;
+        }
+        .hero-btn {
+            display: inline-block;
+            padding: 14px 36px;
+            background: var(--wood);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 500;
+            font-size: 16px;
+            transition: background 0.2s, transform 0.2s;
+            cursor: pointer;
+        }
+        .hero-btn:hover { background: var(--wood-light); transform: translateY(-1px); }
+
+        /* === SECTIONS === */
+        .section {
+            padding: 80px 24px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .section-alt {
+            background: var(--green-pale);
+        }
+        .section-wood {
+            background: var(--wood-pale);
+        }
+        .section-full {
+            max-width: 100%;
+            padding: 80px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+        .section-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.75rem, 4vw, 2.5rem);
+            color: var(--green-dark);
+            margin-bottom: 12px;
+        }
+        .section-header p {
+            color: var(--gray-mid);
+            font-size: 16px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* === SCHEDULE (Veckoschema) === */
+        .schedule-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        .schedule-card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 24px;
+            border-left: 4px solid var(--green-mid);
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .schedule-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        .schedule-day {
+            font-weight: 600;
+            color: var(--green-dark);
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+        .schedule-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            margin-bottom: 6px;
+        }
+        .schedule-time {
+            color: var(--gray-mid);
+            font-size: 14px;
+        }
+        .schedule-desc {
+            color: var(--gray-dark);
+            font-size: 14px;
+            margin-top: 8px;
+        }
+
+        /* === EVENTS (Vad som händer) === */
+        .events-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+        }
+        .event-card {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .event-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 24px rgba(0,0,0,0.1);
+        }
+        .event-img {
+            height: 180px;
+            background: linear-gradient(135deg, var(--green-mid), var(--green-light));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 48px;
+        }
+        .event-body {
+            padding: 24px;
+        }
+        .event-date {
+            font-size: 13px;
+            color: var(--wood);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .event-body h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            margin: 8px 0;
+        }
+        .event-body p {
+            color: var(--gray-mid);
+            font-size: 14px;
+        }
+
+        /* === VERKSAMHETER CARDS === */
+        .verk-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 24px;
+        }
+        .verk-card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 32px 24px;
+            text-align: center;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: 2px solid transparent;
+        }
+        .verk-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            border-color: var(--green-light);
+        }
+        .verk-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: var(--green-pale);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+            font-size: 28px;
+        }
+        .verk-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            margin-bottom: 8px;
+            color: var(--green-dark);
+        }
+        .verk-card p {
+            color: var(--gray-mid);
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        /* === SUBPAGE === */
+        .subpage-hero {
+            padding: 120px 24px 60px;
+            background: linear-gradient(135deg, var(--green-dark), var(--green-mid));
+            color: white;
+            text-align: center;
+        }
+        .subpage-hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+        }
+        .subpage-hero p {
+            opacity: 0.85;
+            margin-top: 12px;
+            font-size: 18px;
+        }
+        .subpage-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 60px 24px;
+        }
+        .subpage-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            color: var(--green-dark);
+            margin: 32px 0 16px;
+        }
+        .subpage-content p {
+            color: var(--gray-dark);
+            margin-bottom: 16px;
+            line-height: 1.8;
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--green-mid);
+            text-decoration: none;
+            font-weight: 500;
+            margin-bottom: 24px;
+            cursor: pointer;
+        }
+        .back-link:hover { color: var(--green-dark); }
+
+        /* === UNDERVISNING TABS === */
+        .undervisning-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+        .undervisning-card {
+            background: var(--white);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: transform 0.2s;
+        }
+        .undervisning-card:hover { transform: translateY(-4px); }
+        .undervisning-card-header {
+            padding: 32px 24px;
+            color: white;
+            text-align: center;
+        }
+        .undervisning-card-header.predikan { background: var(--green-dark); }
+        .undervisning-card-header.foraldrar { background: var(--wood); }
+        .undervisning-card-header.hemgrupper { background: var(--green-mid); }
+        .undervisning-card-header h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            margin-top: 8px;
+        }
+        .undervisning-card-header .icon { font-size: 36px; }
+        .undervisning-card-body {
+            padding: 24px;
+        }
+        .undervisning-card-body p {
+            color: var(--gray-dark);
+            font-size: 14px;
+            margin-bottom: 16px;
+            line-height: 1.7;
+        }
+        .undervisning-card-body a {
+            color: var(--green-mid);
+            font-weight: 500;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .undervisning-card-body a:hover { text-decoration: underline; }
+
+        /* === CONTACT FORM === */
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: start;
+        }
+        .contact-info h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            color: var(--green-dark);
+            margin-bottom: 16px;
+        }
+        .contact-info p {
+            color: var(--gray-dark);
+            margin-bottom: 12px;
+            line-height: 1.7;
+        }
+        .contact-detail {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+            color: var(--gray-dark);
+        }
+        .contact-detail .icon {
+            width: 40px;
+            height: 40px;
+            background: var(--green-pale);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--gray-dark);
+            margin-bottom: 6px;
+        }
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid var(--gray-pale);
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            font-size: 15px;
+            transition: border-color 0.2s;
+            background: var(--white);
+        }
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--green-mid);
+            box-shadow: 0 0 0 3px rgba(74,124,89,0.1);
+        }
+        .form-group textarea { resize: vertical; min-height: 120px; }
+
+        .submit-btn {
+            display: inline-block;
+            padding: 14px 36px;
+            background: var(--green-dark);
+            color: var(--white);
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.2s;
+            font-family: 'Inter', sans-serif;
+        }
+        .submit-btn:hover { background: var(--green-mid); }
+
+        /* === FOOTER === */
+        footer {
+            background: var(--green-dark);
+            color: rgba(255,255,255,0.8);
+            padding: 60px 24px 30px;
+        }
+        .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 40px;
+        }
+        footer h4 {
+            color: var(--white);
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            margin-bottom: 16px;
+        }
+        footer p, footer a {
+            font-size: 14px;
+            line-height: 1.8;
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+        }
+        footer a:hover { color: var(--white); }
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 40px auto 0;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255,255,255,0.15);
+            text-align: center;
+            font-size: 13px;
+            color: rgba(255,255,255,0.5);
+        }
+
+        /* === ABOUT PAGE === */
+        .about-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: center;
+            margin-bottom: 60px;
+        }
+        .about-section:nth-child(even) .about-text { order: -1; }
+        .about-img {
+            border-radius: 16px;
+            background: linear-gradient(135deg, var(--green-pale), var(--wood-pale));
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 64px;
+        }
+        .about-text h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            color: var(--green-dark);
+            margin-bottom: 16px;
+        }
+        .about-text p {
+            color: var(--gray-dark);
+            line-height: 1.8;
+            margin-bottom: 12px;
+        }
+
+        /* === RESPONSIVE === */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .nav-links.open {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 72px;
+                left: 0;
+                right: 0;
+                background: white;
+                padding: 24px;
+                gap: 20px;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            }
+            .hamburger { display: flex; }
+            .hero { min-height: 70vh; }
+            .about-section { grid-template-columns: 1fr; }
+            .about-section:nth-child(even) .about-text { order: 0; }
+            .contact-wrapper { grid-template-columns: 1fr; }
+            .undervisning-grid { grid-template-columns: 1fr; }
+        }
+
+        /* === ANIMATION === */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* === MAP PLACEHOLDER === */
+        .map-placeholder {
+            width: 100%;
+            height: 300px;
+            background: var(--gray-pale);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray-mid);
+            font-size: 16px;
+            margin-top: 24px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav id="navbar">
+    <div class="nav-inner">
+        <div class="logo" onclick="navigate('hem')">
+            <span class="logo-top">Elimkyrkan</span>
+            <span class="logo-bottom">Mantorp</span>
+        </div>
+        <ul class="nav-links" id="navLinks">
+            <li><a onclick="navigate('hem')" class="active" data-page="hem">Hem</a></li>
+            <li><a onclick="navigate('om-oss')" data-page="om-oss">Om oss</a></li>
+            <li><a onclick="navigate('verksamheter')" data-page="verksamheter">Verksamheter</a></li>
+            <li><a onclick="navigate('undervisning')" data-page="undervisning">Undervisning</a></li>
+            <li><a onclick="navigate('kontakt')" data-page="kontakt">Kontakt</a></li>
+        </ul>
+        <div class="hamburger" onclick="toggleMenu()">
+            <span></span><span></span><span></span>
+        </div>
+    </div>
+</nav>
+
+<!-- ==================== HEM ==================== -->
+<div class="page active" id="page-hem">
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Välkommen till Elimkyrkan Mantorp</h1>
+            <p>En levande församling för alla generationer – mitt i Mantorp, med rötter i evangelisk frikyrkotradition.</p>
+            <span class="hero-btn" onclick="navigate('om-oss')">Lär känna oss</span>
+        </div>
+    </section>
+
+    <!-- Veckoschema -->
+    <section class="section">
+        <div class="section-header fade-in">
+            <h2>Veckoschema</h2>
+            <p>Här hittar du veckans aktiviteter och sammankomster</p>
+        </div>
+        <div class="schedule-grid">
+            <div class="schedule-card fade-in">
+                <div class="schedule-day">Söndag</div>
+                <div class="schedule-title">Gudstjänst</div>
+                <div class="schedule-time">10:00 – 11:30</div>
+                <div class="schedule-desc">Gudstjänst med lovsång, predikan och gemenskap. Söndagsskola för barnen.</div>
+            </div>
+            <div class="schedule-card fade-in">
+                <div class="schedule-day">Tisdag</div>
+                <div class="schedule-title">Tisdagscafé</div>
+                <div class="schedule-time">19:00 – 21:00</div>
+                <div class="schedule-desc">Öppet café med fika och gemenskap. Alla är välkomna!</div>
+            </div>
+            <div class="schedule-card fade-in">
+                <div class="schedule-day">Onsdag</div>
+                <div class="schedule-title">Hemgrupper</div>
+                <div class="schedule-time">19:00 – 21:00</div>
+                <div class="schedule-desc">Bibelstudium och gemenskap i mindre grupper runt om i Mantorp.</div>
+            </div>
+            <div class="schedule-card fade-in">
+                <div class="schedule-day">Lördag</div>
+                <div class="schedule-title">Mansfrukost</div>
+                <div class="schedule-time">07:00 – 09:00</div>
+                <div class="schedule-desc">Frukost och samtal för män. En stund att ladda under veckan.</div>
+            </div>
+            <div class="schedule-card fade-in">
+                <div class="schedule-day">Fredag</div>
+                <div class="schedule-title">Next Generation</div>
+                <div class="schedule-time">20:00 – 00:00</div>
+                <div class="schedule-desc">Ungdomskväll med aktiviteter, samtal och gemenskap.</div>
+            </div>
+            <div class="schedule-card fade-in">
+                <div class="schedule-day">Lördag</div>
+                <div class="schedule-title">Loppis Axplocket</div>
+                <div class="schedule-time">10:00 – 14:00</div>
+                <div class="schedule-desc">Second hand och fynd. Välkommen att fika och fynda!</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vad som händer -->
+    <section class="section-alt">
+        <div class="section" style="padding-top:0; padding-bottom:0;">
+            <div style="padding: 80px 0;">
+                <div class="section-header fade-in">
+                    <h2>Vad som händer</h2>
+                    <p>Kommande händelser och nyheter i församlingen</p>
+                </div>
+                <div class="events-list">
+                    <div class="event-card fade-in">
+                        <div class="event-img">🎵</div>
+                        <div class="event-body">
+                            <div class="event-date">23 mars 2026</div>
+                            <h3>Lovsångskväll</h3>
+                            <p>En kväll av tillbedjan och lovsång. Alla är välkomna att delta i en stund av gemenskap och sång.</p>
+                        </div>
+                    </div>
+                    <div class="event-card fade-in">
+                        <div class="event-img">🌿</div>
+                        <div class="event-body">
+                            <div class="event-date">5 april 2026</div>
+                            <h3>Påskgudstjänst</h3>
+                            <p>Fira påskens budskap tillsammans. Särskilt program för barnen under gudstjänsten.</p>
+                        </div>
+                    </div>
+                    <div class="event-card fade-in">
+                        <div class="event-img">☕</div>
+                        <div class="event-body">
+                            <div class="event-date">Varje tisdag</div>
+                            <h3>Öppet café</h3>
+                            <p>Drop-in fika och gemenskap varje tisdag. Ta med en vän och njut av en lugn stund.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section" style="text-align:center;">
+        <div class="fade-in">
+            <h2 style="font-family:'Playfair Display',serif; font-size:clamp(1.5rem,4vw,2.25rem); color:var(--green-dark); margin-bottom:16px;">Välkommen att besöka oss</h2>
+            <p style="color:var(--gray-mid); max-width:500px; margin:0 auto 24px;">Vi finns i centrala Mantorp och våra dörrar är öppna för alla. Kom som du är.</p>
+            <span class="hero-btn" onclick="navigate('kontakt')" style="background:var(--green-dark);">Hitta hit →</span>
+        </div>
+    </section>
+</div>
+
+<!-- ==================== OM OSS ==================== -->
+<div class="page" id="page-om-oss">
+    <section class="subpage-hero">
+        <h1>Om oss</h1>
+        <p>Elimkyrkan Mantorp – en del av Evangeliska Frikyrkan</p>
+    </section>
+
+    <section class="section">
+        <div class="about-section fade-in">
+            <div class="about-img">⛪</div>
+            <div class="about-text">
+                <h2>Vår församling</h2>
+                <p>Elimkyrkan Mantorp är en levande församling som välkomnar alla generationer. Vi är en del av Evangeliska Frikyrkan (EFK) och delar deras vision om att sprida evangelium och vara en positiv kraft i samhället.</p>
+                <p>Hos oss möts barn, ungdomar, unga vuxna, familjer och seniorer i en gemenskap som präglas av värme, öppenhet och tro.</p>
+            </div>
+        </div>
+
+        <div class="about-section fade-in">
+            <div class="about-img">📖</div>
+            <div class="about-text">
+                <h2>Vår tro</h2>
+                <p>Vi tror på en Gud – Fadern, Sonen och den Helige Ande. Bibeln är vår grund och vägledning. Vi tror att Jesus Kristus är Guds son, sänd för att rädda världen, och att den Helige Ande verkar i och genom oss idag.</p>
+                <p>Som en del av EFK delar vi den evangeliska frikyrkans trosbekännelse och står på en klassisk kristen trosgrund.</p>
+            </div>
+        </div>
+
+        <div class="about-section fade-in">
+            <div class="about-img">🏠</div>
+            <div class="about-text">
+                <h2>Vår historia</h2>
+                <p>Elimkyrkan har en lång och rik historia i Mantorp. Genom åren har församlingen vuxit och förändrats, men kärnan har alltid varit densamma – en plats för gemenskap, tro och hopp.</p>
+                <p>Idag fortsätter vi att bygga vidare på det arv som tidigare generationer har lagt grunden för, samtidigt som vi blickar framåt med nyfikenhet och förväntan.</p>
+            </div>
+        </div>
+
+        <div class="about-section fade-in">
+            <div class="about-img" style="background:linear-gradient(135deg, var(--wood-pale), var(--green-pale));">🌍</div>
+            <div class="about-text">
+                <h2>EFK – Evangeliska Frikyrkan</h2>
+                <p>Evangeliska Frikyrkan är ett samfund med rötter i den svenska väckelserörelsen. EFK samlar församlingar över hela Sverige och bedriver missionsarbete i ett flertal länder.</p>
+                <p>Genom EFK är vi en del av ett större sammanhang, med resurser för utbildning, mission och församlingsutveckling.</p>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- ==================== VERKSAMHETER ==================== -->
+<div class="page" id="page-verksamheter">
+    <section class="subpage-hero">
+        <h1>Verksamheter</h1>
+        <p>Det finns plats för dig – oavsett ålder och livssituation</p>
+    </section>
+
+    <section class="section">
+        <div class="verk-grid">
+            <div class="verk-card fade-in" onclick="navigate('verk-barn')">
+                <div class="verk-icon">👶</div>
+                <h3>Barn</h3>
+                <p>Verksamhet för de yngsta med lek, sång och bibelberättelser i en trygg miljö.</p>
+            </div>
+            <div class="verk-card fade-in" onclick="navigate('verk-nextgen')">
+                <div class="verk-icon">🔥</div>
+                <h3>Next Generation</h3>
+                <p>Ungdomsverksamhet med aktiviteter, samtal om tro och gemenskap för unga.</p>
+            </div>
+            <div class="verk-card fade-in" onclick="navigate('verk-hemgrupper')">
+                <div class="verk-icon">🏡</div>
+                <h3>Hemgrupper</h3>
+                <p>Mindre grupper som träffas i hemmen för bibelstudium, bön och gemenskap.</p>
+            </div>
+            <div class="verk-card fade-in" onclick="navigate('verk-mission')">
+                <div class="verk-icon">🌍</div>
+                <h3>Mission</h3>
+                <p>Vårt missionsengagemang lokalt och globalt – att dela tro och omsorg i världen.</p>
+            </div>
+            <div class="verk-card fade-in" onclick="navigate('verk-mansfrukost')">
+                <div class="verk-icon">☕</div>
+                <h3>Mansfrukost</h3>
+                <p>Frukost och samtal för män. En stund att ladda och mötas under veckan.</p>
+            </div>
+            <div class="verk-card fade-in" onclick="navigate('verk-tisdagscafe')">
+                <div class="verk-icon">🍰</div>
+                <h3>Tisdagscafé</h3>
+                <p>Öppet café varje tisdag med fika och gemenskap. Alla är välkomna!</p>
+            </div>
+            <div class="verk-card fade-in" onclick="navigate('verk-loppis')">
+                <div class="verk-icon">🛍️</div>
+                <h3>Loppis Axplocket</h3>
+                <p>Second hand-butik med fynd och fika. En mötesplats för hela Mantorp.</p>
+            </div>
+            <div class="verk-card fade-in" onclick="navigate('verk-familjeradgivning')">
+                <div class="verk-icon">👨‍👩‍👧‍👦</div>
+                <h3>Familjerådgivning</h3>
+                <p>Stöd och rådgivning för familjer. Professionell hjälp i en trygg miljö.</p>
+            </div>
+            <div class="verk-card fade-in" onclick="navigate('verk-forbon')">
+                <div class="verk-icon">🙏</div>
+                <h3>Förbön</h3>
+                <p>Bön och förbön för varandra och vår omvärld. Alla är välkomna att be och bli bedda för.</p>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- ======= VERKSAMHETER UNDERSIDOR ======= -->
+<div class="page" id="page-verk-barn">
+    <section class="subpage-hero"><h1>Barn</h1><p>En trygg plats för de yngsta</p></section>
+    <section class="subpage-content">
+        <a class="back-link" onclick="navigate('verksamheter')">← Tillbaka till verksamheter</a>
+        <h2>Barnverksamhet i Elimkyrkan</h2>
+        <p>Varje söndag under gudstjänsten har vi söndagsskola för barnen. Här får de höra bibelberättelser, sjunga, leka och skapa i en trygg och kärleksfull miljö.</p>
+        <p>Vi vill att varje barn ska känna sig sett, älskat och välkommet. Våra ledare är engagerade och brinner för att ge barnen en positiv bild av tro och gemenskap.</p>
+        <h2>Vad vi gör</h2>
+        <p>Söndagsskolan är indelad i åldersanpassade grupper. Vi använder kreativa metoder som drama, musik, pyssel och lek för att förmedla bibelns berättelser på ett sätt som barnen kan ta till sig.</p>
+    </section>
+</div>
+
+<div class="page" id="page-verk-nextgen">
+    <section class="subpage-hero"><h1>Next Generation</h1><p>Ungdomsverksamhet med energi och gemenskap</p></section>
+    <section class="subpage-content">
+        <a class="back-link" onclick="navigate('verksamheter')">← Tillbaka till verksamheter</a>
+        <h2>Ungdomskväll varje fredag</h2>
+        <p>Next Generation är vår ungdomsverksamhet där vi samlas varje fredag för en kväll fylld med gemenskap, aktiviteter, samtal och snacks. Här får du vara dig själv och utforska tro i en avslappnad miljö.</p>
+        <p>Vi tror på nästa generation och vill skapa en plats där unga kan växa, både som människor och i sin tro.</p>
+        <h2>Vad händer på en vanlig kväll?</h2>
+        <p>Kvällen brukar innehålla häng, lekar, fika, ett kort pass med tal eller samtal om livet och tron, och massor av skratt. Vi åker ibland på läger och gör utflykter tillsammans.</p>
+    </section>
+</div>
+
+<div class="page" id="page-verk-hemgrupper">
+    <section class="subpage-hero"><h1>Hemgrupper</h1><p>Gemenskap i vardagen</p></section>
+    <section class="subpage-content">
+        <a class="back-link" onclick="navigate('verksamheter')">← Tillbaka till verksamheter</a>
+        <h2>Mindre grupper – större gemenskap</h2>
+        <p>Hemgrupperna är hjärtat i vår församling. I mindre grupper möts vi i hemmen för att studera Bibeln, be tillsammans och dela livet med varandra.</p>
+        <p>Det är i hemgrupperna som de djupare relationerna formas. Här finns utrymme att ställa frågor, dela funderingar och stötta varandra i vardagen.</p>
+        <h2>Hitta en grupp</h2>
+        <p>Vi har flera hemgrupper som träffas på olika tider och platser runt om i Mantorp. Kontakta oss så hjälper vi dig hitta en grupp som passar dig!</p>
+    </section>
+</div>
+
+<div class="page" id="page-verk-mission">
+    <section class="subpage-hero"><h1>Mission</h1><p>Lokalt och globalt engagemang</p></section>
+    <section class="subpage-content">
+        <a class="back-link" onclick="navigate('verksamheter')">← Tillbaka till verksamheter</a>
+        <h2>Vårt missionshjärta</h2>
+        <p>Mission handlar om att dela Guds kärlek – både lokalt i Mantorp och globalt. Genom EFK är vi engagerade i missionsarbete i flera länder och stödjer projekt som gör skillnad.</p>
+        <p>Lokalt strävar vi efter att vara en kyrka som är relevant och tillgänglig för hela samhället.</p>
+    </section>
+</div>
+
+<div class="page" id="page-verk-mansfrukost">
+    <section class="subpage-hero"><h1>Mansfrukost</h1><p>Frukost och gemenskap för män</p></section>
+    <section class="subpage-content">
+        <a class="back-link" onclick="navigate('verksamheter')">← Tillbaka till verksamheter</a>
+        <h2>Starta veckan rätt</h2>
+        <p>Mansfrukost är en stund att mötas över en god frukost, samtala om livet och tron, och ladda inför veckan. Alla män är välkomna oavsett bakgrund.</p>
+        <p>Vi träffas regelbundet för frukost och har ofta en kort andakt eller ett ämne att samtala kring.</p>
+    </section>
+</div>
+
+<div class="page" id="page-verk-tisdagscafe">
+    <section class="subpage-hero"><h1>Tisdagscafé</h1><p>Öppet café – alla välkomna</p></section>
+    <section class="subpage-content">
+        <a class="back-link" onclick="navigate('verksamheter')">← Tillbaka till verksamheter</a>
+        <h2>En mötesplats i vardagen</h2>
+        <p>Varje tisdag öppnar vi kyrkans dörrar för tisdagscaféet. Här serveras fika och det finns gott om tid att umgås, samtala och bara vara.</p>
+        <p>Tisdagscaféet är en plats för alla – oavsett ålder, bakgrund eller tro. Välkommen in på en fika!</p>
+    </section>
+</div>
+
+<div class="page" id="page-verk-loppis">
+    <section class="subpage-hero"><h1>Loppis Axplocket</h1><p>Second hand med hjärta</p></section>
+    <section class="subpage-content">
+        <a class="back-link" onclick="navigate('verksamheter')">← Tillbaka till verksamheter</a>
+        <h2>Fynda och fika</h2>
+        <p>Loppis Axplocket är vår second hand-butik där du kan hitta allt från kläder till prylar till möbler. Intäkterna går till församlingens verksamhet och missionsarbete.</p>
+        <p>Butiken är också en mötesplats i Mantorp. Kom förbi, fynda och njut av en kopp kaffe!</p>
+    </section>
+</div>
+
+<div class="page" id="page-verk-familjeradgivning">
+    <section class="subpage-hero"><h1>Familjerådgivning</h1><p>Stöd för hela familjen</p></section>
+    <section class="subpage-content">
+        <a class="back-link" onclick="navigate('verksamheter')">← Tillbaka till verksamheter</a>
+        <h2>Professionellt stöd i en trygg miljö</h2>
+        <p>Vi erbjuder familjerådgivning för par och familjer som behöver stöd. Samtalen sker i en trygg och förtrolig miljö med utbildade rådgivare.</p>
+        <p>Kontakta oss för att boka ett samtal. Allt sker konfidentiellt.</p>
+    </section>
+</div>
+
+<div class="page" id="page-verk-forbon">
+    <section class="subpage-hero"><h1>Förbön</h1><p>Bön för varandra och vår värld</p></section>
+    <section class="subpage-content">
+        <a class="back-link" onclick="navigate('verksamheter')">← Tillbaka till verksamheter</a>
+        <h2>Bönens kraft</h2>
+        <p>Bön är en central del av vår församling. Vi tror på bönens kraft och vill uppmuntra till bön både enskilt och tillsammans.</p>
+        <p>Du är alltid välkommen att be med oss – efter gudstjänsten, i hemgruppen eller genom att kontakta oss med ditt böneämne.</p>
+    </section>
+</div>
+
+<!-- ==================== UNDERVISNING ==================== -->
+<div class="page" id="page-undervisning">
+    <section class="subpage-hero">
+        <h1>Undervisning</h1>
+        <p>Väx i tro och kunskap – tre vägar att fördjupa dig</p>
+    </section>
+
+    <section class="section">
+        <div class="undervisning-grid">
+            <div class="undervisning-card fade-in">
+                <div class="undervisning-card-header predikan">
+                    <div class="icon">🎤</div>
+                    <h3>Predikan</h3>
+                </div>
+                <div class="undervisning-card-body">
+                    <p>Varje söndag förmedlas Guds ord genom predikan. Våra predikanter delar aktuella och livsförvandlande budskap som hjälper dig att växa i tro och vardagsliv.</p>
+                    <p>Här kan du lyssna på tidigare predikningar och följa med i aktuella predikoserier.</p>
+                    <a>Lyssna på predikningar →</a>
+                </div>
+            </div>
+            <div class="undervisning-card fade-in">
+                <div class="undervisning-card-header foraldrar">
+                    <div class="icon">👨‍👩‍👧</div>
+                    <h3>Föräldrar</h3>
+                </div>
+                <div class="undervisning-card-body">
+                    <p>Att vara förälder är livets viktigaste uppdrag. Vi erbjuder undervisning och resurser som hjälper dig att bygga en trygg och kärleksfull familj grundad i tro.</p>
+                    <p>Kurser, samtalsgrupper och material för föräldrar i alla faser.</p>
+                    <a>Läs mer om föräldraresurser →</a>
+                </div>
+            </div>
+            <div class="undervisning-card fade-in">
+                <div class="undervisning-card-header hemgrupper">
+                    <div class="icon">📖</div>
+                    <h3>Hemgrupper</h3>
+                </div>
+                <div class="undervisning-card-body">
+                    <p>I hemgrupperna fördjupar vi oss i Bibeln tillsammans. Genom studium, samtal och bön växer vi i förståelse och tro – och stöttar varandra på vägen.</p>
+                    <p>Aktuellt studiematerial och information om hemgruppernas undervisningsplan.</p>
+                    <a>Hitta en hemgrupp →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- ==================== KONTAKT ==================== -->
+<div class="page" id="page-kontakt">
+    <section class="subpage-hero">
+        <h1>Kontakt</h1>
+        <p>Vi vill gärna höra från dig</p>
+    </section>
+
+    <section class="section">
+        <div class="contact-wrapper">
+            <div class="contact-info fade-in">
+                <h3>Elimkyrkan Mantorp</h3>
+                <p>Tveka inte att höra av dig om du har frågor, vill veta mer eller behöver stöd. Vi finns här för dig.</p>
+
+                <div class="contact-detail">
+                    <div class="icon">📍</div>
+                    <div>
+                        <strong>Adress</strong><br>
+                        Kyrkogatan 1, 590 36 Mantorp
+                    </div>
+                </div>
+                <div class="contact-detail">
+                    <div class="icon">📞</div>
+                    <div>
+                        <strong>Telefon</strong><br>
+                        0142-XXX XX
+                    </div>
+                </div>
+                <div class="contact-detail">
+                    <div class="icon">✉️</div>
+                    <div>
+                        <strong>E-post</strong><br>
+                        info@elimmantorp.se
+                    </div>
+                </div>
+                <div class="contact-detail">
+                    <div class="icon">🕐</div>
+                    <div>
+                        <strong>Expedition</strong><br>
+                        Tisdag–Torsdag 09:00–15:00
+                    </div>
+                </div>
+
+                <div class="map-placeholder">
+                    📍 Karta – Google Maps inbäddning här
+                </div>
+            </div>
+
+            <div class="fade-in">
+                <h3 style="font-family:'Playfair Display',serif; font-size:22px; color:var(--green-dark); margin-bottom:24px;">Skicka ett meddelande</h3>
+                <form onsubmit="event.preventDefault(); alert('Tack för ditt meddelande! Vi återkommer så snart vi kan.');">
+                    <div class="form-group">
+                        <label>Namn</label>
+                        <input type="text" placeholder="Ditt namn" required>
+                    </div>
+                    <div class="form-group">
+                        <label>E-post</label>
+                        <input type="email" placeholder="din@epost.se" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Telefon (valfritt)</label>
+                        <input type="tel" placeholder="07X-XXX XX XX">
+                    </div>
+                    <div class="form-group">
+                        <label>Ämne</label>
+                        <select>
+                            <option>Allmän fråga</option>
+                            <option>Verksamhet</option>
+                            <option>Familjerådgivning</option>
+                            <option>Förbön</option>
+                            <option>Annat</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Meddelande</label>
+                        <textarea placeholder="Skriv ditt meddelande här..." required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Skicka meddelande</button>
+                </form>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- ==================== FOOTER ==================== -->
+<footer>
+    <div class="footer-inner">
+        <div>
+            <div class="logo" style="margin-bottom:16px;">
+                <span class="logo-top" style="color:white;">Elimkyrkan</span>
+                <span class="logo-bottom" style="color:rgba(255,255,255,0.8);">Mantorp</span>
+            </div>
+            <p>En del av Evangeliska Frikyrkan.<br>Mitt i Mantorp – för alla generationer.</p>
+        </div>
+        <div>
+            <h4>Snabblänkar</h4>
+            <p><a onclick="navigate('hem')" style="cursor:pointer;">Hem</a></p>
+            <p><a onclick="navigate('om-oss')" style="cursor:pointer;">Om oss</a></p>
+            <p><a onclick="navigate('verksamheter')" style="cursor:pointer;">Verksamheter</a></p>
+            <p><a onclick="navigate('undervisning')" style="cursor:pointer;">Undervisning</a></p>
+            <p><a onclick="navigate('kontakt')" style="cursor:pointer;">Kontakt</a></p>
+        </div>
+        <div>
+            <h4>Verksamheter</h4>
+            <p><a onclick="navigate('verk-barn')" style="cursor:pointer;">Barn</a></p>
+            <p><a onclick="navigate('verk-nextgen')" style="cursor:pointer;">Next Generation</a></p>
+            <p><a onclick="navigate('verk-hemgrupper')" style="cursor:pointer;">Hemgrupper</a></p>
+            <p><a onclick="navigate('verk-loppis')" style="cursor:pointer;">Loppis Axplocket</a></p>
+        </div>
+        <div>
+            <h4>Kontakt</h4>
+            <p>Kyrkogatan 1<br>590 36 Mantorp</p>
+            <p>0142-XXX XX</p>
+            <p>info@elimmantorp.se</p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>© 2026 Elimkyrkan Mantorp. En del av Evangeliska Frikyrkan (EFK).</p>
+    </div>
+</footer>
+
+<script>
+    // Navigation
+    function navigate(pageId) {
+        // Hide all pages
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+
+        // Show target page
+        const target = document.getElementById('page-' + pageId);
+        if (target) {
+            target.classList.add('active');
+        }
+
+        // Update nav links
+        document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+        const mainPages = ['hem', 'om-oss', 'verksamheter', 'undervisning', 'kontakt'];
+        let navPage = pageId;
+        if (pageId.startsWith('verk-')) navPage = 'verksamheter';
+        const navLink = document.querySelector(`.nav-links a[data-page="${navPage}"]`);
+        if (navLink) navLink.classList.add('active');
+
+        // Scroll to top
+        window.scrollTo(0, 0);
+
+        // Close mobile menu
+        document.getElementById('navLinks').classList.remove('open');
+
+        // Trigger animations
+        setTimeout(() => {
+            document.querySelectorAll('.page.active .fade-in').forEach(el => {
+                el.classList.add('visible');
+            });
+        }, 100);
+    }
+
+    // Mobile menu
+    function toggleMenu() {
+        document.getElementById('navLinks').classList.toggle('open');
+    }
+
+    // Scroll effects
+    window.addEventListener('scroll', () => {
+        const nav = document.getElementById('navbar');
+        if (window.scrollY > 10) {
+            nav.classList.add('scrolled');
+        } else {
+            nav.classList.remove('scrolled');
+        }
+    });
+
+    // Intersection observer for fade-in
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    // Initial animation
+    setTimeout(() => {
+        document.querySelectorAll('#page-hem .fade-in').forEach(el => el.classList.add('visible'));
+    }, 200);
+</script>
+
+</body>
+</html>
