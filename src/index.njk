@@ -51,7 +51,6 @@ permalink: "/{{ loc.prefix }}index.html"
 {% endif %}
 
 {% set manadens = handelser | manadsHandelser %}
-{% if manadens.length %}
 <section class="section-alt">
     <div class="section">
         <div class="section-header fade-in">
@@ -67,16 +66,17 @@ permalink: "/{{ loc.prefix }}index.html"
                 <div class="event-img">{{ handelse.data.ikon }}</div>
                 {% endif %}
                 <div class="event-body">
-                    <div class="event-date">{% if handelse.data.datum %}{{ handelse.data.datum | datumLokal(kod) }}{% else %}{{ handelse.data.visningsdatum }}{% endif %}</div>
+                    <div class="event-date">{% if handelse.data.datum %}{{ handelse.data.datum | datumLokal(kod) }}{% elif handelse.data.visningsdatum %}{{ handelse.data.visningsdatum }}{% elif handelse.data.dag %}{{ handelse | dagEtikett(kod) }}{% endif %}</div>
                     <h3>{{ handelse.data.titel }}</h3>
                     <p>{{ handelse.data.beskrivning }}</p>
                 </div>
             </div>
+            {% else %}
+            <p style="text-align:center; color:var(--gray-mid); grid-column: 1 / -1;">{{ sidan.handelser.tomtext }}</p>
             {% endfor %}
         </div>
     </div>
 </section>
-{% endif %}
 
 {% if sidan.cta.rubrik or sidan.cta.text %}
 <section class="section" style="text-align:center;">

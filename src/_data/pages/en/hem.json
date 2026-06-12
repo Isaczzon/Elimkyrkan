@@ -12,7 +12,8 @@
   },
   "handelser": {
     "rubrik": "What's happening",
-    "undertitel": "Upcoming events and news from the congregation"
+    "undertitel": "Upcoming events and news from the congregation",
+    "tomtext": "No events are planned this month – check back soon!"
   },
   "cta": {
     "rubrik": "Welcome to visit us",

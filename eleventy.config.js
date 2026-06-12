@@ -138,21 +138,19 @@ export default function (eleventyConfig) {
       .sort((a, b) => dagOrdning(a) - dagOrdning(b) || startMinuter(a.data.tid) - startMinuter(b.data.tid));
   });
 
-  // "Vad som händer": månadshändelser, kommande (eller utan datum), max 6
+  // "Vad som händer": alla händelser i innevarande kalendermånad,
+  // plus stående händelser utan datum (t.ex. Öppet café)
   eleventyConfig.addFilter("manadsHandelser", (arr) => {
     const idag = idagDatum();
+    const manad = datumNyckel(idag).slice(0, 7);
     return (arr || [])
       .filter((e) => (e.data.typ || "").toLowerCase() === "monthly")
-      .filter((e) => {
-        const d = datumAv(e);
-        return !d || d >= idag;
-      })
+      .filter((e) => !e.data.datum || tillDatumStrang(e.data.datum).slice(0, 7) === manad)
       .sort((a, b) => {
         const da = datumAv(a)?.getTime() ?? Number.MAX_SAFE_INTEGER;
         const db = datumAv(b)?.getTime() ?? Number.MAX_SAFE_INTEGER;
         return da - db || startMinuter(a.data.tid) - startMinuter(b.data.tid);
-      })
-      .slice(0, 6);
+      });
   });
 
   // Kalendersidan: karta datum → händelser, med återkommande pass utrullade −2…+13 månader

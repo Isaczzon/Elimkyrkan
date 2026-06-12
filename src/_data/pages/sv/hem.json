@@ -12,7 +12,8 @@
   },
   "handelser": {
     "rubrik": "Vad som händer",
-    "undertitel": "Kommande händelser och nyheter i församlingen"
+    "undertitel": "Kommande händelser och nyheter i församlingen",
+    "tomtext": "Just nu finns inga inplanerade händelser den här månaden – titta gärna in igen snart!"
   },
   "cta": {
     "rubrik": "Välkommen att besöka oss",
