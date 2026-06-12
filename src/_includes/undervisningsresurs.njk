@@ -1,0 +1,61 @@
+---
+layout: layout.njk
+---
+{%- set kod = lang -%}
+{%- set ui = t[kod] -%}
+{%- set sidor = pages[kod] -%}
+{%- set lokal = locales | lokalFor(kod) -%}
+
+<section class="subpage-hero subpage-hero--{{ page.fileSlug }}"{% if bild %} style="background-image: linear-gradient(180deg, rgba(0,0,0,0.25), rgba(0,0,0,0.55)), url('{{ bild | url }}'); background-size: cover; background-position: center;"{% endif %}>
+    <h1>{{ rubrik or titel }}</h1>
+    <p>{{ undertitel }}</p>
+</section>
+
+<section class="subpage-content">
+    <a class="back-link" href="/{{ lokal.prefix }}undervisning/">{{ ui.tillbakaTill }} {{ sidor.undervisning.navnamn | lower }}</a>
+
+    {% set delar = content | delaBlock %}
+    {{ delar.pre | safe }}
+
+    {% if videor %}
+    <div class="video-list">
+        {% for video in videor | omvant(delar.omvand) %}
+        {% set videoId = video.url | youtubeId %}
+        <article class="video-block">
+            {% if video.titel %}<h3>{{ video.titel }}</h3>{% endif %}
+            {% if videoId %}
+            <div class="video-embed">
+                <iframe
+                    src="https://www.youtube-nocookie.com/embed/{{ videoId }}"
+                    title="{{ video.titel or 'YouTube video' }}"
+                    loading="lazy"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    referrerpolicy="strict-origin-when-cross-origin"
+                    allowfullscreen></iframe>
+            </div>
+            {% elif video.url %}
+            <p><a href="{{ video.url }}" target="_blank" rel="noopener">{{ video.url }}</a></p>
+            {% endif %}
+            {% if video.beskrivning %}<p class="video-description">{{ video.beskrivning }}</p>{% endif %}
+        </article>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    {% if resurskort %}
+    <div class="resource-grid">
+        {% for kort in resurskort %}
+        <article class="resource-card">
+            {% if kort.ikon %}<div class="resource-icon" aria-hidden="true">{{ kort.ikon }}</div>{% endif %}
+            {% if kort.titel %}<h3>{{ kort.titel }}</h3>{% endif %}
+            {% if kort.beskrivning %}<p>{{ kort.beskrivning }}</p>{% endif %}
+            {% if kort.lank %}<a class="resource-cta" href="{{ kort.lank }}" target="_blank" rel="noopener">{{ kort.lanktext or ui.oppna }}</a>{% endif %}
+        </article>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    {% if delar.post %}
+    {{ delar.post | safe }}
+    {% endif %}
+</section>

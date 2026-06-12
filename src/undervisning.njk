@@ -1,30 +1,35 @@
 ---
 layout: layout.njk
 aktiv: undervisning
-titel: Undervisning
-permalink: /undervisning/
+pagination:
+  data: locales
+  size: 1
+  alias: loc
+permalink: "/{{ loc.prefix }}undervisning/index.html"
+eleventyComputed:
+  titel: "{{ pages[loc.code].undervisning.navnamn }}"
 ---
-<section class="subpage-hero">
-    <h1>{{ pages.undervisning.hero.rubrik }}</h1>
-    <p>{{ pages.undervisning.hero.undertitel }}</p>
+{%- set kod = loc.code -%}
+{%- set sidan = pages[kod].undervisning -%}
+
+<section class="subpage-hero subpage-hero--teaching"{% if sidan.hero.bild %} style="background-image: linear-gradient(180deg, rgba(0,0,0,0.25), rgba(0,0,0,0.55)), url('{{ sidan.hero.bild | url }}'); background-size: cover; background-position: center;"{% endif %}>
+    <h1>{{ sidan.hero.rubrik }}</h1>
+    <p>{{ sidan.hero.undertitel }}</p>
 </section>
 
 <section class="section">
     <div class="undervisning-grid">
-        {% for kort in pages.undervisning.kort %}
+        {% for kort in sidan.kort %}
         <div class="undervisning-card fade-in">
             <div class="undervisning-card-header {{ kort.stil }}">
-                <div class="icon">{{ kort.ikon }}</div>
                 <h3>{{ kort.titel }}</h3>
             </div>
             <div class="undervisning-card-body">
                 {% for stycke in kort.stycken %}
                 <p>{{ stycke }}</p>
                 {% endfor %}
-                {% if kort.lank %}
-                <a href="{{ kort.lank }}">{{ kort.lanktext }}</a>
-                {% elif kort.lanktext %}
-                <a>{{ kort.lanktext }}</a>
+                {% if kort.resurs %}
+                <a href="/{{ loc.prefix }}undervisning/{{ kort.resurs }}/">{{ kort.lanktext }}</a>
                 {% endif %}
             </div>
         </div>

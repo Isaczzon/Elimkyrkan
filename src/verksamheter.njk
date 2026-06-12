@@ -1,17 +1,25 @@
 ---
 layout: layout.njk
 aktiv: verksamheter
-titel: Verksamheter
-permalink: /verksamheter/
+pagination:
+  data: locales
+  size: 1
+  alias: loc
+permalink: "/{{ loc.prefix }}verksamheter/index.html"
+eleventyComputed:
+  titel: "{{ pages[loc.code].verksamheter.navnamn }}"
 ---
-<section class="subpage-hero">
-    <h1>{{ pages.verksamheter.hero.rubrik }}</h1>
-    <p>{{ pages.verksamheter.hero.undertitel }}</p>
+{%- set kod = loc.code -%}
+{%- set sidan = pages[kod].verksamheter -%}
+
+<section class="subpage-hero subpage-hero--activities"{% if sidan.hero.bild %} style="background-image: linear-gradient(180deg, rgba(0,0,0,0.25), rgba(0,0,0,0.55)), url('{{ sidan.hero.bild | url }}'); background-size: cover; background-position: center;"{% endif %}>
+    <h1>{{ sidan.hero.rubrik }}</h1>
+    <p>{{ sidan.hero.undertitel }}</p>
 </section>
 
 <section class="section">
     <div class="verk-grid">
-        {% for verk in collections.verksamheterSorterade %}
+        {% for verk in collections.verksamhet | medLang(kod) | sorteraOrdning %}
         <a class="verk-card fade-in" href="{{ verk.url }}">
             <div class="verk-icon">{{ verk.data.ikon }}</div>
             <h3>{{ verk.data.titel }}</h3>

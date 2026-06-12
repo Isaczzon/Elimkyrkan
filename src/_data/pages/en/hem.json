@@ -1,0 +1,22 @@
+{
+  "navnamn": "Home",
+  "hero": {
+    "rubrik": "Welcome to Elimkyrkan Mantorp",
+    "undertitel": "A living congregation for all generations – in the heart of Mantorp, with roots in the evangelical free church tradition.",
+    "knapptext": "Get to know us",
+    "bild": "/images/Elimkyrkan_bulding.png"
+  },
+  "schema": {
+    "rubrik": "Weekly Schedule",
+    "undertitel": "Here you'll find this week's activities and gatherings"
+  },
+  "handelser": {
+    "rubrik": "What's happening",
+    "undertitel": "Upcoming events and news from the congregation"
+  },
+  "cta": {
+    "rubrik": "Welcome to visit us",
+    "text": "We're in central Mantorp and our doors are open to all. Come as you are.",
+    "knapptext": "Find your way →"
+  }
+}

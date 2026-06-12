@@ -1,0 +1,40 @@
+{
+  "navnamn": "Undervisning",
+  "hero": {
+    "rubrik": "Undervisning",
+    "undertitel": "Väx i tro och kunskap – tre vägar att fördjupa dig",
+    "bild": "/images/Sermon.png"
+  },
+  "kort": [
+    {
+      "stil": "predikan",
+      "titel": "Predikan",
+      "stycken": [
+        "Varje söndag förmedlas Guds ord genom predikan. Våra predikanter delar aktuella och livsförvandlande budskap som hjälper dig att växa i tro och vardagsliv.",
+        "Här kan du lyssna på tidigare predikningar och följa med i aktuella predikoserier."
+      ],
+      "lanktext": "Lyssna på predikningar →",
+      "resurs": "predikan"
+    },
+    {
+      "stil": "foraldrar",
+      "titel": "Föräldrar",
+      "stycken": [
+        "Att vara förälder är livets viktigaste uppdrag. Vi erbjuder undervisning och resurser som hjälper dig att bygga en trygg och kärleksfull familj grundad i tro.",
+        "Kurser, samtalsgrupper och material för föräldrar i alla faser."
+      ],
+      "lanktext": "Läs mer om föräldraresurser →",
+      "resurs": "foraldrar"
+    },
+    {
+      "stil": "hemgrupper",
+      "titel": "Hemgrupper",
+      "stycken": [
+        "I hemgrupperna fördjupar vi oss i Bibeln tillsammans. Genom studium, samtal och bön växer vi i förståelse och tro – och stöttar varandra på vägen.",
+        "Aktuellt studiematerial och information om hemgruppernas undervisningsplan."
+      ],
+      "lanktext": "Studiematerial och länkar →",
+      "resurs": "hemgrupper"
+    }
+  ]
+}

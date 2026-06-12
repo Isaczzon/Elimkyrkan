@@ -1,0 +1,4 @@
+{
+  "lang": "sv",
+  "permalink": "/verksamheter/{{ page.fileSlug }}/"
+}

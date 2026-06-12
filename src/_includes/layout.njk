@@ -1,28 +1,75 @@
+{%- set kod = loc.code if loc else (lang or 'sv') -%}
+{%- set lokal = locales | lokalFor(kod) -%}
+{%- set ui = t[kod] -%}
+{%- set sajten = sajt[kod] -%}
+{%- set sidor = pages[kod] -%}
 <!DOCTYPE html>
-<html lang="sv">
+<html lang="{{ kod }}" data-culture="{{ kod }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% if titel %}{{ titel }} – {% endif %}{{ site.namn }}</title>
+    <title>{% if titel %}{{ titel }} – {% endif %}{{ sajten.logotopp }} {{ sajten.logobotten }}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&family=Caveat:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/site.css">
+    <script>
+        (function () {
+            try {
+                // 1. Sätt sparat tema före första målning (undviker blink). Nya besökare får ljust.
+                var savedTheme = localStorage.getItem('theme');
+                document.documentElement.setAttribute('data-theme', savedTheme || 'light');
+
+                // 2. Om besökaren tidigare valt ett annat språk och nu landar på
+                //    startsidan, skicka dem till sitt språks startsida. (Endast från
+                //    roten så att delade djuplänkar respekteras.)
+                var savedLang = localStorage.getItem('lang');
+                var prefixes = { en: 'en/', uk: 'uk/', es: 'es/', th: 'th/' };
+                var root = '{{ "/" | url }}';
+                if (savedLang && prefixes[savedLang] && (location.pathname === root)) {
+                    location.replace(root + prefixes[savedLang]);
+                }
+            } catch (e) { /* localStorage saknas; kör vidare */ }
+        })();
+    </script>
 </head>
 <body>
-
 <nav id="navbar">
     <div class="nav-inner">
-        <a class="logo" href="/">
-            <span class="logo-top">Elimkyrkan</span>
-            <span class="logo-bottom">Mantorp</span>
+        <a class="logo" href="/{{ lokal.prefix }}">
+            <span class="logo-top">{{ sajten.logotopp }}</span>
+            <span class="logo-bottom">{{ sajten.logobotten }}</span>
         </a>
         <ul class="nav-links" id="navLinks">
-            <li><a href="/" {% if aktiv == 'hem' %}class="active"{% endif %}>Hem</a></li>
-            <li><a href="/om-oss/" {% if aktiv == 'om-oss' %}class="active"{% endif %}>Om oss</a></li>
-            <li><a href="/verksamheter/" {% if aktiv == 'verksamheter' %}class="active"{% endif %}>Verksamheter</a></li>
-            <li><a href="/undervisning/" {% if aktiv == 'undervisning' %}class="active"{% endif %}>Undervisning</a></li>
-            <li><a href="/kontakt/" {% if aktiv == 'kontakt' %}class="active"{% endif %}>Kontakt</a></li>
+            <li><a href="/{{ lokal.prefix }}" {% if aktiv == 'hem' %}class="active"{% endif %}>{{ ui.hem }}</a></li>
+            <li><a href="/{{ lokal.prefix }}om-oss/" {% if aktiv == 'omoss' %}class="active"{% endif %}>{{ sidor.omoss.navnamn }}</a></li>
+            <li><a href="/{{ lokal.prefix }}verksamheter/" {% if aktiv == 'verksamheter' %}class="active"{% endif %}>{{ sidor.verksamheter.navnamn }}</a></li>
+            <li><a href="/{{ lokal.prefix }}kalender/" {% if aktiv == 'kalender' %}class="active"{% endif %}>{{ sidor.kalender.navnamn }}</a></li>
+            <li><a href="/{{ lokal.prefix }}undervisning/" {% if aktiv == 'undervisning' %}class="active"{% endif %}>{{ sidor.undervisning.navnamn }}</a></li>
+            <li><a href="/{{ lokal.prefix }}kontakt/" {% if aktiv == 'kontakt' %}class="active"{% endif %}>{{ sidor.kontakt.navnamn }}</a></li>
         </ul>
+
+        <div class="nav-actions">
+            <button id="themeToggle" class="theme-toggle" type="button" aria-label="{{ ui.vaxlaTema }}" title="{{ ui.vaxlaTema }}">🌙</button>
+
+            <details class="lang-switch">
+                <summary>
+                    <img class="lang-flag" src="https://flagcdn.com/w40/{{ lokal.flagga }}.png" alt="" loading="lazy">
+                    <span>{{ ui.sprak }}</span>
+                </summary>
+                <ul class="lang-menu">
+                    {% for l in locales %}
+                    <li>
+                        <a href="{{ page.url | bytLokal(lokal.prefix, l.prefix) }}" class="{% if l.code == kod %}active{% endif %}" hreflang="{{ l.code }}">
+                            <img class="lang-flag" src="https://flagcdn.com/w40/{{ l.flagga }}.png" alt="" loading="lazy">
+                            <span>{{ l.sprak }}</span>
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </details>
+        </div>
+
         <div class="hamburger">
             <span></span><span></span><span></span>
         </div>
@@ -37,34 +84,38 @@
     <div class="footer-inner">
         <div>
             <div class="logo" style="margin-bottom:16px;">
-                <span class="logo-top" style="color:white;">Elimkyrkan</span>
-                <span class="logo-bottom" style="color:rgba(255,255,255,0.8);">Mantorp</span>
+                <span class="logo-top" style="color:white;">{{ sajten.logotopp }}</span>
+                <span class="logo-bottom" style="color:rgba(255,255,255,0.8);">{{ sajten.logobotten }}</span>
             </div>
-            <p>En del av Evangeliska Frikyrkan.<br>Mitt i Mantorp – för alla generationer.</p>
+            <p>{{ sajten.tagline | nl2br | safe }}</p>
         </div>
         <div>
-            <h4>Snabblänkar</h4>
-            <p><a href="/">Hem</a></p>
-            <p><a href="/om-oss/">Om oss</a></p>
-            <p><a href="/verksamheter/">Verksamheter</a></p>
-            <p><a href="/undervisning/">Undervisning</a></p>
-            <p><a href="/kontakt/">Kontakt</a></p>
+            <h4>{{ ui.snabblankar }}</h4>
+            <p><a href="/{{ lokal.prefix }}">{{ ui.hem }}</a></p>
+            <p><a href="/{{ lokal.prefix }}om-oss/">{{ sidor.omoss.navnamn }}</a></p>
+            <p><a href="/{{ lokal.prefix }}verksamheter/">{{ sidor.verksamheter.navnamn }}</a></p>
+            <p><a href="/{{ lokal.prefix }}kalender/">{{ sidor.kalender.navnamn }}</a></p>
+            <p><a href="/{{ lokal.prefix }}undervisning/">{{ sidor.undervisning.navnamn }}</a></p>
+            <p><a href="/{{ lokal.prefix }}kontakt/">{{ sidor.kontakt.navnamn }}</a></p>
         </div>
         <div>
-            <h4>Verksamheter</h4>
-            {% for verk in collections.verksamheterSorterade %}{% if loop.index <= 4 %}
+            <h4>{{ ui.verksamheterRubrik }}</h4>
+            {% for verk in collections.verksamhet | medLang(kod) | sorteraOrdning %}{% if loop.index <= 4 %}
             <p><a href="{{ verk.url }}">{{ verk.data.titel }}</a></p>
             {% endif %}{% endfor %}
         </div>
         <div>
-            <h4>Kontakt</h4>
-            <p>{{ site.adress | replace(", ", "<br>") | safe }}</p>
-            <p>{{ site.telefon }}</p>
-            <p>{{ site.epost }}</p>
+            <h4>{{ ui.kontaktRubrik }}</h4>
+            <p>{{ sajten.adress | nl2br | safe }}</p>
+            <p>{{ sajten.telefon }}</p>
+            <p>{{ sajten.epost }}</p>
         </div>
     </div>
     <div class="footer-bottom">
-        <p>© 2026 {{ site.namn }}. En del av Evangeliska Frikyrkan (EFK).</p>
+        <p>© {{ aret }} {{ sajten.logotopp }} {{ sajten.logobotten }}. {{ sajten.copyright }}</p>
+        <p>
+            <a href="/docs/elimkyrkan_behandling_av_personuppgifter_utan_noter.pdf" target="_blank" rel="noopener">{{ ui.sekretesspolicy }}</a>
+        </p>
     </div>
 </footer>
 

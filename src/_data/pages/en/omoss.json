@@ -1,0 +1,9 @@
+{
+  "navnamn": "About us",
+  "hero": {
+    "rubrik": "About us",
+    "undertitel": "Elimkyrkan Mantorp – part of the Evangelical Free Church",
+    "bild": "/images/People_talking_inside_church.png"
+  },
+  "body": "<div class=\"about-section\">\n    <div class=\"about-img\">⛪</div>\n    <div class=\"about-text\">\n        <h2>Vår församling</h2>\n        <p>Elimkyrkan Mantorp är en levande församling som välkomnar alla generationer. Vi är en del av Evangeliska Frikyrkan (EFK) och delar deras vision om att sprida evangelium och vara en positiv kraft i samhället.</p>\n        <p>Hos oss möts barn, ungdomar, unga vuxna, familjer och seniorer i en gemenskap som präglas av värme, öppenhet och tro.</p>\n    </div>\n</div>\n<div class=\"about-section\">\n    <div class=\"about-img\">📖</div>\n    <div class=\"about-text\">\n        <h2>Vår tro</h2>\n        <p>Vi tror på en Gud – Fadern, Sonen och den Helige Ande. Bibeln är vår grund och vägledning. Vi tror att Jesus Kristus är Guds son, sänd för att rädda världen, och att den Helige Ande verkar i och genom oss idag.</p>\n        <p>Som en del av EFK delar vi den evangeliska frikyrkans trosbekännelse och står på en klassisk kristen trosgrund.</p>\n    </div>\n</div>\n<div class=\"about-section\">\n    <div class=\"about-img\">🏠</div>\n    <div class=\"about-text\">\n        <h2>Vår historia</h2>\n        <p>Elimkyrkan har en lång och rik historia i Mantorp. Genom åren har församlingen vuxit och förändrats, men kärnan har alltid varit densamma – en plats för gemenskap, tro och hopp.</p>\n    </div>\n</div>\n<div class=\"about-section\">\n    <div class=\"about-img\">🌍</div>\n    <div class=\"about-text\">\n        <h2>EFK – Evangeliska Frikyrkan</h2>\n        <p>Evangeliska Frikyrkan är ett samfund med rötter i den svenska väckelserörelsen. EFK samlar församlingar över hela Sverige och bedriver missionsarbete i ett flertal länder.</p>\n    </div>\n</div>"
+}

@@ -2,16 +2,24 @@
 
 Statisk webbplats byggd med [Eleventy](https://www.11ty.dev/), publicerad på **GitHub Pages** och redigerbar via **[Sveltia CMS](https://github.com/sveltia/sveltia-cms)** på `/admin/`.
 
+Sajten är en portering av den tidigare Umbraco-versionen (sparad på grenen `Elim-Umbraco`) med samma design och funktioner: bilder, mörkt läge, fem språk (svenska, engelska, ukrainska, spanska, thai), interaktiv kalender, undervisningssidor med videor samt kontaktformulär.
+
 ## Så hänger det ihop
 
 ```
 Redaktör → /admin/ (Sveltia CMS) → commit till GitHub → GitHub Actions bygger → GitHub Pages publicerar
 ```
 
-- **Innehåll** ligger i `src/_data/` (sidtexter, veckoschema, kontaktuppgifter) samt `src/kalender/` och `src/verksamheter/` (en fil per händelse/verksamhet).
-- **Mallar/design** ligger i `src/_includes/`, `src/css/` och `src/js/`.
-- **Bilder** som laddas upp via CMS:et hamnar i `images/uploads/`.
-- Sajten byggs om automatiskt vid varje ändring **och varje natt kl 03:00 UTC**, så att passerade kalenderhändelser försvinner av sig själva.
+- **Sidtexter** ligger i `src/_data/pages/{språk}/…` och `src/_data/sajt/{språk}.json`
+- **Kalenderhändelser** ligger i `src/handelser/{språk}/…` – en fil per händelse. Återkommande pass (varje vecka, jämna/udda veckor, var tredje vecka) visas i veckoschemat och rullas ut i kalendern; månadshändelser med datum döljs automatiskt när datumet passerat.
+- **Verksamheter** ligger i `src/verksamheter/{språk}/…` – en sida per verksamhet, med stöd för missionsländer, bibelverser, principlistor, bildgallerier och resurskort.
+- **Undervisningsresurser** (Predikan, Föräldrar, Hemgrupper) ligger i `src/undervisningsresurser/{språk}/…` med YouTube-videor och resurskort.
+- **Översättningar av fasta UI-texter** (knappar, etiketter, formulär) ligger i `src/_data/t.json`.
+- **Mallar/design**: `src/_includes/`, `src/css/site.css` (inkl. mörkt läge), `src/js/site.js`.
+- Bilder som laddas upp via CMS:et hamnar i `images/uploads/`.
+- Sajten byggs om vid varje ändring **och varje natt kl 03:00 UTC**, så att veckoschema och kalender alltid är aktuella.
+
+I CMS:et redigeras alla fem språken sida vid sida – Sveltia visar en flik per språk för varje fält som är översättningsbart.
 
 ## Köra lokalt
 
@@ -31,9 +39,9 @@ GitHub → repo **Settings → Pages → Source: GitHub Actions**. Nästa push b
 ### 2. Formspree (kontaktformuläret)
 
 1. Skapa ett gratis konto på [formspree.io](https://formspree.io) och skapa ett formulär (peka det mot `info@elimmantorp.se`).
-2. Kopiera formulärets ID (t.ex. `xqkrwabc`) och skriv in det i `src/_data/site.json` under `formspree_id` (går även att göra i CMS:et under **Inställningar**).
+2. Kopiera formulärets ID (t.ex. `xqkrwabc`) och skriv in det under **Inställningar** i CMS:et (eller direkt i `src/_data/sajt/*.json`).
 
-Gratisnivån ger 50 meddelanden/månad, vilket räcker gott för en församlingssida.
+Gratisnivån ger 50 meddelanden/månad. Formuläret har honeypot + enkel mattefråga som skräppostskydd, och Formspree filtrerar dessutom på sin sida.
 
 ### 3. Inloggning till CMS:et (OAuth-proxy)
 
@@ -55,14 +63,13 @@ Varje redaktör behöver ett (gratis) GitHub-konto och inbjudan som **collaborat
 
 | Meny | Vad det styr |
 |---|---|
-| **Sidor** | Texterna på Hem, Om oss, Verksamheter, Undervisning, Kontakt |
-| **Veckoschema** | Korten under "Veckoschema" på startsidan |
-| **Kalender** | Kommande händelser (döljs automatiskt efter sitt datum) |
-| **Verksamheter** | En sida per verksamhet (Barn, Hemgrupper, Loppis …) |
-| **Inställningar** | Adress, telefon, e-post, Formspree-ID, kartlänk |
+| **Sidor** | Texterna på Hem, Om oss, Verksamheter, Kalender, Undervisning, Kontakt |
+| **Kalenderhändelser** | Veckoschemat, "Vad som händer" och kalendersidan |
+| **Verksamheter** | En sida per verksamhet (Barn, Hemgrupper, Mission, Loppis …) |
+| **Undervisningsresurser** | Predikan/Föräldrar/Hemgrupper med videor och material |
+| **Inställningar** | Logotyp, sidfot, adress, Formspree-ID |
 
 ## Grenar
 
 - `main` – den här Eleventy/Sveltia-versionen (publiceras till Pages)
-- `Elim-Umbraco` – den tidigare Umbraco-prototypen, sparad för referens
-- Den ursprungliga statiska prototypen finns kvar som `index - Feedback.html` och i git-historiken.
+- `Elim-Umbraco` – den tidigare Umbraco-versionen, sparad för referens. Allt innehåll (alla fem språk) migrerades därifrån med `scripts/dump-umbraco.mjs` + `scripts/transform-dump.mjs`.

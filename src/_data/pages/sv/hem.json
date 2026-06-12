@@ -1,0 +1,22 @@
+{
+  "navnamn": "Hem",
+  "hero": {
+    "rubrik": "Välkommen till Elimkyrkan Mantorp",
+    "undertitel": "En levande församling för alla generationer – mitt i Mantorp, med rötter i evangelisk frikyrkotradition.",
+    "knapptext": "Lär känna oss",
+    "bild": "/images/Elimkyrkan_bulding.png"
+  },
+  "schema": {
+    "rubrik": "Veckoschema",
+    "undertitel": "Här hittar du veckans aktiviteter och sammankomster"
+  },
+  "handelser": {
+    "rubrik": "Vad som händer",
+    "undertitel": "Kommande händelser och nyheter i församlingen"
+  },
+  "cta": {
+    "rubrik": "Välkommen att besöka oss",
+    "text": "Vi finns i centrala Mantorp och våra dörrar är öppna för alla. Kom som du är.",
+    "knapptext": "Hitta hit →"
+  }
+}

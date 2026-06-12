@@ -1,68 +1,95 @@
 ---
 layout: layout.njk
 aktiv: hem
+pagination:
+  data: locales
+  size: 1
+  alias: loc
+permalink: "/{{ loc.prefix }}index.html"
 ---
-<section class="hero">
+{%- set kod = loc.code -%}
+{%- set sidan = pages[kod].hem -%}
+{%- set handelser = collections.handelse | medLang(kod) -%}
+
+<section class="hero"{% if sidan.hero.bild %} style="background-image: linear-gradient(180deg, rgba(0,0,0,0.25), rgba(0,0,0,0.55)), url('{{ sidan.hero.bild | url }}'); background-size: cover; background-position: center;"{% endif %}>
     <div class="hero-content">
-        <h1>{{ pages.hem.hero.rubrik }}</h1>
-        <p>{{ pages.hem.hero.ingress }}</p>
-        <a class="hero-btn" href="/om-oss/">{{ pages.hem.hero.knapptext }}</a>
+        <h1>{{ sidan.hero.rubrik }}</h1>
+        <p>{{ sidan.hero.undertitel }}</p>
+        {% if sidan.hero.knapptext %}
+        <a class="hero-btn" href="/{{ loc.prefix }}om-oss/">{{ sidan.hero.knapptext }}</a>
+        {% endif %}
     </div>
 </section>
 
-<!-- Veckoschema -->
+{% set veckans = handelser | veckansPass %}
+{% if veckans.length %}
 <section class="section">
     <div class="section-header fade-in">
-        <h2>{{ pages.hem.veckoschema.rubrik }}</h2>
-        <p>{{ pages.hem.veckoschema.undertitel }}</p>
+        <h2>{{ sidan.schema.rubrik }}</h2>
+        <p>{{ sidan.schema.undertitel }}</p>
     </div>
     <div class="schedule-grid">
-        {% for pass in veckoschema.pass %}
+        {% for pass in veckans %}
+        {% if pass.data.lank %}
+        <a class="schedule-card fade-in" href="{% if pass.data.lank.startsWith('/') %}/{{ loc.prefix }}{{ pass.data.lank | replace(r/^\//, '') }}{% else %}{{ pass.data.lank }}{% endif %}"{% if pass.data.lank.startsWith('http') %} target="_blank" rel="noopener"{% endif %}>
+            <div class="schedule-day">{{ pass | dagEtikett(kod) }}</div>
+            <div class="schedule-title">{{ pass.data.titel }}</div>
+            <div class="schedule-time">{{ pass.data.tid }}</div>
+            <div class="schedule-desc">{{ pass.data.beskrivning }}</div>
+        </a>
+        {% else %}
         <div class="schedule-card fade-in">
-            <div class="schedule-day">{{ pass.dag }}</div>
-            <div class="schedule-title">{{ pass.titel }}</div>
-            <div class="schedule-time">{{ pass.tid }}</div>
-            <div class="schedule-desc">{{ pass.beskrivning }}</div>
+            <div class="schedule-day">{{ pass | dagEtikett(kod) }}</div>
+            <div class="schedule-title">{{ pass.data.titel }}</div>
+            <div class="schedule-time">{{ pass.data.tid }}</div>
+            <div class="schedule-desc">{{ pass.data.beskrivning }}</div>
         </div>
+        {% endif %}
         {% endfor %}
     </div>
 </section>
+{% endif %}
 
-<!-- Vad som händer -->
+{% set manadens = handelser | manadsHandelser %}
+{% if manadens.length %}
 <section class="section-alt">
     <div class="section">
         <div class="section-header fade-in">
-            <h2>{{ pages.hem.handelser.rubrik }}</h2>
-            <p>{{ pages.hem.handelser.undertitel }}</p>
+            <h2>{{ sidan.handelser.rubrik }}</h2>
+            <p>{{ sidan.handelser.undertitel }}</p>
         </div>
         <div class="events-list">
-            {% for handelse in collections.kommande %}{% if loop.index <= 6 %}
+            {% for handelse in manadens %}
             <div class="event-card fade-in">
-                <div class="event-img">
-                    {%- if handelse.data.bild -%}
-                    <img src="{{ handelse.data.bild }}" alt="{{ handelse.data.titel }}">
-                    {%- else -%}
-                    {{ handelse.data.ikon or "📅" }}
-                    {%- endif -%}
-                </div>
+                {% if handelse.data.bild %}
+                <div class="event-img" style="background-image: url('{{ handelse.data.bild | url }}'); background-size: cover; background-position: center;"></div>
+                {% else %}
+                <div class="event-img">{{ handelse.data.ikon }}</div>
+                {% endif %}
                 <div class="event-body">
-                    <div class="event-date">{{ handelse.data.visningsdatum or (handelse.data.datum | svDatum) }}</div>
+                    <div class="event-date">{% if handelse.data.datum %}{{ handelse.data.datum | datumLokal(kod) }}{% else %}{{ handelse.data.visningsdatum }}{% endif %}</div>
                     <h3>{{ handelse.data.titel }}</h3>
                     <p>{{ handelse.data.beskrivning }}</p>
                 </div>
             </div>
-            {% endif %}{% else %}
-            <p style="text-align:center; color:var(--gray-mid); grid-column: 1 / -1;">{{ pages.hem.handelser.tomtext }}</p>
             {% endfor %}
         </div>
     </div>
 </section>
+{% endif %}
 
-<!-- CTA -->
+{% if sidan.cta.rubrik or sidan.cta.text %}
 <section class="section" style="text-align:center;">
     <div class="fade-in">
-        <h2 style="font-family:'Playfair Display',serif; font-size:clamp(1.5rem,4vw,2.25rem); color:var(--green-dark); margin-bottom:16px;">{{ pages.hem.cta.rubrik }}</h2>
-        <p style="color:var(--gray-mid); max-width:500px; margin:0 auto 24px;">{{ pages.hem.cta.text }}</p>
-        <a class="hero-btn" href="/kontakt/" style="background:var(--green-dark);">{{ pages.hem.cta.knapptext }}</a>
+        {% if sidan.cta.rubrik %}
+        <h2 style="font-family:'Playfair Display',serif; font-size:clamp(1.5rem,4vw,2.25rem); color:var(--green-dark); margin-bottom:16px;">{{ sidan.cta.rubrik }}</h2>
+        {% endif %}
+        {% if sidan.cta.text %}
+        <p style="color:var(--gray-mid); max-width:500px; margin:0 auto 24px;">{{ sidan.cta.text }}</p>
+        {% endif %}
+        {% if sidan.cta.knapptext %}
+        <a class="hero-btn" href="/{{ loc.prefix }}kontakt/" style="background:var(--green-dark);">{{ sidan.cta.knapptext }}</a>
+        {% endif %}
     </div>
 </section>
+{% endif %}

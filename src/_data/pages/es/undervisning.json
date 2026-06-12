@@ -1,0 +1,40 @@
+{
+  "navnamn": "Enseñanza",
+  "hero": {
+    "rubrik": "Enseñanza",
+    "undertitel": "Crece en fe y conocimiento – tres caminos para profundizar",
+    "bild": "/images/Sermon.png"
+  },
+  "kort": [
+    {
+      "stil": "predikan",
+      "titel": "Predicación",
+      "stycken": [
+        "Cada domingo se comparte la palabra de Dios a través de la predicación. Nuestros predicadores ofrecen mensajes actuales y transformadores.",
+        "Aquí puedes escuchar sermones anteriores y seguir las series actuales."
+      ],
+      "lanktext": "Escuchar sermones →",
+      "resurs": "predikan"
+    },
+    {
+      "stil": "foraldrar",
+      "titel": "Padres",
+      "stycken": [
+        "Ser padre o madre es la tarea más importante de la vida. Ofrecemos enseñanza y recursos para construir una familia segura y amorosa basada en la fe.",
+        "Cursos, grupos de conversación y material para padres en todas las etapas."
+      ],
+      "lanktext": "Más sobre recursos para padres →",
+      "resurs": "foraldrar"
+    },
+    {
+      "stil": "hemgrupper",
+      "titel": "Grupos en casa",
+      "stycken": [
+        "En los grupos en casa profundizamos juntos en la Biblia. Mediante estudio, conversación y oración crecemos en entendimiento y fe.",
+        "Material de estudio actual e información sobre el plan de enseñanza de los grupos en casa."
+      ],
+      "lanktext": "Material y enlaces →",
+      "resurs": "hemgrupper"
+    }
+  ]
+}

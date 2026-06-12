@@ -1,0 +1,22 @@
+{
+  "navnamn": "Inicio",
+  "hero": {
+    "rubrik": "Bienvenidos a la Iglesia Elim de Mantorp",
+    "undertitel": "Una congregación viva para todas las generaciones – en el corazón de Mantorp, con raíces en la tradición evangélica de iglesia libre.",
+    "knapptext": "Conócenos",
+    "bild": "/images/Elimkyrkan_bulding.png"
+  },
+  "schema": {
+    "rubrik": "Horario semanal",
+    "undertitel": "Aquí encontrarás las actividades y encuentros de la semana"
+  },
+  "handelser": {
+    "rubrik": "Qué está pasando",
+    "undertitel": "Próximos eventos y noticias de la congregación"
+  },
+  "cta": {
+    "rubrik": "Bienvenido a visitarnos",
+    "text": "Estamos en el centro de Mantorp y nuestras puertas están abiertas a todos. Ven como eres.",
+    "knapptext": "Cómo llegar →"
+  }
+}

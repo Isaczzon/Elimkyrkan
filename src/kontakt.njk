@@ -1,88 +1,179 @@
 ---
 layout: layout.njk
 aktiv: kontakt
-titel: Kontakt
-permalink: /kontakt/
+pagination:
+  data: locales
+  size: 1
+  alias: loc
+permalink: "/{{ loc.prefix }}kontakt/index.html"
+eleventyComputed:
+  titel: "{{ pages[loc.code].kontakt.navnamn }}"
 ---
-<section class="subpage-hero">
-    <h1>{{ pages.kontakt.hero.rubrik }}</h1>
-    <p>{{ pages.kontakt.hero.undertitel }}</p>
+{%- set kod = loc.code -%}
+{%- set sidan = pages[kod].kontakt -%}
+{%- set ui = t[kod] -%}
+{%- set sajten = sajt[kod] -%}
+
+<section class="subpage-hero subpage-hero--contact"{% if sidan.hero.bild %} style="background-image: linear-gradient(180deg, rgba(0,0,0,0.25), rgba(0,0,0,0.55)), url('{{ sidan.hero.bild | url }}'); background-size: cover; background-position: center;"{% endif %}>
+    <h1>{{ sidan.hero.rubrik }}</h1>
+    <p>{{ sidan.hero.undertitel }}</p>
 </section>
 
 <section class="section">
     <div class="contact-wrapper">
         <div class="contact-info fade-in">
-            <h3>{{ site.namn }}</h3>
-            <p>{{ pages.kontakt.intro }}</p>
+            <h3>{{ sajten.logotopp }} {{ sajten.logobotten }}</h3>
+            <p>{{ ui.kontakt.intro }}</p>
 
+            {% if sidan.adress %}
             <div class="contact-detail">
                 <div class="icon">📍</div>
-                <div>
-                    <strong>Adress</strong><br>
-                    {{ site.adress }}
-                </div>
-            </div>
-            <div class="contact-detail">
-                <div class="icon">📞</div>
-                <div>
-                    <strong>Telefon</strong><br>
-                    {{ site.telefon }}
-                </div>
-            </div>
-            <div class="contact-detail">
-                <div class="icon">✉️</div>
-                <div>
-                    <strong>E-post</strong><br>
-                    {{ site.epost }}
-                </div>
-            </div>
-            <div class="contact-detail">
-                <div class="icon">🕐</div>
-                <div>
-                    <strong>Expedition</strong><br>
-                    {{ site.expedition }}
-                </div>
-            </div>
-
-            {% if site.karta_embed %}
-            <iframe class="map-embed" src="{{ site.karta_embed }}" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Karta till {{ site.namn }}"></iframe>
-            {% else %}
-            <div class="map-placeholder">
-                📍 Karta – Google Maps inbäddning här
+                <div><strong>{{ ui.kontakt.adress }}</strong><br>{{ sidan.adress | nl2br | safe }}</div>
             </div>
             {% endif %}
+            {% if sidan.telefon %}
+            <div class="contact-detail">
+                <div class="icon">📞</div>
+                <div><strong>{{ ui.kontakt.telefon }}</strong><br>{{ sidan.telefon }}</div>
+            </div>
+            {% endif %}
+            {% if sidan.epost %}
+            <div class="contact-detail">
+                <div class="icon">✉️</div>
+                <div><strong>{{ ui.kontakt.epost }}</strong><br>{{ sidan.epost }}</div>
+            </div>
+            {% endif %}
+            {% if sidan.pastor %}
+            <div class="contact-detail">
+                <div class="icon">⛪</div>
+                <div><strong>{{ ui.kontakt.pastor }}</strong><br>{{ sidan.pastor }}</div>
+            </div>
+            {% endif %}
+            <iframe
+                src="https://maps.google.com/maps?q=58.3497611,15.2908433&hl={{ kod }}&z=17&t=m&output=embed"
+                title="{{ sajten.logotopp }} {{ sajten.logobotten }}"
+                width="100%"
+                height="300"
+                style="border:0; border-radius:12px; margin-top:24px;"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
 
         <div class="fade-in">
-            <h3 style="font-family:'Playfair Display',serif; font-size:22px; color:var(--green-dark); margin-bottom:24px;">{{ pages.kontakt.formular_rubrik }}</h3>
-            <form action="https://formspree.io/f/{{ site.formspree_id }}" method="POST">
-                <input type="hidden" name="_subject" value="Nytt meddelande via webbplatsen – {{ site.namn }}">
+            <h3 style="font-family:'Playfair Display',serif; font-size:22px; color:var(--green-dark); margin-bottom:24px;">{{ ui.kontakt.skicka }}</h3>
+            <form id="contactForm"
+                  data-formspree="{{ sajten.formspree_id }}"
+                  data-msg-success="{{ ui.kontakt.tack }}"
+                  data-msg-captcha-error="{{ ui.kontakt.felSvar }}"
+                  data-msg-send-error="{{ ui.kontakt.felSkick }}">
                 <div class="form-group">
-                    <label for="namn">Namn</label>
-                    <input type="text" id="namn" name="namn" placeholder="Ditt namn" required>
+                    <label for="kontaktNamn">{{ ui.kontakt.namn }}</label>
+                    <input id="kontaktNamn" type="text" name="name" placeholder="{{ ui.kontakt.dittNamn }}" required>
                 </div>
                 <div class="form-group">
-                    <label for="email">E-post</label>
-                    <input type="email" id="email" name="email" placeholder="din@epost.se" required>
+                    <label for="kontaktEpost">{{ ui.kontakt.epost }}</label>
+                    <input id="kontaktEpost" type="email" name="email" placeholder="din@epost.se" required>
                 </div>
                 <div class="form-group">
-                    <label for="telefon">Telefon (valfritt)</label>
-                    <input type="tel" id="telefon" name="telefon" placeholder="07X-XXX XX XX">
+                    <label for="kontaktTelefon">{{ ui.kontakt.telefonValfritt }}</label>
+                    <input id="kontaktTelefon" type="tel" name="phone" placeholder="07X-XXX XX XX">
                 </div>
                 <div class="form-group">
-                    <label for="amne">Ämne</label>
-                    <select id="amne" name="amne">
-                        {% for amne in pages.kontakt.amnen %}
+                    <label for="kontaktAmne">{{ ui.kontakt.amne }}</label>
+                    <select id="kontaktAmne" name="subject">
+                        {% for amne in ui.kontakt.amnen %}
                         <option>{{ amne }}</option>
                         {% endfor %}
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="meddelande">Meddelande</label>
-                    <textarea id="meddelande" name="meddelande" placeholder="Skriv ditt meddelande här..." required></textarea>
+                    <label for="kontaktMeddelande">{{ ui.kontakt.meddelande }}</label>
+                    <textarea id="kontaktMeddelande" name="message" placeholder="{{ ui.kontakt.skrivHar }}" required></textarea>
                 </div>
-                <button type="submit" class="submit-btn">Skicka meddelande</button>
+
+                <div class="form-group" aria-hidden="true" style="position:absolute; left:-9999px; opacity:0;">
+                    <label>Leave this field empty</label>
+                    <input type="text" name="website" tabindex="-1" autocomplete="off">
+                </div>
+
+                <div class="form-group">
+                    <label for="captchaInput">{{ ui.kontakt.sakerhetsfraga }} <strong><span id="capA">?</span> + <span id="capB">?</span></strong>?</label>
+                    <input id="captchaInput" type="text" inputmode="numeric" pattern="[0-9]*" placeholder="{{ ui.kontakt.svar }}" required>
+                    <div id="captchaError" style="color:#b00020; font-size:13px; margin-top:6px; display:none;"></div>
+                </div>
+
+                <button type="submit" class="submit-btn">{{ ui.kontakt.knapp }}</button>
+
+                <p class="form-privacy-notice" style="margin-top:14px; font-size:13px; color:var(--text-muted, #666);">
+                    {{ ui.kontakt.samtycke }}
+                    <a href="/docs/elimkyrkan_behandling_av_personuppgifter_utan_noter.pdf" target="_blank" rel="noopener">{{ ui.kontakt.policyLank }}</a>.
+                </p>
             </form>
+            <script>
+                (function () {
+                    const form = document.getElementById('contactForm');
+                    if (!form) return;
+                    const submitBtn = form.querySelector('button[type="submit"]');
+                    const originalBtnText = submitBtn ? submitBtn.textContent : '';
+
+                    // Enkel mattefråga genereras hos besökaren
+                    const capA = Math.floor(Math.random() * 9) + 1;
+                    const capB = Math.floor(Math.random() * 9) + 1;
+                    document.getElementById('capA').textContent = capA;
+                    document.getElementById('capB').textContent = capB;
+
+                    form.addEventListener('submit', async function (e) {
+                        e.preventDefault();
+                        const given = (document.getElementById('captchaInput').value || '').trim();
+                        const honeypot = (form.querySelector('input[name="website"]')?.value || '').trim();
+                        const err = document.getElementById('captchaError');
+
+                        if (honeypot !== '') return; // tyst stopp för robotar
+                        if (given !== String(capA + capB)) {
+                            err.textContent = form.getAttribute('data-msg-captcha-error');
+                            err.style.display = 'block';
+                            return;
+                        }
+                        err.style.display = 'none';
+
+                        const payload = {
+                            name: (form.querySelector('input[name="name"]')?.value || '').trim(),
+                            email: (form.querySelector('input[name="email"]')?.value || '').trim(),
+                            phone: (form.querySelector('input[name="phone"]')?.value || '').trim(),
+                            subject: (form.querySelector('select[name="subject"]')?.value || '').trim(),
+                            message: (form.querySelector('textarea[name="message"]')?.value || '').trim(),
+                        };
+
+                        if (submitBtn) {
+                            submitBtn.disabled = true;
+                            submitBtn.textContent = '…';
+                        }
+
+                        try {
+                            const resp = await fetch('https://formspree.io/f/' + form.getAttribute('data-formspree'), {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                                body: JSON.stringify(payload),
+                            });
+                            if (resp.ok) {
+                                alert(form.getAttribute('data-msg-success'));
+                                form.reset();
+                            } else {
+                                err.textContent = form.getAttribute('data-msg-send-error');
+                                err.style.display = 'block';
+                            }
+                        } catch (ex) {
+                            err.textContent = form.getAttribute('data-msg-send-error');
+                            err.style.display = 'block';
+                        } finally {
+                            if (submitBtn) {
+                                submitBtn.disabled = false;
+                                submitBtn.textContent = originalBtnText;
+                            }
+                        }
+                    });
+                })();
+            </script>
         </div>
     </div>
 </section>

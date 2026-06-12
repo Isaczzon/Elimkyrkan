@@ -1,11 +1,87 @@
 ---
 layout: layout.njk
 ---
-<section class="subpage-hero">
+{%- set kod = lang -%}
+{%- set ui = t[kod] -%}
+{%- set sidor = pages[kod] -%}
+{%- set lokal = locales | lokalFor(kod) -%}
+
+<section class="subpage-hero subpage-hero--{{ page.fileSlug }}"{% if bild %} style="background-image: linear-gradient(180deg, rgba(0,0,0,0.25), rgba(0,0,0,0.55)), url('{{ bild | url }}'); background-size: cover; background-position: center;"{% endif %}>
     <h1>{{ titel }}</h1>
     <p>{{ undertitel }}</p>
 </section>
+
 <section class="subpage-content">
-    <a class="back-link" href="/verksamheter/">← Tillbaka till verksamheter</a>
-    {{ content | safe }}
+    <a class="back-link" href="/{{ lokal.prefix }}verksamheter/">{{ ui.tillbakaTill }} {{ sidor.verksamheter.navnamn | lower }}</a>
+
+    {% set delar = content | delaBlock %}
+    {{ delar.pre | safe }}
+
+    {% if missionLander or bibelverser or principer or galleri or resurskort %}
+    <div class="content-blocks">
+        {% if missionLander %}
+        <div class="mission-countries">
+            {% for land in missionLander %}
+            <article class="mission-country">
+                <div class="mission-country-image"><img src="{{ land.flagga }}" alt="{{ land.namn }}" loading="lazy"></div>
+                <div class="mission-country-body">
+                    <h3>{{ land.namn }}</h3>
+                    <p>{{ land.beskrivning }}</p>
+                    {% if land.gavomarkning %}
+                    <p class="gift-mark">{{ ui.markGava }} <strong>&ldquo;{{ land.gavomarkning }}&rdquo;</strong>.</p>
+                    {% endif %}
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        {% if bibelverser %}
+        <div class="bible-verses">
+            {% for vers in bibelverser %}
+            <div class="bible-verse">
+                <p class="bible-ref">{{ vers.referens }}</p>
+                <p class="bible-text">{{ vers.text }}</p>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        {% if principer %}
+        <ul class="principles-list">
+            {% for princip in principer %}
+            <li><span class="principle-icon">{{ princip.ikon }}</span> <strong>{{ princip.titel }}</strong></li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+
+        {% if galleri %}
+        <div class="image-gallery">
+            {% for bildpost in galleri %}
+            <figure>
+                <img src="{{ bildpost.bild | url }}" alt="{{ bildpost.text }}" loading="lazy">
+                <figcaption>{{ bildpost.text }}</figcaption>
+            </figure>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        {% if resurskort %}
+        <div class="resource-grid">
+            {% for kort in resurskort %}
+            <article class="resource-card">
+                {% if kort.ikon %}<div class="resource-icon" aria-hidden="true">{{ kort.ikon }}</div>{% endif %}
+                {% if kort.titel %}<h3>{{ kort.titel }}</h3>{% endif %}
+                {% if kort.beskrivning %}<p>{{ kort.beskrivning }}</p>{% endif %}
+                {% if kort.lank %}<a class="resource-cta" href="{{ kort.lank }}" target="_blank" rel="noopener">{{ kort.lanktext or ui.oppna }}</a>{% endif %}
+            </article>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+    {% endif %}
+
+    {% if delar.post %}
+    {{ delar.post | safe }}
+    {% endif %}
 </section>

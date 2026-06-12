@@ -16,86 +16,119 @@ slug:
   encoding: ascii
   clean_accents: true
 
+i18n:
+  structure: multiple_folders
+  locales: [sv, en, uk, es, th]
+  default_locale: sv
+
 collections:
   - name: sidor
     label: Sidor
     icon: web
+    i18n: true
     files:
       - name: hem
         label: Startsidan
-        file: src/_data/pages/hem.json
+        file: src/_data/pages/{{locale}}/hem.json
+        i18n: true
         fields:
+          - { name: navnamn, label: Namn i menyn, widget: string, i18n: true }
           - name: hero
             label: Toppsektion
             widget: object
+            i18n: true
             fields:
-              - { name: rubrik, label: Rubrik, widget: string }
-              - { name: ingress, label: Ingress, widget: text }
-              - { name: knapptext, label: Knapptext, widget: string }
-          - name: veckoschema
+              - { name: rubrik, label: Rubrik, widget: string, i18n: true }
+              - { name: undertitel, label: Undertitel, widget: text, i18n: true }
+              - { name: knapptext, label: Knapptext, widget: string, i18n: true }
+              - { name: bild, label: Bakgrundsbild, widget: image, required: false, i18n: duplicate }
+          - name: schema
             label: Veckoschema (rubriker)
             widget: object
+            i18n: true
             fields:
-              - { name: rubrik, label: Rubrik, widget: string }
-              - { name: undertitel, label: Undertitel, widget: string }
+              - { name: rubrik, label: Rubrik, widget: string, i18n: true }
+              - { name: undertitel, label: Undertitel, widget: string, i18n: true }
           - name: handelser
             label: Vad som händer (rubriker)
             widget: object
+            i18n: true
             fields:
-              - { name: rubrik, label: Rubrik, widget: string }
-              - { name: undertitel, label: Undertitel, widget: string }
-              - { name: tomtext, label: Text när inga händelser finns, widget: string }
+              - { name: rubrik, label: Rubrik, widget: string, i18n: true }
+              - { name: undertitel, label: Undertitel, widget: string, i18n: true }
           - name: cta
             label: Avslutande sektion
             widget: object
+            i18n: true
             fields:
-              - { name: rubrik, label: Rubrik, widget: string }
-              - { name: text, label: Text, widget: text }
-              - { name: knapptext, label: Knapptext, widget: string }
+              - { name: rubrik, label: Rubrik, widget: string, i18n: true }
+              - { name: text, label: Text, widget: text, i18n: true }
+              - { name: knapptext, label: Knapptext, widget: string, i18n: true }
 
       - name: omoss
         label: Om oss
-        file: src/_data/pages/omoss.json
+        file: src/_data/pages/{{locale}}/omoss.json
+        i18n: true
         fields:
+          - { name: navnamn, label: Namn i menyn, widget: string, i18n: true }
           - name: hero
             label: Toppsektion
             widget: object
+            i18n: true
             fields:
-              - { name: rubrik, label: Rubrik, widget: string }
-              - { name: undertitel, label: Undertitel, widget: string }
-          - name: sektioner
-            label: Sektioner
-            widget: list
-            fields:
-              - { name: ikon, label: Ikon (emoji), widget: string, hint: "Visas om ingen bild är vald" }
-              - { name: bild, label: Bild, widget: image, required: false }
-              - { name: rubrik, label: Rubrik, widget: string }
-              - { name: stycken, label: Stycken, widget: list, field: { name: stycke, label: Stycke, widget: text } }
+              - { name: rubrik, label: Rubrik, widget: string, i18n: true }
+              - { name: undertitel, label: Undertitel, widget: string, i18n: true }
+              - { name: bild, label: Bakgrundsbild, widget: image, required: false, i18n: duplicate }
+          - { name: body, label: Innehåll (HTML), widget: markdown, i18n: true }
 
       - name: verksamheter
         label: Verksamheter (sidhuvud)
-        file: src/_data/pages/verksamheter.json
+        file: src/_data/pages/{{locale}}/verksamheter.json
+        i18n: true
         fields:
+          - { name: navnamn, label: Namn i menyn, widget: string, i18n: true }
           - name: hero
             label: Toppsektion
             widget: object
+            i18n: true
             fields:
-              - { name: rubrik, label: Rubrik, widget: string }
-              - { name: undertitel, label: Undertitel, widget: string }
+              - { name: rubrik, label: Rubrik, widget: string, i18n: true }
+              - { name: undertitel, label: Undertitel, widget: string, i18n: true }
+              - { name: bild, label: Bakgrundsbild, widget: image, required: false, i18n: duplicate }
+
+      - name: kalender
+        label: Kalender (sidhuvud)
+        file: src/_data/pages/{{locale}}/kalender.json
+        i18n: true
+        fields:
+          - { name: navnamn, label: Namn i menyn, widget: string, i18n: true }
+          - name: hero
+            label: Toppsektion
+            widget: object
+            i18n: true
+            fields:
+              - { name: rubrik, label: Rubrik, widget: string, i18n: true }
+              - { name: undertitel, label: Undertitel, widget: string, i18n: true }
+              - { name: bild, label: Bakgrundsbild, widget: image, required: false, i18n: duplicate }
 
       - name: undervisning
         label: Undervisning
-        file: src/_data/pages/undervisning.json
+        file: src/_data/pages/{{locale}}/undervisning.json
+        i18n: true
         fields:
+          - { name: navnamn, label: Namn i menyn, widget: string, i18n: true }
           - name: hero
             label: Toppsektion
             widget: object
+            i18n: true
             fields:
-              - { name: rubrik, label: Rubrik, widget: string }
-              - { name: undertitel, label: Undertitel, widget: string }
+              - { name: rubrik, label: Rubrik, widget: string, i18n: true }
+              - { name: undertitel, label: Undertitel, widget: string, i18n: true }
+              - { name: bild, label: Bakgrundsbild, widget: image, required: false, i18n: duplicate }
           - name: kort
             label: Kort
             widget: list
+            i18n: true
             fields:
               - name: stil
                 label: Färg
@@ -104,65 +137,69 @@ collections:
                   - { label: "Mörkgrön", value: predikan }
                   - { label: "Trä/beige", value: foraldrar }
                   - { label: "Mellangrön", value: hemgrupper }
-              - { name: ikon, label: Ikon (emoji), widget: string }
               - { name: titel, label: Titel, widget: string }
               - { name: stycken, label: Stycken, widget: list, field: { name: stycke, label: Stycke, widget: text } }
               - { name: lanktext, label: Länktext, widget: string, required: false }
-              - { name: lank, label: Länk (URL), widget: string, required: false }
+              - { name: resurs, label: Länkar till resurs, widget: select, required: false, options: [predikan, foraldrar, hemgrupper] }
 
       - name: kontakt
         label: Kontakt
-        file: src/_data/pages/kontakt.json
+        file: src/_data/pages/{{locale}}/kontakt.json
+        i18n: true
         fields:
+          - { name: navnamn, label: Namn i menyn, widget: string, i18n: true }
           - name: hero
             label: Toppsektion
             widget: object
+            i18n: true
             fields:
-              - { name: rubrik, label: Rubrik, widget: string }
-              - { name: undertitel, label: Undertitel, widget: string }
-          - { name: intro, label: Introtext, widget: text }
-          - { name: formular_rubrik, label: Formulärets rubrik, widget: string }
-          - name: amnen
-            label: Ämnen i formuläret
-            widget: list
-            field: { name: amne, label: Ämne, widget: string }
+              - { name: rubrik, label: Rubrik, widget: string, i18n: true }
+              - { name: undertitel, label: Undertitel, widget: string, i18n: true }
+              - { name: bild, label: Bakgrundsbild, widget: image, required: false, i18n: duplicate }
+          - { name: adress, label: Adress, widget: text, i18n: duplicate }
+          - { name: telefon, label: Telefon, widget: string, i18n: duplicate }
+          - { name: epost, label: E-post, widget: string, i18n: duplicate }
+          - { name: pastor, label: Pastor, widget: string, required: false, i18n: duplicate }
 
-  - name: veckoschema
-    label: Veckoschema
-    icon: calendar_view_week
-    files:
-      - name: veckoschema
-        label: Veckans aktiviteter
-        file: src/_data/veckoschema.json
-        fields:
-          - name: pass
-            label: Aktiviteter
-            widget: list
-            fields:
-              - { name: dag, label: Dag, widget: string }
-              - { name: titel, label: Titel, widget: string }
-              - { name: tid, label: Tid, widget: string, hint: "T.ex. 10:00 – 11:30" }
-              - { name: beskrivning, label: Beskrivning, widget: text }
-
-  - name: kalender
-    label: Kalender
+  - name: handelser
+    label: Kalenderhändelser
     icon: event
-    folder: src/kalender
+    folder: src/handelser
     create: true
     extension: md
     format: yaml-frontmatter
     identifier_field: titel
-    summary: "{{titel}} – {{datum}}"
+    summary: "{{titel}} – {{typ}} {{datum}}"
     sortable_fields: [datum, titel]
+    i18n: true
     fields:
-      - { name: titel, label: Titel, widget: string }
-      - { name: datum, label: Datum, widget: datetime, format: "YYYY-MM-DD", time_format: false, hint: "Händelsen döljs automatiskt när datumet passerat" }
-      - { name: visningsdatum, label: Visningstext för datum, widget: string, required: false, hint: "Valfritt, t.ex. 'Varje tisdag'. Visas i stället för datumet." }
-      - { name: ikon, label: Ikon (emoji), widget: string, default: "📅", hint: "Visas om ingen bild är vald" }
-      - { name: bild, label: Bild, widget: image, required: false }
-      - { name: beskrivning, label: Beskrivning, widget: text }
+      - { name: titel, label: Titel, widget: string, i18n: true }
+      - { name: beskrivning, label: Beskrivning, widget: text, i18n: true }
+      - name: typ
+        label: Typ av händelse
+        widget: select
+        i18n: duplicate
+        hint: "Återkommande pass visas i veckoschemat och kalendern. Månadshändelse visas under 'Vad som händer' och döljs när datumet passerat."
+        options:
+          - { label: "Varje vecka", value: "Weekly" }
+          - { label: "Jämna veckor", value: "Even weeks" }
+          - { label: "Udda veckor", value: "Odd weeks" }
+          - { label: "Var tredje vecka", value: "Every third week" }
+          - { label: "Månadshändelse (enstaka datum)", value: "Monthly" }
+      - name: dag
+        label: Veckodag (för återkommande pass)
+        widget: select
+        required: false
+        i18n: duplicate
+        options: ["Måndag", "Tisdag", "Onsdag", "Torsdag", "Fredag", "Lördag", "Söndag"]
+      - { name: tid, label: Tid, widget: string, required: false, hint: "T.ex. 10:00 – 11:30", i18n: duplicate }
+      - { name: datum, label: Datum (för enstaka händelser), widget: datetime, format: "YYYY-MM-DD", time_format: false, required: false, i18n: duplicate }
+      - { name: visningsdatum, label: Visningstext för datum, widget: string, required: false, hint: "Valfritt, t.ex. 'Varje tisdag'. Visas i stället för datumet.", i18n: true }
+      - { name: ikon, label: Ikon (emoji), widget: string, required: false, i18n: duplicate }
+      - { name: bild, label: Bild, widget: image, required: false, i18n: duplicate }
+      - { name: lank, label: Länk (URL), widget: string, required: false, i18n: duplicate }
 
-  - name: verksamhet
+  - name: verksamheter_sidor
     label: Verksamheter
     icon: groups
     folder: src/verksamheter
@@ -172,26 +209,113 @@ collections:
     identifier_field: titel
     summary: "{{titel}}"
     sortable_fields: [ordning, titel]
+    i18n: true
     fields:
-      - { name: titel, label: Titel, widget: string }
-      - { name: undertitel, label: Undertitel, widget: string }
-      - { name: ikon, label: Ikon (emoji), widget: string }
-      - { name: kort, label: Kort beskrivning (visas i rutnätet), widget: text }
-      - { name: ordning, label: Ordning, widget: number, value_type: int, hint: "Lägre nummer visas först" }
-      - { name: body, label: Innehåll, widget: markdown }
+      - { name: titel, label: Titel, widget: string, i18n: true }
+      - { name: undertitel, label: Undertitel, widget: string, i18n: true }
+      - { name: ikon, label: Ikon (emoji), widget: string, i18n: duplicate }
+      - { name: kort, label: Kort beskrivning (visas i rutnätet), widget: text, i18n: true }
+      - { name: bild, label: Toppbild, widget: image, required: false, i18n: duplicate }
+      - { name: ordning, label: Ordning, widget: number, value_type: int, hint: "Lägre nummer visas först", i18n: duplicate }
+      - { name: body, label: Innehåll (HTML), widget: markdown, i18n: true }
+      - name: missionLander
+        label: Missionsländer
+        widget: list
+        required: false
+        i18n: duplicate
+        fields:
+          - { name: namn, label: Namn, widget: string }
+          - { name: flagga, label: Flagg-URL, widget: string, hint: "T.ex. https://flagcdn.com/w320/ar.png" }
+          - { name: beskrivning, label: Beskrivning, widget: text }
+          - { name: gavomarkning, label: Gåvomärkning, widget: string, required: false }
+      - name: bibelverser
+        label: Bibelverser
+        widget: list
+        required: false
+        i18n: duplicate
+        fields:
+          - { name: referens, label: Bibelreferens, widget: string }
+          - { name: text, label: Verstext, widget: text }
+      - name: principer
+        label: Principer (punktlista med ikon)
+        widget: list
+        required: false
+        i18n: duplicate
+        fields:
+          - { name: ikon, label: Ikon (emoji), widget: string }
+          - { name: titel, label: Text, widget: string }
+      - name: galleri
+        label: Bildgalleri
+        widget: list
+        required: false
+        i18n: duplicate
+        fields:
+          - { name: bild, label: Bild, widget: image }
+          - { name: text, label: Bildtext, widget: string, required: false }
+      - name: resurskort
+        label: Resurskort
+        widget: list
+        required: false
+        i18n: duplicate
+        fields:
+          - { name: ikon, label: Ikon (emoji), widget: string, required: false }
+          - { name: titel, label: Titel, widget: string }
+          - { name: beskrivning, label: Beskrivning, widget: text, required: false }
+          - { name: lank, label: Länk (URL), widget: string }
+          - { name: lanktext, label: Knapptext, widget: string, required: false }
+
+  - name: undervisningsresurser
+    label: Undervisningsresurser
+    icon: school
+    folder: src/undervisningsresurser
+    create: true
+    extension: md
+    format: yaml-frontmatter
+    identifier_field: titel
+    summary: "{{titel}}"
+    i18n: true
+    fields:
+      - { name: titel, label: Titel, widget: string, i18n: true }
+      - { name: rubrik, label: Rubrik på sidan, widget: string, required: false, i18n: true }
+      - { name: undertitel, label: Undertitel, widget: string, i18n: true }
+      - { name: bild, label: Toppbild, widget: image, required: false, i18n: duplicate }
+      - { name: body, label: Innehåll (HTML), widget: markdown, i18n: true, hint: "Skriv <!-- ELIM-BLOCKS --> där videor/kort ska placeras, eller <!-- ELIM-BLOCKS-REVERSED --> för nyaste först." }
+      - name: videor
+        label: YouTube-videor
+        widget: list
+        required: false
+        i18n: duplicate
+        fields:
+          - { name: titel, label: Titel, widget: string, required: false }
+          - { name: url, label: YouTube-URL, widget: string }
+          - { name: beskrivning, label: Beskrivning, widget: text, required: false }
+      - name: resurskort
+        label: Resurskort
+        widget: list
+        required: false
+        i18n: duplicate
+        fields:
+          - { name: ikon, label: Ikon (emoji), widget: string, required: false }
+          - { name: titel, label: Titel, widget: string }
+          - { name: beskrivning, label: Beskrivning, widget: text, required: false }
+          - { name: lank, label: Länk (URL), widget: string }
+          - { name: lanktext, label: Knapptext, widget: string, required: false }
 
   - name: installningar
     label: Inställningar
     icon: settings
+    i18n: true
     files:
-      - name: site
+      - name: sajt
         label: Webbplatsens uppgifter
-        file: src/_data/site.json
+        file: src/_data/sajt/{{locale}}.json
+        i18n: true
         fields:
-          - { name: namn, label: Namn, widget: string }
-          - { name: adress, label: Adress, widget: string }
-          - { name: telefon, label: Telefon, widget: string }
-          - { name: epost, label: E-post, widget: string }
-          - { name: expedition, label: Expeditionens öppettider, widget: string }
-          - { name: formspree_id, label: Formspree-ID, widget: string, hint: "ID:t från formspree.io för kontaktformuläret" }
-          - { name: karta_embed, label: "Google Maps-inbäddning (URL)", widget: string, required: false, hint: "Klistra in src-adressen från Google Maps 'Bädda in karta'" }
+          - { name: logotopp, label: "Logotyp – övre rad", widget: string, i18n: duplicate }
+          - { name: logobotten, label: "Logotyp – nedre rad", widget: string, i18n: duplicate }
+          - { name: tagline, label: Text i sidfoten, widget: text, i18n: true }
+          - { name: adress, label: Adress (sidfot), widget: text, i18n: duplicate }
+          - { name: telefon, label: Telefon, widget: string, i18n: duplicate }
+          - { name: epost, label: E-post, widget: string, i18n: duplicate }
+          - { name: copyright, label: Copyright-text, widget: string, i18n: true }
+          - { name: formspree_id, label: Formspree-ID, widget: string, hint: "ID:t från formspree.io för kontaktformuläret", i18n: duplicate }

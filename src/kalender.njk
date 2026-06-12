@@ -1,0 +1,170 @@
+---
+layout: layout.njk
+aktiv: kalender
+pagination:
+  data: locales
+  size: 1
+  alias: loc
+permalink: "/{{ loc.prefix }}kalender/index.html"
+eleventyComputed:
+  titel: "{{ pages[loc.code].kalender.navnamn }}"
+---
+{%- set kod = loc.code -%}
+{%- set sidan = pages[kod].kalender -%}
+{%- set ui = t[kod] -%}
+
+<section class="subpage-hero subpage-hero--calendar"{% if sidan.hero.bild %} style="background-image: linear-gradient(180deg, rgba(0,0,0,0.25), rgba(0,0,0,0.55)), url('{{ sidan.hero.bild | url }}'); background-size: cover; background-position: center;"{% endif %}>
+    <h1>{{ sidan.hero.rubrik }}</h1>
+    <p>{{ sidan.hero.undertitel }}</p>
+</section>
+
+<section class="section section-alt">
+    <div class="section-header fade-in">
+        <h2>{{ ui.kalender.vadHander }}</h2>
+        <p>{{ ui.kalender.vadHanderSub }}</p>
+    </div>
+
+    <div class="calendar-layout">
+        <div class="calendar-shell fade-in">
+            <div class="calendar-toolbar">
+                <h3 class="calendar-month" id="calendarMonthLabel">—</h3>
+                <div class="calendar-nav">
+                    <button type="button" class="calendar-nav-btn" onclick="shiftCalendarMonth(-1)" aria-label="{{ ui.kalender.foregaende }}">‹</button>
+                    <button type="button" class="calendar-nav-btn" onclick="shiftCalendarMonth(1)" aria-label="{{ ui.kalender.nasta }}">›</button>
+                </div>
+            </div>
+
+            <div class="calendar-weekdays" aria-hidden="true">
+                {% for dag in ui.kalender.veckodagar %}
+                <div class="calendar-weekday">{{ dag }}</div>
+                {% endfor %}
+            </div>
+
+            <div class="calendar-grid" id="calendarGrid"></div>
+        </div>
+
+        <aside class="calendar-details fade-in" aria-live="polite">
+            <h3 id="selectedDateTitle">{{ ui.kalender.valjDag }}</h3>
+            <p class="subtitle" id="selectedDateSubtitle">{{ ui.kalender.klickaDag }}</p>
+            <div class="calendar-events" id="selectedDateEvents">
+                <div class="calendar-empty">{{ ui.kalender.platshallare }}</div>
+            </div>
+        </aside>
+    </div>
+</section>
+
+<script>
+(function () {
+    const CALENDAR_EVENTS = {{ collections.handelse | medLang(kod) | kalenderKarta | dump | safe }};
+    const LOCALE = '{{ kod }}';
+    const STRINGS = {
+        empty: {{ ui.kalender.inga | dump | safe }},
+        countOne: {{ ui.kalender.enAktivitet | dump | safe }},
+        countManyTemplate: {{ ui.kalender.fleraAktiviteter | dump | safe }}
+    };
+    const LANG_PREFIX = '{{ ("/" + loc.prefix) | url }}';
+
+    const today = new Date();
+    let calendarViewDate = new Date(today.getFullYear(), today.getMonth(), 1);
+    let selectedDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+
+    function dateToKey(date) {
+        const y = date.getFullYear();
+        const m = String(date.getMonth() + 1).padStart(2, '0');
+        const d = String(date.getDate()).padStart(2, '0');
+        return `${y}-${m}-${d}`;
+    }
+    function isSameDate(a, b) {
+        return a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth() && a.getDate() === b.getDate();
+    }
+
+    function renderCalendar() {
+        const monthLabel = document.getElementById('calendarMonthLabel');
+        const grid = document.getElementById('calendarGrid');
+        if (!monthLabel || !grid) return;
+
+        monthLabel.textContent = calendarViewDate.toLocaleDateString(LOCALE, { month: 'long', year: 'numeric' });
+        grid.innerHTML = '';
+
+        const year = calendarViewDate.getFullYear();
+        const month = calendarViewDate.getMonth();
+        const firstOfMonth = new Date(year, month, 1);
+        const offset = (firstOfMonth.getDay() + 6) % 7;
+        const startDate = new Date(year, month, 1 - offset);
+
+        for (let i = 0; i < 42; i++) {
+            const cellDate = new Date(startDate);
+            cellDate.setDate(startDate.getDate() + i);
+            const key = dateToKey(cellDate);
+
+            const button = document.createElement('button');
+            button.type = 'button';
+            button.className = 'calendar-cell';
+            button.innerHTML = `<span class="calendar-day-number">${cellDate.getDate()}</span>`;
+            if (cellDate.getMonth() !== month) button.classList.add('outside');
+            if (isSameDate(cellDate, today)) button.classList.add('today');
+            if (isSameDate(cellDate, selectedDate)) button.classList.add('selected');
+            if (CALENDAR_EVENTS[key]) button.classList.add('has-events');
+
+            const todayMidnight = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+            if (cellDate < todayMidnight) button.classList.add('past');
+            button.setAttribute('aria-label', cellDate.toLocaleDateString(LOCALE, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }));
+            button.addEventListener('click', () => {
+                selectedDate = new Date(cellDate);
+                calendarViewDate = new Date(cellDate.getFullYear(), cellDate.getMonth(), 1);
+                renderCalendar();
+                renderSelectedDateEvents();
+            });
+            grid.appendChild(button);
+        }
+    }
+
+    function renderSelectedDateEvents() {
+        const title = document.getElementById('selectedDateTitle');
+        const subtitle = document.getElementById('selectedDateSubtitle');
+        const eventsContainer = document.getElementById('selectedDateEvents');
+        if (!title || !subtitle || !eventsContainer) return;
+
+        const key = dateToKey(selectedDate);
+        const events = CALENDAR_EVENTS[key] || [];
+
+        title.textContent = selectedDate.toLocaleDateString(LOCALE, { weekday: 'long', day: 'numeric', month: 'long' });
+        subtitle.textContent = events.length === 0
+            ? STRINGS.empty
+            : (events.length === 1 ? STRINGS.countOne : STRINGS.countManyTemplate.replace('{n}', events.length));
+
+        if (!events.length) {
+            eventsContainer.innerHTML = `<div class="calendar-empty">${STRINGS.empty}</div>`;
+            return;
+        }
+
+        const escapeHtml = (s) => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+        const escapeAttr = (s) => escapeHtml(s);
+        const isExternal = (url) => /^https?:\/\//i.test(url);
+
+        eventsContainer.innerHTML = events.map(ev => {
+            let link = ev.link;
+            if (link && link.startsWith('/')) link = LANG_PREFIX + link.slice(1);
+            const titleHtml = link
+                ? `<a class="title" href="${escapeAttr(link)}"${isExternal(link) ? ' target="_blank" rel="noopener"' : ''}>${escapeHtml(ev.title)}</a>`
+                : `<div class="title">${escapeHtml(ev.title)}</div>`;
+            return `
+                <article class="calendar-event">
+                    ${titleHtml}
+                    <div class="meta">${escapeHtml(ev.time || '')}</div>
+                    <div class="desc">${escapeHtml(ev.desc)}</div>
+                </article>
+            `;
+        }).join('');
+    }
+
+    function shiftCalendarMonth(delta) {
+        calendarViewDate = new Date(calendarViewDate.getFullYear(), calendarViewDate.getMonth() + delta, 1);
+        renderCalendar();
+    }
+    window.shiftCalendarMonth = shiftCalendarMonth;
+
+    renderCalendar();
+    renderSelectedDateEvents();
+})();
+</script>

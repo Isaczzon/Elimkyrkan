@@ -1,0 +1,40 @@
+{
+  "navnamn": "Teaching",
+  "hero": {
+    "rubrik": "Teaching",
+    "undertitel": "Grow in faith and knowledge – three paths to go deeper",
+    "bild": "/images/Sermon.png"
+  },
+  "kort": [
+    {
+      "stil": "predikan",
+      "titel": "Sermon",
+      "stycken": [
+        "Every Sunday God's word is shared through the sermon. Our preachers deliver timely, life-changing messages that help you grow in faith and everyday life.",
+        "Listen to previous sermons and follow current sermon series here."
+      ],
+      "lanktext": "Listen to sermons →",
+      "resurs": "predikan"
+    },
+    {
+      "stil": "foraldrar",
+      "titel": "Parents",
+      "stycken": [
+        "Being a parent is life's most important task. We offer teaching and resources to help you build a safe, loving family grounded in faith.",
+        "Courses, discussion groups and material for parents at all stages."
+      ],
+      "lanktext": "Read more about parent resources →",
+      "resurs": "foraldrar"
+    },
+    {
+      "stil": "hemgrupper",
+      "titel": "Home Groups",
+      "stycken": [
+        "In home groups we go deeper into the Bible together. Through study, conversation and prayer we grow in understanding and faith – and support one another along the way.",
+        "Current study material and information about the home groups' teaching plan."
+      ],
+      "lanktext": "Study material and links →",
+      "resurs": "hemgrupper"
+    }
+  ]
+}

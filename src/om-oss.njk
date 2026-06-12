@@ -1,30 +1,22 @@
 ---
 layout: layout.njk
-aktiv: om-oss
-titel: Om oss
-permalink: /om-oss/
+aktiv: omoss
+pagination:
+  data: locales
+  size: 1
+  alias: loc
+permalink: "/{{ loc.prefix }}om-oss/index.html"
+eleventyComputed:
+  titel: "{{ pages[loc.code].omoss.navnamn }}"
 ---
-<section class="subpage-hero">
-    <h1>{{ pages.omoss.hero.rubrik }}</h1>
-    <p>{{ pages.omoss.hero.undertitel }}</p>
+{%- set kod = loc.code -%}
+{%- set sidan = pages[kod].omoss -%}
+
+<section class="subpage-hero subpage-hero--about"{% if sidan.hero.bild %} style="background-image: linear-gradient(180deg, rgba(0,0,0,0.25), rgba(0,0,0,0.55)), url('{{ sidan.hero.bild | url }}'); background-size: cover; background-position: center;"{% endif %}>
+    <h1>{{ sidan.hero.rubrik }}</h1>
+    <p>{{ sidan.hero.undertitel }}</p>
 </section>
 
 <section class="section">
-    {% for sektion in pages.omoss.sektioner %}
-    <div class="about-section fade-in">
-        <div class="about-img">
-            {%- if sektion.bild -%}
-            <img src="{{ sektion.bild }}" alt="{{ sektion.rubrik }}">
-            {%- else -%}
-            {{ sektion.ikon }}
-            {%- endif -%}
-        </div>
-        <div class="about-text">
-            <h2>{{ sektion.rubrik }}</h2>
-            {% for stycke in sektion.stycken %}
-            <p>{{ stycke }}</p>
-            {% endfor %}
-        </div>
-    </div>
-    {% endfor %}
+    {{ sidan.body | safe }}
 </section>
