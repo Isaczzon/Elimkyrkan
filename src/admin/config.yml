@@ -194,6 +194,8 @@ collections:
         options: ["Måndag", "Tisdag", "Onsdag", "Torsdag", "Fredag", "Lördag", "Söndag"]
       - { name: tid, label: Tid, widget: string, required: false, hint: "T.ex. 10:00 – 11:30", i18n: duplicate }
       - { name: datum, label: Datum (för enstaka händelser), widget: datetime, format: "YYYY-MM-DD", time_format: false, required: false, i18n: duplicate }
+      - { name: uppehall_fran, label: Uppehåll från, widget: datetime, format: "YYYY-MM-DD", time_format: false, required: false, i18n: duplicate, hint: "Återkommande pass visas inte från och med detta datum (t.ex. sommaruppehåll)" }
+      - { name: uppehall_till, label: Uppehåll till och med, widget: datetime, format: "YYYY-MM-DD", time_format: false, required: false, i18n: duplicate, hint: "Passet visas igen efter detta datum. Lämnas tomt = uppehåll tills vidare." }
       - { name: visningsdatum, label: Visningstext för datum, widget: string, required: false, hint: "Valfritt, t.ex. 'Varje tisdag'. Visas i stället för datumet.", i18n: true }
       - { name: ikon, label: Ikon (emoji), widget: string, required: false, i18n: duplicate }
       - { name: bild, label: Bild, widget: image, required: false, i18n: duplicate }

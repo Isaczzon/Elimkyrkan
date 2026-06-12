@@ -49,6 +49,19 @@ const dagOrdning = (e) => {
   return DAG_INDEX[(e.data.dag || "").toLowerCase()] ?? 99;
 };
 
+const datumNyckel = (d) =>
+  `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+
+const tillDatumStrang = (v) => (v instanceof Date ? v.toISOString().slice(0, 10) : String(v).slice(0, 10));
+
+// Uppehåll: återkommande pass döljs mellan uppehall_fran och uppehall_till (inklusive)
+const iUppehall = (e, d) => {
+  if (!e.data.uppehall_fran) return false;
+  const dag = datumNyckel(d);
+  if (dag < tillDatumStrang(e.data.uppehall_fran)) return false;
+  return !e.data.uppehall_till || dag <= tillDatumStrang(e.data.uppehall_till);
+};
+
 export default function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("images");
   eleventyConfig.addPassthroughCopy("docs");
@@ -115,7 +128,12 @@ export default function (eleventyConfig) {
         if (!typ || typ.toLowerCase() === "monthly") return false;
         const d = datumAv(e);
         if (d) return d >= veckoStart && d <= veckoSlut;
-        return matcharIsoVecka(vecka, typ);
+        if (!matcharIsoVecka(vecka, typ)) return false;
+        const dagIndex = DAG_INDEX[(e.data.dag || "").toLowerCase()];
+        if (dagIndex === undefined) return true;
+        const forekomst = new Date(veckoStart);
+        forekomst.setDate(veckoStart.getDate() + dagIndex);
+        return !iUppehall(e, forekomst);
       })
       .sort((a, b) => dagOrdning(a) - dagOrdning(b) || startMinuter(a.data.tid) - startMinuter(b.data.tid));
   });
@@ -155,6 +173,7 @@ export default function (eleventyConfig) {
       for (let dt = new Date(start); dt <= slut; dt.setDate(dt.getDate() + 1)) {
         if ((dt.getDay() + 6) % 7 !== dagIndex) continue;
         if (!matcharIsoVecka(isoVecka(dt), e.data.typ || "")) continue;
+        if (iUppehall(e, dt)) continue;
         poster.push([new Date(dt), e]);
       }
     }
