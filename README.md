@@ -53,7 +53,7 @@ Sveltia loggar in redaktörer via GitHub. GitHub Pages kan inte hantera OAuth-ha
 
 ### 4. Bjud in redaktörer
 
-Varje redaktör behöver ett (gratis) GitHub-konto och inbjudan som **collaborator** med write-behörighet till detta repo (Settings → Collaborators). Därefter:
+Gå till [Settings → Collaborators](https://github.com/Isaczzon/Elimkyrkan/settings/access), klicka **Add people** och ange redaktörens **e-postadress** (välj Write-behörighet). GitHub skickar en inbjudan via mejl – har personen inget GitHub-konto guidar inbjudningslänken dem genom att skapa ett. Därefter:
 
 1. Gå till `https://isaczzon.github.io/Elimkyrkan/admin/`
 2. Klicka **Sign in with GitHub**
