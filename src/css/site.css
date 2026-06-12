@@ -1337,3 +1337,57 @@ footer a:hover { color: var(--white); }
 }
 .theme-toggle:hover { border-color: var(--green-mid); }
 [data-theme="dark"] .theme-toggle { background: var(--bg-card); }
+
+/* === SPRÅKVÄLJARE (låg i Umbraco-layoutens inline-<style>) === */
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.lang-switch { position: relative; }
+.lang-switch summary {
+    list-style: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 10px;
+    border: 1px solid var(--gray-pale);
+    border-radius: 6px;
+    font-size: 14px;
+    color: var(--gray-dark);
+}
+.lang-switch summary::-webkit-details-marker { display: none; }
+.lang-switch[open] summary { border-color: var(--green-mid); }
+.lang-menu {
+    position: absolute;
+    right: 0;
+    top: calc(100% + 8px);
+    background: white;
+    border: 1px solid var(--gray-pale);
+    border-radius: 8px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    min-width: 160px;
+    padding: 6px 0;
+    list-style: none;
+    z-index: 1100;
+}
+.lang-menu a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 16px;
+    text-decoration: none;
+    color: var(--gray-dark);
+    font-size: 14px;
+}
+.lang-menu a:hover { background: var(--green-pale); color: var(--green-dark); }
+.lang-menu a.active { color: var(--green-dark); font-weight: 600; }
+.lang-flag {
+    width: 22px;
+    height: 16px;
+    object-fit: cover;
+    border-radius: 2px;
+    box-shadow: 0 0 0 1px rgba(0,0,0,0.08);
+    flex-shrink: 0;
+}
