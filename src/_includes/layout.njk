@@ -24,7 +24,7 @@
                 //    startsidan, skicka dem till sitt språks startsida. (Endast från
                 //    roten så att delade djuplänkar respekteras.)
                 var savedLang = localStorage.getItem('lang');
-                var prefixes = { en: 'en/', uk: 'uk/', es: 'es/', th: 'th/' };
+                var prefixes = { en: 'en/', ru: 'ru/', es: 'es/', th: 'th/' };
                 var root = '{{ "/" | url }}';
                 if (savedLang && prefixes[savedLang] && (location.pathname === root)) {
                     location.replace(root + prefixes[savedLang]);

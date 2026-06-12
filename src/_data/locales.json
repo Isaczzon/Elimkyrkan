@@ -1,7 +1,7 @@
 [
   { "code": "sv", "iso": "sv-SE", "sprak": "Svenska", "prefix": "", "flagga": "se" },
   { "code": "en", "iso": "en-US", "sprak": "English", "prefix": "en/", "flagga": "us" },
-  { "code": "uk", "iso": "uk-UA", "sprak": "Українська", "prefix": "uk/", "flagga": "ua" },
+  { "code": "ru", "iso": "ru-RU", "sprak": "Русский", "prefix": "ru/", "flagga": "ru" },
   { "code": "es", "iso": "es-ES", "sprak": "Español", "prefix": "es/", "flagga": "es" },
   { "code": "th", "iso": "th-TH", "sprak": "ไทย", "prefix": "th/", "flagga": "th" }
 ]

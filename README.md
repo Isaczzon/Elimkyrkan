@@ -2,7 +2,7 @@
 
 Statisk webbplats byggd med [Eleventy](https://www.11ty.dev/), publicerad på **GitHub Pages** och redigerbar via **[Sveltia CMS](https://github.com/sveltia/sveltia-cms)** på `/admin/`.
 
-Sajten är en portering av den tidigare Umbraco-versionen (sparad på grenen `Elim-Umbraco`) med samma design och funktioner: bilder, mörkt läge, fem språk (svenska, engelska, ukrainska, spanska, thai), interaktiv kalender, undervisningssidor med videor samt kontaktformulär.
+Sajten är en portering av den tidigare Umbraco-versionen (sparad på grenen `Elim-Umbraco`) med samma design och funktioner: bilder, mörkt läge, fem språk (svenska, engelska, ryska, spanska, thai), interaktiv kalender, undervisningssidor med videor samt kontaktformulär.
 
 ## Så hänger det ihop
 
