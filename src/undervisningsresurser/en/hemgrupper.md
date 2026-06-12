@@ -19,10 +19,10 @@ resurskort:
     lanktext: Köp boken
 ---
 <div class="hemgrupper-teaching-content" data-v="3">
-    <h2>Undervisning</h2>
-    <p>I våra hemgrupper brukar vi ha någon form av undervisning. Det kan vara bibelläsning eller någon typ av bok som man studerar tillsammans. Här är några idéer till hemgruppsledare.</p>
+    <h2>Teaching</h2>
+    <p>In our home groups we usually have some form of teaching. It might be Bible reading, or a book that the group studies together. Here are a few ideas for home group leaders.</p>
 
     <!-- ELIM-BLOCKS -->
 
-    <p style="margin-top:24px;"><em>Har du tips på fler resurser som passar för hemgrupperna? Hör av dig så lägger vi till dem här.</em></p>
+    <p style="margin-top:24px;"><em>Do you know of more resources that would suit the home groups? Let us know and we'll add them here.</em></p>
 </div>

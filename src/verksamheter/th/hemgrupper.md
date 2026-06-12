@@ -8,15 +8,15 @@ ordning: 2
 ---
 <div class="two-col">
     <div>
-        <h2>Hemgrupper</h2>
-        <p>Vår församling är uppdelad i mindre grupper som kallas för hemgrupper. Vi samlas varannan vecka jämna veckor hemma hos någon, oftast i närheten av där man själv bor, för att umgås, fika, be, lovsjunga, prata om livet och läsa bibeln tillsammans.</p>
-        <p>I hemgruppen har vi möjlighet att, på ett annat sätt än i gudstjänsten, lära känna varandra på djupet och hjälpa varandra genom samtal, bön och andliga gåvor. Här finns möjligheten att hjälpa och stödja varandra i vardagen och här kan vi växa gemensamt i tron och i vår relation med Gud.</p>
-        <p>Hemgrupperna är öppna även för dig som inte är kristen, men som är intresserad av att få veta mer om vad livet som kristen innebär. Det är helt okej att besöka någon hemgrupp ett par gånger bara för att testa och se hur det är.</p>
+        <h2>กลุ่มในบ้าน</h2>
+        <p>คริสตจักรของเราแบ่งออกเป็นกลุ่มเล็ก ๆ ที่เรียกว่ากลุ่มในบ้าน เราพบกันทุก ๆ สองสัปดาห์ ในสัปดาห์เลขคู่ ที่บ้านของสมาชิกคนใดคนหนึ่ง ซึ่งมักอยู่ใกล้กับที่พักของแต่ละคน เพื่อใช้เวลาด้วยกัน ทานของว่าง อธิษฐาน ร้องเพลงนมัสการ พูดคุยเรื่องชีวิต และอ่านพระคัมภีร์ร่วมกัน</p>
+        <p>ในกลุ่มในบ้าน เรามีโอกาสได้รู้จักกันอย่างลึกซึ้งในแบบที่ต่างไปจากพิธีนมัสการ และช่วยเหลือกันผ่านการพูดคุย การอธิษฐาน และของประทานฝ่ายวิญญาณ ที่นี่เราสามารถช่วยเหลือและหนุนใจกันในชีวิตประจำวัน และเติบโตไปด้วยกันทั้งในความเชื่อและในความสัมพันธ์กับพระเจ้า</p>
+        <p>กลุ่มในบ้านเปิดกว้างสำหรับคุณที่ยังไม่ได้เป็นคริสเตียนด้วยเช่นกัน หากคุณสนใจอยากรู้มากขึ้นว่าชีวิตคริสเตียนเป็นอย่างไร การมาเยี่ยมกลุ่มในบ้านสักสองสามครั้งเพียงเพื่อลองดูว่าเป็นอย่างไรก็เป็นเรื่องที่ทำได้เลย</p>
     </div>
     <div>
-        <h2>Varför?</h2>
-        <p>Vi tror att Gud har kallat oss att vara tillsammans med honom, men också att vara tillsammans med dem som tillhör honom. I den första kristna församlingen, i Nya Testamentets tid, samlades de troende ”i templet och i hemmen” (Apostlagärningarna 2:46) och där fungerade de som Guds familj och delade livet med varandra.</p>
-        <p>I templet hade de sina stora sammankomster med hela församlingen och i hemmen träffades de i mindre grupper i en mera personlig gemenskap. Vi önskar att vår församling skall fungera på ett liknande sätt!</p>
-        <p>Vi vill därför uppmuntra dig som vill vara med i församlingen att komma på gudstjänsterna, men också att överlåta dig till en djupare gemenskap genom att vara med i en av våra hemgrupper.</p>
+        <h2>ทำไม?</h2>
+        <p>เราเชื่อว่าพระเจ้าทรงเรียกเราให้อยู่กับพระองค์ และให้อยู่ร่วมกับคนของพระองค์ด้วย ในคริสตจักรคริสเตียนยุคแรก ในสมัยพันธสัญญาใหม่ ผู้เชื่อมารวมตัวกัน “ในพระวิหารและตามบ้าน” (กิจการ 2:46) และที่นั่นพวกเขาเป็นดั่งครอบครัวของพระเจ้าและแบ่งปันชีวิตซึ่งกันและกัน</p>
+        <p>ในพระวิหาร พวกเขามีการประชุมใหญ่ร่วมกับคริสตจักรทั้งหมด และตามบ้าน พวกเขาพบกันเป็นกลุ่มเล็ก ๆ ในสามัคคีธรรมที่ใกล้ชิดและเป็นส่วนตัวยิ่งขึ้น เราปรารถนาให้คริสตจักรของเราเป็นเช่นนั้นเหมือนกัน!</p>
+        <p>เราจึงอยากหนุนใจคุณที่อยากมีส่วนร่วมในคริสตจักร ให้มาร่วมพิธีนมัสการ และก้าวเข้าสู่สามัคคีธรรมที่ลึกซึ้งยิ่งขึ้น ด้วยการเข้าร่วมกลุ่มในบ้านกลุ่มใดกลุ่มหนึ่งของเรา</p>
     </div>
 </div>

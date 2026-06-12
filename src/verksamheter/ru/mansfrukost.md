@@ -7,33 +7,33 @@ bild: /images/Mens_breakfast.png
 ordning: 4
 ---
 <div class="mansfrukost-content" data-v="2">
-    <h2>Starta veckan rätt</h2>
-    <p>Mansfrukost är en samling för män i alla åldrar där vi möts över en god frukost, får tid för samtal och delar gemenskap med varandra.</p>
-    <p>Varje gång får vi också lyssna till en intressant talare. Ämnena varierar, men målet är att det ska vara både givande, uppmuntrande och relevant för livet.</p>
-    <p>Mansfrukosten präglas av en varm gemenskap och en positiv anda. Oavsett om du brukar gå i kyrkan eller bara är nyfiken är du varmt välkommen att vara med.</p>
-    <p>Vi samlas vanligtvis i Elimkyrkan på Klockvägen 1 i Mantorp, men ibland även i Equmeniakyrkan Mantorp.</p>
-    <p>Håll gärna koll i programmet så att du inte missar nästa mansfrukost.</p>
-    <p>Varmt välkommen – ung som gammal!</p>
+    <h2>Хорошее начало недели</h2>
+    <p>Мужской завтрак — это встреча для мужчин всех возрастов: мы собираемся за вкусным завтраком, находим время для разговора и общения друг с другом.</p>
+    <p>Каждый раз мы также слушаем интересного докладчика. Темы бывают разные, но цель одна — чтобы было содержательно, ободряюще и актуально для жизни.</p>
+    <p>Мужские завтраки отличаются тёплым общением и позитивным настроем. Неважно, ходите ли вы обычно в церковь или вам просто любопытно — мы сердечно приглашаем вас.</p>
+    <p>Обычно мы собираемся в Elimkyrkan по адресу Klockvägen 1 в Манторпе, но иногда и в церкви Equmeniakyrkan Mantorp.</p>
+    <p>Следите за программой, чтобы не пропустить следующий мужской завтрак.</p>
+    <p>Сердечно приглашаем — и молодых, и пожилых!</p>
 
-    <h2>Så ser en mansfrukost ut</h2>
+    <h2>Как проходит мужской завтрак</h2>
     <ul>
-        <li><strong>God frukost</strong> – fralla, ost, ägg, juice och kaffe.</li>
-        <li><strong>Talare</strong> – ofta en gäst som delar erfarenheter, livsfrågor eller något ur Bibeln. Cirka 20–30 minuter.</li>
-        <li><strong>Samtal kring borden</strong> – utan tvång, du väljer själv hur mycket du deltar.</li>
-        <li><strong>Kort andakt</strong> – enkel, ingen behöver svara eller säga något.</li>
+        <li><strong>Вкусный завтрак</strong> — булочки, сыр, яйца, сок и кофе.</li>
+        <li><strong>Докладчик</strong> — часто это гость, который делится опытом, размышлениями о жизни или чем-то из Библии. Примерно 20–30 минут.</li>
+        <li><strong>Разговоры за столами</strong> — без принуждения: вы сами решаете, насколько участвовать.</li>
+        <li><strong>Короткое духовное размышление</strong> — простое, никому не нужно отвечать или что-то говорить.</li>
     </ul>
 
-    <h2>För vem?</h2>
-    <p>För dig som är man – ung eller gammal, troende eller nyfiken. Ta gärna med en vän, kollega eller granne. Mansfrukosten är en bra tillställning att komma till för första gången, för stämningen är öppen och avslappnad.</p>
+    <h2>Для кого?</h2>
+    <p>Для вас, если вы мужчина — молодой или пожилой, верующий или просто интересующийся. Приводите друга, коллегу или соседа. Мужской завтрак — отличное событие для первого визита: атмосфера здесь открытая и непринуждённая.</p>
 
     <aside class="contact-card">
-        <h3>När och var?</h3>
-        <p>Vanligtvis <strong>en lördagsmorgon i månaden</strong>. Exakta tider och plats annonseras i <a href="/kalender">kalendern</a>.</p>
-        <p>Oftast: Elimkyrkan, Klockvägen 1, Mantorp.<br>Ibland: Equmeniakyrkan Mantorp.</p>
+        <h3>Когда и где?</h3>
+        <p>Обычно <strong>одно субботнее утро в месяц</strong>. Точное время и место объявляются в <a href="/kalender">календаре</a>.</p>
+        <p>Чаще всего: Elimkyrkan, Klockvägen 1, Mantorp.<br>Иногда: Equmeniakyrkan Mantorp.</p>
     </aside>
 
     <aside class="contact-card">
-        <h3>Praktiskt</h3>
-        <p>Ingen anmälan, ingen kostnad. Vi börjar oftast kring kl. 08:30 och avslutar runt 10:00 så att hela lördagen ligger framför dig.</p>
+        <h3>Практическая информация</h3>
+        <p>Без записи и бесплатно. Обычно мы начинаем около 08:30 и заканчиваем примерно в 10:00, так что вся суббота ещё впереди.</p>
     </aside>
 </div>

@@ -7,32 +7,32 @@ bild: /images/Thuseday_cafe.png
 ordning: 5
 ---
 <div class="tisdagscafe-content" data-v="2">
-    <h2>En öppen mötesplats</h2>
-    <p>På Tisdagscafé kan alla komma som vill ha gemenskap. Kyrkan är öppen för alla.</p>
-    <p>Ibland händer speciella saker – som grillning, våfflor eller besök av olika gäster – men prioritet är alltid att umgås.</p>
+    <h2>สถานที่พบปะที่เปิดกว้าง</h2>
+    <p>ที่คาเฟ่วันอังคาร ทุกคนที่อยากมีสามัคคีธรรมสามารถมาร่วมได้ โบสถ์เปิดต้อนรับทุกคน</p>
+    <p>บางครั้งก็มีกิจกรรมพิเศษ – เช่น ปิ้งย่าง วาฟเฟิล หรือแขกรับเชิญต่าง ๆ – แต่สิ่งสำคัญที่สุดคือการได้ใช้เวลาร่วมกันเสมอ</p>
 
-    <h2>Så ser en tisdag ut</h2>
+    <h2>วันอังคารเป็นอย่างไร</h2>
     <ul>
-        <li><strong>Kaffe och hembakat</strong> – det viktigaste.</li>
-        <li><strong>Snack över borden</strong> – om allt mellan himmel och jord.</li>
-        <li><strong>Något extra ibland</strong> – musik, en gäst med spännande historia, våfflor en gång i månaden, grillning på sommaren.</li>
-        <li><strong>Stillsam stund</strong> – för den som vill be eller bara sitta tyst en stund.</li>
+        <li><strong>กาแฟและขนมอบโฮมเมด</strong> – สิ่งสำคัญที่สุด</li>
+        <li><strong>พูดคุยรอบโต๊ะ</strong> – สารพัดเรื่องราวใต้ฟ้านี้</li>
+        <li><strong>บางครั้งก็มีอะไรพิเศษ</strong> – ดนตรี แขกรับเชิญพร้อมเรื่องราวน่าตื่นเต้น วาฟเฟิลเดือนละครั้ง ปิ้งย่างในฤดูร้อน</li>
+        <li><strong>ช่วงเวลาเงียบสงบ</strong> – สำหรับผู้ที่อยากอธิษฐานหรือเพียงนั่งเงียบ ๆ สักครู่</li>
     </ul>
 
-    <h2>Vem kommer hit?</h2>
-    <p>Många av våra gäster är pensionärer, men alla är varmt välkomna – ingen åldersgräns åt något håll. Tisdagscafé är en bra plats om du vill träffa folk i en lugn och vänlig miljö, eller om du är ny i Mantorp och vill lära känna grannskapet.</p>
+    <h2>ใครมาที่นี่บ้าง?</h2>
+    <p>แขกของเราหลายคนเป็นผู้เกษียณอายุ แต่ทุกคนล้วนเป็นที่ต้อนรับอย่างอบอุ่น – ไม่มีการจำกัดอายุใด ๆ ทั้งสิ้น คาเฟ่วันอังคารเป็นที่ที่ดีหากคุณอยากพบปะผู้คนในบรรยากาศที่สงบและเป็นมิตร หรือหากคุณเพิ่งย้ายมาอยู่ Mantorp และอยากรู้จักเพื่อนบ้านในละแวกนี้</p>
 
     <aside class="contact-card">
-        <h3>När och var?</h3>
-        <p><strong>Tisdagar kl. 14:00–16:00</strong> (varje vecka, om inget annat anges).<br>Elimkyrkan, Klockvägen 1, Mantorp.</p>
-        <p>Specialdagar dyker upp i <a href="/kalender">kalendern</a>.</p>
+        <h3>เมื่อไหร่และที่ไหน?</h3>
+        <p><strong>วันอังคาร เวลา 14:00–16:00 น.</strong> (ทุกสัปดาห์ เว้นแต่จะแจ้งเป็นอย่างอื่น)<br>Elimkyrkan, Klockvägen 1, Mantorp</p>
+        <p>วันพิเศษต่าง ๆ จะปรากฏใน<a href="/kalender">ปฏิทิน</a></p>
     </aside>
 
     <aside class="contact-card">
-        <h3>Praktiskt</h3>
-        <p>Ingen anmälan, ingen kostnad. Kaffet och fikabrödet är gratis – en frivillig kollekt går till kyrkans verksamhet om du vill bidra.</p>
-        <p>Lokalen är tillgänglig med rullator och rullstol – välkomna in!</p>
+        <h3>ข้อมูลที่ควรรู้</h3>
+        <p>ไม่ต้องลงทะเบียน ไม่มีค่าใช้จ่าย กาแฟและขนมไม่เสียเงิน – มีการถวายตามความสมัครใจเพื่อสนับสนุนงานของโบสถ์ หากคุณอยากมีส่วนร่วม</p>
+        <p>สถานที่รองรับผู้ใช้รถเข็นและวอล์คเกอร์ – ขอเชิญเข้ามาได้เลย!</p>
     </aside>
 
-    <p style="text-align:center; font-size:18px; margin-top:24px;"><strong>Välkommen!</strong></p>
+    <p style="text-align:center; font-size:18px; margin-top:24px;"><strong>ยินดีต้อนรับ!</strong></p>
 </div>

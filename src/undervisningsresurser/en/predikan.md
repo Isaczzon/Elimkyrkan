@@ -72,13 +72,13 @@ videor:
     beskrivning: ""
 ---
 <div class="predikan-content" data-v="1">
-    <h2>Predikan</h2>
-    <p>Här samlar vi tidigare och aktuella predikningar från Elimkyrkan – både videor och äldre inspelningar.</p>
+    <h2>Sermons</h2>
+    <p>Here we gather past and current sermons from Elimkyrkan – both videos and older recordings.</p>
 
-    <h2>Videor</h2>
-    <p>Den senaste predikan ligger högst upp. Bläddra nedåt för äldre tillfällen.</p>
+    <h2>Videos</h2>
+    <p>The most recent sermon is at the top. Scroll down for earlier ones.</p>
     <!-- ELIM-BLOCKS-REVERSED -->
 
-    <h2>Inspelningar</h2>
-    <p>Vi har också äldre ljudinspelningar i vårt arkiv. Hör av dig till <a href="mailto:info@elimmantorp.se">info@elimmantorp.se</a> om du vill ha tillgång till ett särskilt tillfälle.</p>
+    <h2>Recordings</h2>
+    <p>We also have older audio recordings in our archive. Get in touch at <a href="mailto:info@elimmantorp.se">info@elimmantorp.se</a> if you would like access to a particular occasion.</p>
 </div>

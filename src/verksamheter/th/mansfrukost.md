@@ -7,33 +7,33 @@ bild: /images/Mens_breakfast.png
 ordning: 4
 ---
 <div class="mansfrukost-content" data-v="2">
-    <h2>Starta veckan rätt</h2>
-    <p>Mansfrukost är en samling för män i alla åldrar där vi möts över en god frukost, får tid för samtal och delar gemenskap med varandra.</p>
-    <p>Varje gång får vi också lyssna till en intressant talare. Ämnena varierar, men målet är att det ska vara både givande, uppmuntrande och relevant för livet.</p>
-    <p>Mansfrukosten präglas av en varm gemenskap och en positiv anda. Oavsett om du brukar gå i kyrkan eller bara är nyfiken är du varmt välkommen att vara med.</p>
-    <p>Vi samlas vanligtvis i Elimkyrkan på Klockvägen 1 i Mantorp, men ibland även i Equmeniakyrkan Mantorp.</p>
-    <p>Håll gärna koll i programmet så att du inte missar nästa mansfrukost.</p>
-    <p>Varmt välkommen – ung som gammal!</p>
+    <h2>เริ่มต้นสัปดาห์ให้ดี</h2>
+    <p>อาหารเช้าผู้ชายคือการรวมตัวของผู้ชายทุกวัย ที่เรามาพบกันพร้อมอาหารเช้าแสนอร่อย มีเวลาพูดคุย และแบ่งปันสามัคคีธรรมร่วมกัน</p>
+    <p>ทุกครั้งเรายังได้ฟังวิทยากรที่น่าสนใจอีกด้วย หัวข้อจะแตกต่างกันไป แต่เป้าหมายคือให้เป็นช่วงเวลาที่ได้รับประโยชน์ ได้รับกำลังใจ และเกี่ยวข้องกับชีวิตจริง</p>
+    <p>อาหารเช้าผู้ชายเต็มไปด้วยสามัคคีธรรมอันอบอุ่นและบรรยากาศเชิงบวก ไม่ว่าคุณจะไปโบสถ์เป็นประจำหรือแค่อยากลองมาดู คุณก็เป็นที่ต้อนรับอย่างอบอุ่น</p>
+    <p>โดยปกติเราพบกันที่ Elimkyrkan ที่ Klockvägen 1 ใน Mantorp แต่บางครั้งก็พบกันที่ Equmeniakyrkan Mantorp ด้วย</p>
+    <p>ติดตามโปรแกรมไว้ เพื่อไม่ให้พลาดอาหารเช้าผู้ชายครั้งถัดไป</p>
+    <p>ขอต้อนรับด้วยความยินดี – ทั้งหนุ่มและอาวุโส!</p>
 
-    <h2>Så ser en mansfrukost ut</h2>
+    <h2>อาหารเช้าผู้ชายเป็นอย่างไร</h2>
     <ul>
-        <li><strong>God frukost</strong> – fralla, ost, ägg, juice och kaffe.</li>
-        <li><strong>Talare</strong> – ofta en gäst som delar erfarenheter, livsfrågor eller något ur Bibeln. Cirka 20–30 minuter.</li>
-        <li><strong>Samtal kring borden</strong> – utan tvång, du väljer själv hur mycket du deltar.</li>
-        <li><strong>Kort andakt</strong> – enkel, ingen behöver svara eller säga något.</li>
+        <li><strong>อาหารเช้าแสนอร่อย</strong> – ขนมปัง ชีส ไข่ น้ำผลไม้ และกาแฟ</li>
+        <li><strong>วิทยากร</strong> – มักเป็นแขกรับเชิญที่มาแบ่งปันประสบการณ์ คำถามเกี่ยวกับชีวิต หรือเรื่องราวจากพระคัมภีร์ ประมาณ 20–30 นาที</li>
+        <li><strong>พูดคุยรอบโต๊ะ</strong> – ไม่มีการบังคับ คุณเลือกเองว่าจะมีส่วนร่วมมากแค่ไหน</li>
+        <li><strong>ช่วงเฝ้าเดี่ยวสั้น ๆ</strong> – เรียบง่าย ไม่มีใครต้องตอบหรือพูดอะไร</li>
     </ul>
 
-    <h2>För vem?</h2>
-    <p>För dig som är man – ung eller gammal, troende eller nyfiken. Ta gärna med en vän, kollega eller granne. Mansfrukosten är en bra tillställning att komma till för första gången, för stämningen är öppen och avslappnad.</p>
+    <h2>สำหรับใคร?</h2>
+    <p>สำหรับคุณที่เป็นผู้ชาย – หนุ่มหรืออาวุโส เป็นผู้เชื่อหรือแค่อยากรู้จัก ชวนเพื่อน เพื่อนร่วมงาน หรือเพื่อนบ้านมาด้วยก็ได้ อาหารเช้าผู้ชายเป็นโอกาสที่ดีสำหรับการมาครั้งแรก เพราะบรรยากาศเปิดกว้างและผ่อนคลาย</p>
 
     <aside class="contact-card">
-        <h3>När och var?</h3>
-        <p>Vanligtvis <strong>en lördagsmorgon i månaden</strong>. Exakta tider och plats annonseras i <a href="/kalender">kalendern</a>.</p>
-        <p>Oftast: Elimkyrkan, Klockvägen 1, Mantorp.<br>Ibland: Equmeniakyrkan Mantorp.</p>
+        <h3>เมื่อไหร่และที่ไหน?</h3>
+        <p>โดยปกติ<strong>เช้าวันเสาร์เดือนละครั้ง</strong> เวลาและสถานที่ที่แน่นอนจะประกาศใน<a href="/kalender">ปฏิทิน</a></p>
+        <p>ส่วนใหญ่: Elimkyrkan, Klockvägen 1, Mantorp<br>บางครั้ง: Equmeniakyrkan Mantorp</p>
     </aside>
 
     <aside class="contact-card">
-        <h3>Praktiskt</h3>
-        <p>Ingen anmälan, ingen kostnad. Vi börjar oftast kring kl. 08:30 och avslutar runt 10:00 så att hela lördagen ligger framför dig.</p>
+        <h3>ข้อมูลที่ควรรู้</h3>
+        <p>ไม่ต้องลงทะเบียน ไม่มีค่าใช้จ่าย เรามักเริ่มประมาณ 08:30 น. และจบราว 10:00 น. เพื่อให้คุณยังมีวันเสาร์ทั้งวันรออยู่ข้างหน้า</p>
     </aside>
 </div>

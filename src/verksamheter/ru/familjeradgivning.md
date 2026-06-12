@@ -14,17 +14,17 @@ principer:
     titel: Certifierade familjerådgivare
 ---
 <div class="familjeradgivning-content" data-v="2">
-    <p>Att leva tillsammans är inte alltid så lätt. Ibland strular det till sig och det blir problem i relationen. Det kan då vara skönt att prata med någon.</p>
-    <p>Vi har en familjerådgivning eftersom vi tror att familjen är viktig – en av samhällets grundstenar.</p>
+    <p>Жить вместе не всегда просто. Иногда что-то идёт не так, и в отношениях возникают проблемы. В такие моменты бывает важно с кем-то поговорить.</p>
+    <p>У нас есть служение семейного консультирования, потому что мы верим: семья важна — это один из краеугольных камней общества.</p>
 
-    <h2>Vi arbetar utifrån</h2>
+    <h2>В основе нашей работы</h2>
     <!-- ELIM-BLOCKS -->
 
-    <p>Elimkyrkans Familjerådgivning har ambitionen att lyssna, samtala och ge råd.</p>
+    <p>Семейное консультирование Elimkyrkan стремится выслушать, поговорить и дать совет.</p>
 
     <aside class="contact-card">
-        <h3>Boka tid för samtal</h3>
-        <p>Vi finns i Mjölby centrum. Välkommen att ringa <a href="tel:+4614280070">0142 – 800 70</a> för att boka tid för samtal.</p>
-        <p><strong>Besöksadress</strong><br>Kyrkogatan 27<br>595 30 Mjölby</p>
+        <h3>Записаться на консультацию</h3>
+        <p>Мы находимся в центре Мьёльбю. Позвоните по номеру <a href="tel:+4614280070">0142 – 800 70</a>, чтобы записаться на консультацию.</p>
+        <p><strong>Адрес</strong><br>Kyrkogatan 27<br>595 30 Mjölby</p>
     </aside>
 </div>

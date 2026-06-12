@@ -8,31 +8,31 @@ bild: /images/Next_Generation.png
 ordning: 1
 ---
 <div class="nextgen-content" data-v="1">
-    <h2>Ungdomskväll varje fredag</h2>
-    <p>Next Generation är vår ungdomsverksamhet där vi samlas varje fredag för en kväll fylld med gemenskap, aktiviteter, samtal och snacks.</p>
-    <p>Vi tror på nästa generation och vill skapa en plats där unga kan växa, både som människor och i sin tro.</p>
+    <h2>Молодёжный вечер каждую пятницу</h2>
+    <p>Next Generation — это наше молодёжное служение: каждую пятницу мы собираемся на вечер, наполненный общением, активностями, разговорами и снеками.</p>
+    <p>Мы верим в следующее поколение и хотим создать место, где молодые люди могут расти — и как личности, и в своей вере.</p>
 
-    <h2>Vad gör vi tillsammans?</h2>
+    <h2>Чем мы занимаемся вместе?</h2>
     <ul>
-        <li><strong>Hänga och prata</strong> – soffhäng, spel, fika.</li>
-        <li><strong>Aktiviteter</strong> – från pingisturneringar till filmkvällar och utflykter.</li>
-        <li><strong>Samtal om livet och tron</strong> – på en nivå där alla kan vara med, oavsett bakgrund.</li>
-        <li><strong>Mat eller snacks</strong> – ingen ska gå hungrig hem.</li>
+        <li><strong>Просто быть вместе</strong> — посиделки на диванах, игры, перекус.</li>
+        <li><strong>Активности</strong> — от турниров по настольному теннису до киновечеров и вылазок.</li>
+        <li><strong>Разговоры о жизни и вере</strong> — на уровне, доступном каждому, независимо от бэкграунда.</li>
+        <li><strong>Еда или снеки</strong> — никто не уйдёт домой голодным.</li>
     </ul>
 
-    <h2>Vem är det för?</h2>
-    <p>Next Generation är för dig som är i högstadie- eller gymnasieåldern (ungefär 13–19 år). Du behöver inte vara kristen eller ha varit i kyrkan förut – kom precis som du är. Ta gärna med en kompis.</p>
+    <h2>Для кого это?</h2>
+    <p>Next Generation — для тебя, если ты в возрасте средних или старших классов (примерно 13–19 лет). Не обязательно быть христианином или раньше бывать в церкви — приходи таким, какой ты есть. И бери с собой друга.</p>
 
     <aside class="contact-card">
-        <h3>När och var?</h3>
-        <p><strong>Fredagar kl. 19:00</strong> – varje vecka om inget annat anges.<br>Elimkyrkan, Klockvägen 1, Mantorp.</p>
-        <p>Specialkvällar och utflykter dyker upp i <a href="/kalender">kalendern</a>.</p>
+        <h3>Когда и где?</h3>
+        <p><strong>По пятницам в 19:00</strong> — каждую неделю, если не указано иное.<br>Elimkyrkan, Klockvägen 1, Mantorp.</p>
+        <p>Особые вечера и поездки появляются в <a href="/kalender">календаре</a>.</p>
     </aside>
 
     <aside class="contact-card">
-        <h3>Första gången?</h3>
-        <p>Det är helt okej att komma utan att känna någon – ledarna möter dig vid dörren och presenterar dig för gänget. Det kostar inget och du måste inte stanna hela kvällen.</p>
+        <h3>Впервые у нас?</h3>
+        <p>Совершенно нормально прийти, никого не зная, — лидеры встретят тебя у дверей и познакомят с ребятами. Это бесплатно, и оставаться на весь вечер не обязательно.</p>
     </aside>
 
-    <p style="text-align:center; font-size:18px; margin-top:24px;"><strong>Vi ses på fredag!</strong></p>
+    <p style="text-align:center; font-size:18px; margin-top:24px;"><strong>До встречи в пятницу!</strong></p>
 </div>

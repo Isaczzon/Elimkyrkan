@@ -7,31 +7,31 @@ bild: /images/Next_Generation.png
 ordning: 1
 ---
 <div class="nextgen-content" data-v="1">
-    <h2>Ungdomskväll varje fredag</h2>
-    <p>Next Generation är vår ungdomsverksamhet där vi samlas varje fredag för en kväll fylld med gemenskap, aktiviteter, samtal och snacks.</p>
-    <p>Vi tror på nästa generation och vill skapa en plats där unga kan växa, både som människor och i sin tro.</p>
+    <h2>ค่ำคืนเยาวชนทุกวันศุกร์</h2>
+    <p>Next Generation คือพันธกิจเยาวชนของเรา ที่เรามารวมตัวกันทุกวันศุกร์ เพื่อค่ำคืนที่เต็มไปด้วยสามัคคีธรรม กิจกรรม การพูดคุย และของว่าง</p>
+    <p>เราเชื่อมั่นในคนรุ่นต่อไป และอยากสร้างพื้นที่ที่คนหนุ่มสาวสามารถเติบโตได้ ทั้งในฐานะมนุษย์และในความเชื่อของตน</p>
 
-    <h2>Vad gör vi tillsammans?</h2>
+    <h2>เราทำอะไรด้วยกันบ้าง?</h2>
     <ul>
-        <li><strong>Hänga och prata</strong> – soffhäng, spel, fika.</li>
-        <li><strong>Aktiviteter</strong> – från pingisturneringar till filmkvällar och utflykter.</li>
-        <li><strong>Samtal om livet och tron</strong> – på en nivå där alla kan vara med, oavsett bakgrund.</li>
-        <li><strong>Mat eller snacks</strong> – ingen ska gå hungrig hem.</li>
+        <li><strong>นั่งเล่นและพูดคุย</strong> – นั่งชิลบนโซฟา เล่นเกม ทานของว่าง</li>
+        <li><strong>กิจกรรม</strong> – ตั้งแต่การแข่งปิงปองไปจนถึงค่ำคืนดูหนังและทริปเที่ยว</li>
+        <li><strong>พูดคุยเรื่องชีวิตและความเชื่อ</strong> – ในระดับที่ทุกคนมีส่วนร่วมได้ ไม่ว่าจะมีพื้นเพแบบไหน</li>
+        <li><strong>อาหารหรือของว่าง</strong> – ไม่มีใครต้องกลับบ้านท้องหิว</li>
     </ul>
 
-    <h2>Vem är det för?</h2>
-    <p>Next Generation är för dig som är i högstadie- eller gymnasieåldern (ungefär 13–19 år). Du behöver inte vara kristen eller ha varit i kyrkan förut – kom precis som du är. Ta gärna med en kompis.</p>
+    <h2>เหมาะสำหรับใคร?</h2>
+    <p>Next Generation เหมาะสำหรับคุณที่อยู่ในวัยมัธยมต้นหรือมัธยมปลาย (ประมาณ 13–19 ปี) ไม่จำเป็นต้องเป็นคริสเตียนหรือเคยมาโบสถ์มาก่อน – มาได้เลยในแบบที่คุณเป็น และชวนเพื่อนมาด้วยก็ยิ่งดี</p>
 
     <aside class="contact-card">
-        <h3>När och var?</h3>
-        <p><strong>Fredagar kl. 19:00</strong> – varje vecka om inget annat anges.<br>Elimkyrkan, Klockvägen 1, Mantorp.</p>
-        <p>Specialkvällar och utflykter dyker upp i <a href="/kalender">kalendern</a>.</p>
+        <h3>เมื่อไหร่และที่ไหน?</h3>
+        <p><strong>วันศุกร์ เวลา 19:00 น.</strong> – ทุกสัปดาห์ เว้นแต่จะแจ้งเป็นอย่างอื่น<br>Elimkyrkan, Klockvägen 1, Mantorp</p>
+        <p>ค่ำคืนพิเศษและทริปต่าง ๆ จะปรากฏใน<a href="/kalender">ปฏิทิน</a></p>
     </aside>
 
     <aside class="contact-card">
-        <h3>Första gången?</h3>
-        <p>Det är helt okej att komma utan att känna någon – ledarna möter dig vid dörren och presenterar dig för gänget. Det kostar inget och du måste inte stanna hela kvällen.</p>
+        <h3>มาครั้งแรก?</h3>
+        <p>มาโดยไม่รู้จักใครเลยก็ไม่เป็นไร – พี่ ๆ ผู้นำจะต้อนรับคุณที่ประตูและแนะนำคุณให้รู้จักกับทุกคน ไม่มีค่าใช้จ่าย และไม่จำเป็นต้องอยู่จนจบค่ำคืนก็ได้</p>
     </aside>
 
-    <p style="text-align:center; font-size:18px; margin-top:24px;"><strong>Vi ses på fredag!</strong></p>
+    <p style="text-align:center; font-size:18px; margin-top:24px;"><strong>แล้วพบกันวันศุกร์!</strong></p>
 </div>

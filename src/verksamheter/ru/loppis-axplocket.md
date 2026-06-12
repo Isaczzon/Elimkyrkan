@@ -18,65 +18,65 @@ galleri:
     text: Böcker
 ---
 <div class="axplocket-content" data-v="3">
-    <p>Vår loppis heter <strong>Axplocket</strong> och finns i den röda längan precis bredvid Mantorps tågstation.</p>
+    <p>Наша барахолка называется <strong>Axplocket</strong> и находится в красном здании прямо рядом с железнодорожной станцией Манторпа.</p>
     <p><strong>Magasinvägen 3, 595 57 Mantorp</strong></p>
 
-    <h2>Öppettider</h2>
+    <h2>Часы работы</h2>
     <ul class="hours-list">
-        <li><strong>Onsdagar</strong> 13:00 – 16:00</li>
-        <li><strong>Lördagar</strong> 10:00 – 13:00</li>
+        <li><strong>Среда</strong> 13:00 – 16:00</li>
+        <li><strong>Суббота</strong> 10:00 – 13:00</li>
     </ul>
-    <p>Öppet i princip året runt.</p>
+    <p>Открыто практически круглый год.</p>
 
-    <h2>Här finner du allt möjligt</h2>
-    <p>Glas, porslin, möbler, leksaker, lampor, verktyg, böcker – ja, allt du kan tänka dig! Självklart har vi också en ”gubbhörna” med allt från golfklubbor till tekniska prylar.</p>
+    <h2>Здесь найдётся всё что угодно</h2>
+    <p>Стекло, фарфор, мебель, игрушки, лампы, инструменты, книги — словом, всё, что только можно представить! Конечно, у нас есть и «мужской уголок» со всем на свете — от клюшек для гольфа до технических штучек.</p>
 
     <!-- ELIM-BLOCKS -->
 
-    <h2>Vårt syfte – välgörenhet</h2>
-    <p>Axplocket drivs ideellt och vårt syfte är att samla in pengar till välgörenhet och skicka hjälpsändningar. Exempelvis:</p>
+    <h2>Наша цель — благотворительность</h2>
+    <p>Axplocket работает на волонтёрских началах, и наша цель — собирать средства на благотворительность и отправлять гуманитарную помощь. Например:</p>
     <ul>
-        <li><strong>Child Safe</strong> – arbetar i Thailand och Laos. De står på barnets sida och arbetar förebyggande mot trafficking.</li>
-        <li><strong>Village of Hope</strong> – Estland. Drogrehabilitering på kristen grund.</li>
+        <li><strong>Child Safe</strong> — работает в Таиланде и Лаосе. Они стоят на стороне ребёнка и занимаются профилактикой торговли людьми.</li>
+        <li><strong>Village of Hope</strong> — Эстония. Реабилитация зависимых на христианской основе.</li>
     </ul>
-    <p>Därför är vi tacksamma för allt som lämnas in. Det du lämnar in hjälper någon som är i behov. Din gåva kan hjälpa ett barn som annars kanske blir ett offer för sexhandel, eller en vuxen människa som har hamnat fel i livet.</p>
+    <p>Поэтому мы благодарны за всё, что нам приносят. То, что вы отдаёте, помогает тому, кто в нужде. Ваш дар может помочь ребёнку, который иначе мог бы стать жертвой секс-торговли, или взрослому человеку, чья жизнь пошла не туда.</p>
 
-    <h2>Klädinsamling</h2>
-    <p>Varje år har vi glädjen att samla in kläder, skor m.m. som vi sedan har kört till bland annat Estland och Ukraina. Tider och situationer förändras, så det vi med säkerhet kan säga är att allt som samlas in kommer gå till välgörenhet på något sätt – men inte alltid till just Estland eller Ukraina.</p>
-    <p>Vill du vara med och hjälpa oss att hjälpa? Har du kläder, skor, sängkläder m.m. så är du välkommen att lämna in det på vår loppis vid Mantorps pendelstation.</p>
-    <p><strong>Observera:</strong> vi tar bara emot det som är helt, rent och funktionsdugligt. Vi tar inte emot kläder från och med oktober till och med april.</p>
-    <p>Vid behov gör vi också speciella insamlingsdagar. Information om detta hittar du genom Loppis hemsida, Facebook-gruppen ”Loppis - Axplocket”, annonser i lokalpressen och affischering på stan.</p>
-    <p><em>Tack för att du hjälper oss att hjälpa!</em></p>
+    <h2>Сбор одежды</h2>
+    <p>Каждый год мы с радостью собираем одежду, обувь и многое другое, что затем отвозили, в частности, в Эстонию и Украину. Времена и обстоятельства меняются, поэтому с уверенностью можем сказать одно: всё собранное так или иначе пойдёт на благотворительность — но не всегда именно в Эстонию или Украину.</p>
+    <p>Хотите помочь нам помогать? Если у вас есть одежда, обувь, постельное бельё и тому подобное, приносите их на нашу барахолку у пригородной станции Манторпа.</p>
+    <p><strong>Обратите внимание:</strong> мы принимаем только целые, чистые и пригодные к использованию вещи. С октября по апрель включительно одежду мы не принимаем.</p>
+    <p>При необходимости мы также проводим специальные дни сбора. Информацию о них вы найдёте на сайте барахолки, в группе в Facebook «Loppis - Axplocket», в объявлениях в местной прессе и на афишах в городе.</p>
+    <p><em>Спасибо, что помогаете нам помогать!</em></p>
 
-    <h2>Lämna in saker</h2>
-    <p>Har du saker som du vill skänka går det alldeles utmärkt att ta med dem vid ordinarie öppettider. Du kan även höra av dig om du behöver hjälp med transporten till oss.</p>
+    <h2>Сдать вещи</h2>
+    <p>Если у вас есть вещи, которые вы хотите пожертвовать, их можно просто принести в обычные часы работы. Вы также можете связаться с нами, если нужна помощь с доставкой.</p>
 
-    <h2>Följ oss på Facebook</h2>
-    <p>Information om vad som händer och nya grejer hittar du bäst i vår Facebook-grupp.</p>
+    <h2>Подписывайтесь на нас в Facebook</h2>
+    <p>Новости и информацию о свежих поступлениях удобнее всего узнавать в нашей группе в Facebook.</p>
     <a class="facebook-btn" href="https://www.facebook.com/profile.php?id=100064814883935" target="_blank" rel="noopener">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/></svg>
-        <span>Loppis - Axplocket på Facebook</span>
+        <span>Loppis - Axplocket в Facebook</span>
     </a>
 
     <aside class="contact-card">
-        <h3>Ge en gåva</h3>
+        <h3>Сделать пожертвование</h3>
         <p><strong>Plusgiro:</strong> 33 93 04 - 8<br><strong>Swish:</strong> 123 343 10 46</p>
     </aside>
 
     <aside class="contact-card">
-        <h3>Kontakt</h3>
+        <h3>Контакты</h3>
         <p>
             Hans Gustafsson · <a href="tel:+46708498789">070 - 849 87 89</a><br>
             Gunvor Gransö · <a href="tel:+46705151227">070 - 515 12 27</a>
         </p>
     </aside>
 
-    <h2>Hitta hit</h2>
+    <h2>Как нас найти</h2>
     <iframe class="map-embed"
             src="https://maps.google.com/maps?q=58.3486529,15.2897804&hl=sv&z=17&t=m&output=embed"
             title="Loppis Axplocket Mantorp"
             loading="lazy"
             referrerpolicy="no-referrer-when-downgrade"></iframe>
 
-    <p style="text-align:center; font-size:18px; margin-top:24px;"><strong>Välkommen att fynda hos oss!</strong></p>
+    <p style="text-align:center; font-size:18px; margin-top:24px;"><strong>Приходите к нам за находками!</strong></p>
 </div>

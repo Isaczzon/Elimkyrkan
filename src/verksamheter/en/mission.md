@@ -51,14 +51,14 @@ missionLander:
     gavomarkning: Ukraina
 ---
 <div class="mission-intro" data-v="6">
-    <p>Mission är en viktig del av Elimförsamlingens liv och arbete. Sedan början av 1990-talet har vi på olika sätt fått vara med och stötta människor och församlingar i flera delar av världen.</p>
-    <p>Många i församlingen har även själva rest ut på missionsresor genom åren. Man kan säga att mission verkligen finns i Elimförsamlingens hjärta. Vi tror på Jesu uppdrag att gå ut och göra alla folk till lärjungar, och vi vill vara med och sprida hopp, tro och praktisk hjälp där det behövs.</p>
+    <p>Mission is a vital part of the life and work of the Elim congregation. Since the early 1990s we have, in different ways, had the privilege of supporting people and churches in several parts of the world.</p>
+    <p>Many in our congregation have also gone on mission trips themselves over the years. You could say that mission truly lives in the heart of the Elim congregation. We believe in Jesus' commission to go out and make disciples of all nations, and we want to help spread hope, faith and practical help wherever it is needed.</p>
 </div>
 
 <!-- ELIM-BLOCKS -->
 
 <aside class="mission-donation">
-    <h3>Stöd vårt missionsarbete</h3>
-    <p>Vill du stödja vårt missionsarbete går det bra att sätta in pengar på plusgiro eller Swisha. Märk gärna gåvan med landets namn så hamnar den rätt.</p>
-    <p><strong>Missionskassan</strong><br>Plusgiro: 33 93 04 - 8<br>Swish: 123 343 10 46</p>
+    <h3>Support our mission work</h3>
+    <p>If you would like to support our mission work, you are welcome to give via plusgiro or Swish. Please mark your gift with the name of the country so it ends up in the right place.</p>
+    <p><strong>The Mission Fund</strong><br>Plusgiro: 33 93 04 - 8<br>Swish: 123 343 10 46</p>
 </aside>

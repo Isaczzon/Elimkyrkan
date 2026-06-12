@@ -7,32 +7,32 @@ bild: /images/Thuseday_cafe.png
 ordning: 5
 ---
 <div class="tisdagscafe-content" data-v="2">
-    <h2>En öppen mötesplats</h2>
-    <p>På Tisdagscafé kan alla komma som vill ha gemenskap. Kyrkan är öppen för alla.</p>
-    <p>Ibland händer speciella saker – som grillning, våfflor eller besök av olika gäster – men prioritet är alltid att umgås.</p>
+    <h2>An open meeting place</h2>
+    <p>The Tuesday Café is for anyone who would like some company. The church is open to all.</p>
+    <p>Sometimes special things happen – like barbecues, waffles or visits from different guests – but the priority is always simply spending time together.</p>
 
-    <h2>Så ser en tisdag ut</h2>
+    <h2>What a Tuesday looks like</h2>
     <ul>
-        <li><strong>Kaffe och hembakat</strong> – det viktigaste.</li>
-        <li><strong>Snack över borden</strong> – om allt mellan himmel och jord.</li>
-        <li><strong>Något extra ibland</strong> – musik, en gäst med spännande historia, våfflor en gång i månaden, grillning på sommaren.</li>
-        <li><strong>Stillsam stund</strong> – för den som vill be eller bara sitta tyst en stund.</li>
+        <li><strong>Coffee and home baking</strong> – the most important part.</li>
+        <li><strong>Chat around the tables</strong> – about everything under the sun.</li>
+        <li><strong>Something extra now and then</strong> – music, a guest with an exciting story, waffles once a month, barbecue in the summer.</li>
+        <li><strong>A quiet moment</strong> – for anyone who wants to pray or just sit in silence for a while.</li>
     </ul>
 
-    <h2>Vem kommer hit?</h2>
-    <p>Många av våra gäster är pensionärer, men alla är varmt välkomna – ingen åldersgräns åt något håll. Tisdagscafé är en bra plats om du vill träffa folk i en lugn och vänlig miljö, eller om du är ny i Mantorp och vill lära känna grannskapet.</p>
+    <h2>Who comes here?</h2>
+    <p>Many of our guests are retirees, but everyone is warmly welcome – there is no age limit in either direction. The Tuesday Café is a great place if you want to meet people in a calm and friendly setting, or if you're new to Mantorp and want to get to know the neighbourhood.</p>
 
     <aside class="contact-card">
-        <h3>När och var?</h3>
-        <p><strong>Tisdagar kl. 14:00–16:00</strong> (varje vecka, om inget annat anges).<br>Elimkyrkan, Klockvägen 1, Mantorp.</p>
-        <p>Specialdagar dyker upp i <a href="/kalender">kalendern</a>.</p>
+        <h3>When and where?</h3>
+        <p><strong>Tuesdays 14:00–16:00</strong> (every week, unless otherwise noted).<br>Elimkyrkan, Klockvägen 1, Mantorp.</p>
+        <p>Special days show up in the <a href="/kalender">calendar</a>.</p>
     </aside>
 
     <aside class="contact-card">
-        <h3>Praktiskt</h3>
-        <p>Ingen anmälan, ingen kostnad. Kaffet och fikabrödet är gratis – en frivillig kollekt går till kyrkans verksamhet om du vill bidra.</p>
-        <p>Lokalen är tillgänglig med rullator och rullstol – välkomna in!</p>
+        <h3>Practical details</h3>
+        <p>No registration, no cost. The coffee and baked treats are free – a voluntary collection goes to the church's work if you would like to contribute.</p>
+        <p>The venue is accessible with walkers and wheelchairs – come on in!</p>
     </aside>
 
-    <p style="text-align:center; font-size:18px; margin-top:24px;"><strong>Välkommen!</strong></p>
+    <p style="text-align:center; font-size:18px; margin-top:24px;"><strong>Welcome!</strong></p>
 </div>

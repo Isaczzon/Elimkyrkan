@@ -1,6 +1,6 @@
 ---
 titel: Loppis Axplocket
-beskrivning: Second hand och fynd. Välkommen att fika och fynda!
+beskrivning: ของมือสองและสินค้าราคาดี ยินดีต้อนรับมาดื่มกาแฟและช้อปปิ้ง!
 typ: Weekly
 dag: Onsdag
 tid: 13:00 - 16:00

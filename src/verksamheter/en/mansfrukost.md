@@ -7,33 +7,33 @@ bild: /images/Mens_breakfast.png
 ordning: 4
 ---
 <div class="mansfrukost-content" data-v="2">
-    <h2>Starta veckan rätt</h2>
-    <p>Mansfrukost är en samling för män i alla åldrar där vi möts över en god frukost, får tid för samtal och delar gemenskap med varandra.</p>
-    <p>Varje gång får vi också lyssna till en intressant talare. Ämnena varierar, men målet är att det ska vara både givande, uppmuntrande och relevant för livet.</p>
-    <p>Mansfrukosten präglas av en varm gemenskap och en positiv anda. Oavsett om du brukar gå i kyrkan eller bara är nyfiken är du varmt välkommen att vara med.</p>
-    <p>Vi samlas vanligtvis i Elimkyrkan på Klockvägen 1 i Mantorp, men ibland även i Equmeniakyrkan Mantorp.</p>
-    <p>Håll gärna koll i programmet så att du inte missar nästa mansfrukost.</p>
-    <p>Varmt välkommen – ung som gammal!</p>
+    <h2>Start the week off right</h2>
+    <p>The Men's Breakfast is a gathering for men of all ages, where we meet over a good breakfast, take time for conversation and share fellowship with one another.</p>
+    <p>Each time we also get to listen to an interesting speaker. The topics vary, but the aim is always for it to be rewarding, encouraging and relevant to life.</p>
+    <p>The Men's Breakfast is marked by warm fellowship and a positive spirit. Whether you usually go to church or are simply curious, you are warmly welcome to join us.</p>
+    <p>We usually meet at Elimkyrkan, Klockvägen 1 in Mantorp, but sometimes also at Equmeniakyrkan Mantorp.</p>
+    <p>Keep an eye on the program so you don't miss the next Men's Breakfast.</p>
+    <p>A warm welcome – young and old alike!</p>
 
-    <h2>Så ser en mansfrukost ut</h2>
+    <h2>What a Men's Breakfast looks like</h2>
     <ul>
-        <li><strong>God frukost</strong> – fralla, ost, ägg, juice och kaffe.</li>
-        <li><strong>Talare</strong> – ofta en gäst som delar erfarenheter, livsfrågor eller något ur Bibeln. Cirka 20–30 minuter.</li>
-        <li><strong>Samtal kring borden</strong> – utan tvång, du väljer själv hur mycket du deltar.</li>
-        <li><strong>Kort andakt</strong> – enkel, ingen behöver svara eller säga något.</li>
+        <li><strong>A good breakfast</strong> – fresh rolls, cheese, eggs, juice and coffee.</li>
+        <li><strong>A speaker</strong> – often a guest sharing experiences, life questions or something from the Bible. About 20–30 minutes.</li>
+        <li><strong>Conversation around the tables</strong> – no pressure, you choose how much you take part.</li>
+        <li><strong>A short devotion</strong> – simple, no one has to answer or say anything.</li>
     </ul>
 
-    <h2>För vem?</h2>
-    <p>För dig som är man – ung eller gammal, troende eller nyfiken. Ta gärna med en vän, kollega eller granne. Mansfrukosten är en bra tillställning att komma till för första gången, för stämningen är öppen och avslappnad.</p>
+    <h2>Who is it for?</h2>
+    <p>For you who are a man – young or old, a believer or just curious. Feel free to bring a friend, colleague or neighbour. The Men's Breakfast is a great event to come to for the first time, as the atmosphere is open and relaxed.</p>
 
     <aside class="contact-card">
-        <h3>När och var?</h3>
-        <p>Vanligtvis <strong>en lördagsmorgon i månaden</strong>. Exakta tider och plats annonseras i <a href="/kalender">kalendern</a>.</p>
-        <p>Oftast: Elimkyrkan, Klockvägen 1, Mantorp.<br>Ibland: Equmeniakyrkan Mantorp.</p>
+        <h3>When and where?</h3>
+        <p>Usually <strong>one Saturday morning a month</strong>. Exact times and venue are announced in the <a href="/kalender">calendar</a>.</p>
+        <p>Most often: Elimkyrkan, Klockvägen 1, Mantorp.<br>Sometimes: Equmeniakyrkan Mantorp.</p>
     </aside>
 
     <aside class="contact-card">
-        <h3>Praktiskt</h3>
-        <p>Ingen anmälan, ingen kostnad. Vi börjar oftast kring kl. 08:30 och avslutar runt 10:00 så att hela lördagen ligger framför dig.</p>
+        <h3>Practical details</h3>
+        <p>No registration, no cost. We usually start around 08:30 and finish around 10:00, so the whole Saturday still lies ahead of you.</p>
     </aside>
 </div>

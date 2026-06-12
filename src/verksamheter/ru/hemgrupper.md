@@ -9,15 +9,15 @@ ordning: 2
 ---
 <div class="two-col">
     <div>
-        <h2>Hemgrupper</h2>
-        <p>Vår församling är uppdelad i mindre grupper som kallas för hemgrupper. Vi samlas varannan vecka jämna veckor hemma hos någon, oftast i närheten av där man själv bor, för att umgås, fika, be, lovsjunga, prata om livet och läsa bibeln tillsammans.</p>
-        <p>I hemgruppen har vi möjlighet att, på ett annat sätt än i gudstjänsten, lära känna varandra på djupet och hjälpa varandra genom samtal, bön och andliga gåvor. Här finns möjligheten att hjälpa och stödja varandra i vardagen och här kan vi växa gemensamt i tron och i vår relation med Gud.</p>
-        <p>Hemgrupperna är öppna även för dig som inte är kristen, men som är intresserad av att få veta mer om vad livet som kristen innebär. Det är helt okej att besöka någon hemgrupp ett par gånger bara för att testa och se hur det är.</p>
+        <h2>Домашние группы</h2>
+        <p>Наша община разделена на небольшие группы, которые мы называем домашними группами. Раз в две недели, по чётным неделям, мы собираемся у кого-нибудь дома — как правило, недалеко от места, где живём сами, — чтобы пообщаться, попить кофе, помолиться, прославить Бога, поговорить о жизни и вместе почитать Библию.</p>
+        <p>В домашней группе у нас есть возможность — иначе, чем на богослужении, — по-настоящему глубоко узнать друг друга и помогать друг другу через беседы, молитву и духовные дары. Здесь можно поддерживать друг друга в повседневной жизни и вместе возрастать в вере и в наших отношениях с Богом.</p>
+        <p>Домашние группы открыты и для тех, кто не является христианином, но хочет узнать больше о том, что значит жить христианской жизнью. Совершенно нормально прийти в какую-нибудь группу пару раз — просто попробовать и посмотреть, как это бывает.</p>
     </div>
     <div>
-        <h2>Varför?</h2>
-        <p>Vi tror att Gud har kallat oss att vara tillsammans med honom, men också att vara tillsammans med dem som tillhör honom. I den första kristna församlingen, i Nya Testamentets tid, samlades de troende ”i templet och i hemmen” (Apostlagärningarna 2:46) och där fungerade de som Guds familj och delade livet med varandra.</p>
-        <p>I templet hade de sina stora sammankomster med hela församlingen och i hemmen träffades de i mindre grupper i en mera personlig gemenskap. Vi önskar att vår församling skall fungera på ett liknande sätt!</p>
-        <p>Vi vill därför uppmuntra dig som vill vara med i församlingen att komma på gudstjänsterna, men också att överlåta dig till en djupare gemenskap genom att vara med i en av våra hemgrupper.</p>
+        <h2>Почему?</h2>
+        <p>Мы верим, что Бог призвал нас быть с Ним, а также быть вместе с теми, кто принадлежит Ему. В первой христианской церкви, во времена Нового Завета, верующие собирались «в храме и по домам» (Деяния 2:46) — там они были Божьей семьёй и делили жизнь друг с другом.</p>
+        <p>В храме проходили большие собрания всей церкви, а по домам верующие встречались малыми группами в более личном общении. Мы хотим, чтобы и наша община жила похожим образом!</p>
+        <p>Поэтому, если вы хотите быть частью общины, мы приглашаем вас приходить на богослужения, а также посвятить себя более глубокому общению, присоединившись к одной из наших домашних групп.</p>
     </div>
 </div>

@@ -42,10 +42,10 @@ videor:
     beskrivning: ""
 ---
 <div class="foreldrar-content" data-v="1">
-    <h2>Rusta dina barn</h2>
-    <p>En videoserie för dig som är förälder och vill ge dina barn en stabil grund för livet och tron. Avsnitten är korta och praktiska – titta i din egen takt.</p>
+    <h2>Equip your children</h2>
+    <p>A video series for you as a parent who wants to give your children a stable foundation for life and faith. The episodes are short and practical – watch at your own pace.</p>
 
     <!-- ELIM-BLOCKS -->
 
-    <p style="margin-top:24px;"><em>Vill du följa serien från början? Börja med Avsnitt 1 och arbeta dig framåt.</em></p>
+    <p style="margin-top:24px;"><em>Want to follow the series from the beginning? Start with Avsnitt 1 (Episode 1) and work your way forward.</em></p>
 </div>

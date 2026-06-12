@@ -8,34 +8,34 @@ bild: /images/Children_playing.png
 ordning: 0
 ---
 <div class="barn-content" data-v="2">
-    <h2>Barnverksamhet i Elimkyrkan</h2>
-    <p>Hoppet är vår söndagsskola för barn under gudstjänsten. Här får barnen en egen stund med gemenskap, lek, glädje och aktiviteter anpassade för dem.</p>
-    <p>Gudstjänsten börjar klockan 16:00, och varannan söndag, under jämna veckor, går barnen upp till vår härliga övervåning. Där väntar en rolig och trygg miljö med mycket energi och glädje.</p>
-    <p>Barn mellan 0–3 år behöver ha en vuxen med sig, men alla åldrar är varmt välkomna.</p>
-    <p>Varmt välkommen till Hoppet!</p>
+    <h2>Детское служение в Elimkyrkan</h2>
+    <p>«Hoppet» — это наша воскресная школа для детей во время богослужения. Здесь у детей есть своё время общения, игр, радости и занятий, подобранных специально для них.</p>
+    <p>Богослужение начинается в 16:00, и каждое второе воскресенье, по чётным неделям, дети поднимаются на наш замечательный верхний этаж. Там их ждёт весёлая и безопасная атмосфера, полная энергии и радости.</p>
+    <p>Детям от 0 до 3 лет нужно быть в сопровождении взрослого, но мы сердечно приглашаем детей всех возрастов.</p>
+    <p>Добро пожаловать в «Hoppet»!</p>
 
-    <h2>Vad händer på Hoppet?</h2>
-    <p>Vi vill att barnen ska känna sig sedda, trygga och inkluderade från första stunden. På en typisk söndag varvar vi:</p>
+    <h2>Что происходит в «Hoppet»?</h2>
+    <p>Мы хотим, чтобы дети с первой минуты чувствовали, что их видят, что они в безопасности и что им здесь рады. В обычное воскресенье мы чередуем:</p>
     <ul>
-        <li><strong>Bibelberättelser</strong> – berättade på ett sätt som passar barn, ofta med bilder, sång eller rörelse.</li>
-        <li><strong>Pyssel och skapande</strong> – något barnen kan ta med sig hem.</li>
-        <li><strong>Lek</strong> – både fria lekar och styrda aktiviteter.</li>
-        <li><strong>Fika</strong> – en stunds paus med frukt eller saft.</li>
+        <li><strong>Библейские истории</strong> — рассказанные понятным детям языком, часто с картинками, песнями или движением.</li>
+        <li><strong>Поделки и творчество</strong> — то, что дети могут забрать с собой домой.</li>
+        <li><strong>Игры</strong> — как свободные, так и организованные.</li>
+        <li><strong>Перекус</strong> — небольшая пауза с фруктами или соком.</li>
     </ul>
 
-    <h2>Vem är det för?</h2>
-    <p>Hoppet är för barn upp till och med lågstadieåldern. När gruppen är stor delar vi ofta in efter ålder så att aktiviteterna passar. Föräldrar och syskon är alltid välkomna att vara med, särskilt med de yngsta.</p>
+    <h2>Для кого это?</h2>
+    <p>«Hoppet» — для детей до младшего школьного возраста включительно. Когда группа большая, мы часто делим детей по возрасту, чтобы занятия подходили каждому. Родители, братья и сёстры всегда могут присоединиться, особенно к самым маленьким.</p>
 
     <aside class="contact-card">
-        <h3>När och var?</h3>
-        <p><strong>Söndagar kl. 16:00</strong> – varannan vecka, jämna veckor.<br>Elimkyrkan, Klockvägen 1, Mantorp.</p>
-        <p>Titta gärna i <a href="/kalender">kalendern</a> så du ser nästa tillfälle.</p>
+        <h3>Когда и где?</h3>
+        <p><strong>По воскресеньям в 16:00</strong> — раз в две недели, по чётным неделям.<br>Elimkyrkan, Klockvägen 1, Mantorp.</p>
+        <p>Загляните в <a href="/kalender">календарь</a>, чтобы узнать дату следующей встречи.</p>
     </aside>
 
     <aside class="contact-card">
-        <h3>Första gången?</h3>
-        <p>Ingen anmälan behövs – kom när du kan, och det kostar ingenting. Säg gärna till vid entrén att det är första gången så visar vi er till rätta.</p>
+        <h3>Впервые у нас?</h3>
+        <p>Записываться не нужно — приходите, когда сможете, участие бесплатное. Скажите при входе, что вы у нас впервые, и мы поможем вам освоиться.</p>
     </aside>
 
-    <p style="text-align:center; font-size:18px; margin-top:24px;"><strong>Vi ses på Hoppet!</strong></p>
+    <p style="text-align:center; font-size:18px; margin-top:24px;"><strong>До встречи в «Hoppet»!</strong></p>
 </div>

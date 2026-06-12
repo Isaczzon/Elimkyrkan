@@ -21,16 +21,16 @@ bibelverser:
 <div class="foerboen-content" data-v="2">
     <div class="two-col">
         <div>
-            <h2>Vi ber gärna för dig!</h2>
-            <p>Vi har en stor och underbar Gud som vill hjälpa oss i våra olika situationer.</p>
-            <p>Många undrar vem Gud är och vad Han egentligen vill. Är det så att Gud verkligen vill hela mig? Är det verkligen så att Han vill hjälpa mig även om jag inte har levt som jag borde?</p>
-            <p>Gud älskar dig och vill möta dig och dina behov. Vi ser det som en stor förmån om vi får vara med och be för dig, så välkommen att maila ditt böneämne till:</p>
+            <h2>We would love to pray for you!</h2>
+            <p>We have a great and wonderful God who wants to help us in all of life's situations.</p>
+            <p>Many people wonder who God is and what He really wants. Does God truly want to heal me? Does He really want to help me, even if I haven't lived the way I should?</p>
+            <p>God loves you and wants to meet you and your needs. We would count it a great privilege to pray for you, so feel free to email your prayer request to:</p>
             <p class="email-cta">
                 <a href="mailto:info@elimmantorp.se">info@elimmantorp.se</a>
             </p>
         </div>
         <div>
-            <h2>Bibelord</h2>
+            <h2>Bible verses</h2>
             <!-- ELIM-BLOCKS -->
         </div>
     </div>

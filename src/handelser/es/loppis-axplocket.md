@@ -1,5 +1,5 @@
 ---
-titel: Loppis Axplocket
+titel: Mercadillo Axplocket
 beskrivning: Segunda mano y gangas. ¡Bienvenido a tomar un café y encontrar tesoros!
 typ: Weekly
 dag: Lördag

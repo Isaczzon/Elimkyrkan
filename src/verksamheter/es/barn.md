@@ -8,34 +8,34 @@ bild: /images/Children_playing.png
 ordning: 0
 ---
 <div class="barn-content" data-v="2">
-    <h2>Barnverksamhet i Elimkyrkan</h2>
-    <p>Hoppet är vår söndagsskola för barn under gudstjänsten. Här får barnen en egen stund med gemenskap, lek, glädje och aktiviteter anpassade för dem.</p>
-    <p>Gudstjänsten börjar klockan 16:00, och varannan söndag, under jämna veckor, går barnen upp till vår härliga övervåning. Där väntar en rolig och trygg miljö med mycket energi och glädje.</p>
-    <p>Barn mellan 0–3 år behöver ha en vuxen med sig, men alla åldrar är varmt välkomna.</p>
-    <p>Varmt välkommen till Hoppet!</p>
+    <h2>Actividades infantiles en Elimkyrkan</h2>
+    <p>Hoppet es nuestra escuela dominical para los niños durante el culto. Aquí los niños tienen su propio momento de comunidad, juego, alegría y actividades adaptadas a ellos.</p>
+    <p>El culto comienza a las 16:00 y, cada dos domingos, en las semanas pares, los niños suben a nuestra acogedora planta superior. Allí les espera un ambiente divertido y seguro, lleno de energía y alegría.</p>
+    <p>Los niños de 0 a 3 años deben venir acompañados de un adulto, pero todas las edades son muy bienvenidas.</p>
+    <p>¡Bienvenidos a Hoppet!</p>
 
-    <h2>Vad händer på Hoppet?</h2>
-    <p>Vi vill att barnen ska känna sig sedda, trygga och inkluderade från första stunden. På en typisk söndag varvar vi:</p>
+    <h2>¿Qué pasa en Hoppet?</h2>
+    <p>Queremos que los niños se sientan vistos, seguros e incluidos desde el primer momento. En un domingo típico alternamos:</p>
     <ul>
-        <li><strong>Bibelberättelser</strong> – berättade på ett sätt som passar barn, ofta med bilder, sång eller rörelse.</li>
-        <li><strong>Pyssel och skapande</strong> – något barnen kan ta med sig hem.</li>
-        <li><strong>Lek</strong> – både fria lekar och styrda aktiviteter.</li>
-        <li><strong>Fika</strong> – en stunds paus med frukt eller saft.</li>
+        <li><strong>Historias bíblicas</strong> – contadas de una manera adaptada a los niños, a menudo con imágenes, canciones o movimiento.</li>
+        <li><strong>Manualidades y creatividad</strong> – algo que los niños pueden llevarse a casa.</li>
+        <li><strong>Juego</strong> – tanto juego libre como actividades dirigidas.</li>
+        <li><strong>Merienda</strong> – una pausa con fruta o zumo.</li>
     </ul>
 
-    <h2>Vem är det för?</h2>
-    <p>Hoppet är för barn upp till och med lågstadieåldern. När gruppen är stor delar vi ofta in efter ålder så att aktiviteterna passar. Föräldrar och syskon är alltid välkomna att vara med, särskilt med de yngsta.</p>
+    <h2>¿Para quién es?</h2>
+    <p>Hoppet es para niños hasta los primeros años de primaria. Cuando el grupo es grande solemos dividirlo por edades para que las actividades se adapten a cada uno. Los padres y los hermanos siempre son bienvenidos a participar, especialmente con los más pequeños.</p>
 
     <aside class="contact-card">
-        <h3>När och var?</h3>
-        <p><strong>Söndagar kl. 16:00</strong> – varannan vecka, jämna veckor.<br>Elimkyrkan, Klockvägen 1, Mantorp.</p>
-        <p>Titta gärna i <a href="/kalender">kalendern</a> så du ser nästa tillfälle.</p>
+        <h3>¿Cuándo y dónde?</h3>
+        <p><strong>Domingos a las 16:00</strong> – cada dos semanas, en las semanas pares.<br>Elimkyrkan, Klockvägen 1, Mantorp.</p>
+        <p>Consulta el <a href="/kalender">calendario</a> para ver la próxima fecha.</p>
     </aside>
 
     <aside class="contact-card">
-        <h3>Första gången?</h3>
-        <p>Ingen anmälan behövs – kom när du kan, och det kostar ingenting. Säg gärna till vid entrén att det är första gången så visar vi er till rätta.</p>
+        <h3>¿Primera vez?</h3>
+        <p>No hace falta inscribirse: ven cuando puedas, y no cuesta nada. Avísanos en la entrada de que es vuestra primera vez y os ayudaremos a orientaros.</p>
     </aside>
 
-    <p style="text-align:center; font-size:18px; margin-top:24px;"><strong>Vi ses på Hoppet!</strong></p>
+    <p style="text-align:center; font-size:18px; margin-top:24px;"><strong>¡Nos vemos en Hoppet!</strong></p>
 </div>

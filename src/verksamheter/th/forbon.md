@@ -21,16 +21,16 @@ bibelverser:
 <div class="foerboen-content" data-v="2">
     <div class="two-col">
         <div>
-            <h2>Vi ber gärna för dig!</h2>
-            <p>Vi har en stor och underbar Gud som vill hjälpa oss i våra olika situationer.</p>
-            <p>Många undrar vem Gud är och vad Han egentligen vill. Är det så att Gud verkligen vill hela mig? Är det verkligen så att Han vill hjälpa mig även om jag inte har levt som jag borde?</p>
-            <p>Gud älskar dig och vill möta dig och dina behov. Vi ser det som en stor förmån om vi får vara med och be för dig, så välkommen att maila ditt böneämne till:</p>
+            <h2>เรายินดีอธิษฐานเผื่อคุณ!</h2>
+            <p>เรามีพระเจ้าผู้ยิ่งใหญ่และแสนวิเศษ ผู้ทรงปรารถนาจะช่วยเหลือเราในสถานการณ์ต่าง ๆ ของชีวิต</p>
+            <p>หลายคนสงสัยว่าพระเจ้าคือใคร และแท้จริงแล้วพระองค์ทรงประสงค์สิ่งใด พระเจ้าทรงอยากรักษาฉันให้หายจริงหรือ? พระองค์ทรงอยากช่วยฉันจริง ๆ หรือ แม้ฉันไม่ได้ใช้ชีวิตอย่างที่ควรจะเป็น?</p>
+            <p>พระเจ้าทรงรักคุณ และทรงปรารถนาจะพบคุณและตอบสนองความต้องการของคุณ เราถือเป็นเกียรติอย่างยิ่งหากได้ร่วมอธิษฐานเผื่อคุณ ส่งหัวข้ออธิษฐานของคุณทางอีเมลมาได้ที่:</p>
             <p class="email-cta">
                 <a href="mailto:info@elimmantorp.se">info@elimmantorp.se</a>
             </p>
         </div>
         <div>
-            <h2>Bibelord</h2>
+            <h2>ข้อพระคัมภีร์</h2>
             <!-- ELIM-BLOCKS -->
         </div>
     </div>

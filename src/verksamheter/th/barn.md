@@ -8,34 +8,34 @@ bild: /images/Children_playing.png
 ordning: 0
 ---
 <div class="barn-content" data-v="2">
-    <h2>Barnverksamhet i Elimkyrkan</h2>
-    <p>Hoppet är vår söndagsskola för barn under gudstjänsten. Här får barnen en egen stund med gemenskap, lek, glädje och aktiviteter anpassade för dem.</p>
-    <p>Gudstjänsten börjar klockan 16:00, och varannan söndag, under jämna veckor, går barnen upp till vår härliga övervåning. Där väntar en rolig och trygg miljö med mycket energi och glädje.</p>
-    <p>Barn mellan 0–3 år behöver ha en vuxen med sig, men alla åldrar är varmt välkomna.</p>
-    <p>Varmt välkommen till Hoppet!</p>
+    <h2>พันธกิจเด็กใน Elimkyrkan</h2>
+    <p>Hoppet คือโรงเรียนวันอาทิตย์สำหรับเด็ก ๆ ในระหว่างพิธีนมัสการ ที่นี่เด็ก ๆ จะได้มีช่วงเวลาของตัวเอง เต็มไปด้วยสามัคคีธรรม การเล่น ความสนุกสนาน และกิจกรรมที่เหมาะกับวัยของพวกเขา</p>
+    <p>พิธีนมัสการเริ่มเวลา 16:00 น. และทุก ๆ สองสัปดาห์ ในสัปดาห์เลขคู่ เด็ก ๆ จะขึ้นไปยังชั้นบนอันแสนน่ารักของเรา ที่นั่นมีบรรยากาศที่สนุกและปลอดภัย เต็มไปด้วยพลังและความสุขรออยู่</p>
+    <p>เด็กอายุ 0–3 ปี ต้องมีผู้ใหญ่มาด้วย แต่เด็กทุกวัยล้วนเป็นที่ต้อนรับอย่างอบอุ่น</p>
+    <p>ขอต้อนรับสู่ Hoppet ด้วยความยินดี!</p>
 
-    <h2>Vad händer på Hoppet?</h2>
-    <p>Vi vill att barnen ska känna sig sedda, trygga och inkluderade från första stunden. På en typisk söndag varvar vi:</p>
+    <h2>ที่ Hoppet มีอะไรเกิดขึ้นบ้าง?</h2>
+    <p>เราอยากให้เด็ก ๆ รู้สึกว่าได้รับการมองเห็น ปลอดภัย และเป็นส่วนหนึ่งตั้งแต่วินาทีแรก ในวันอาทิตย์ทั่วไป เราสลับกิจกรรมต่าง ๆ ดังนี้:</p>
     <ul>
-        <li><strong>Bibelberättelser</strong> – berättade på ett sätt som passar barn, ofta med bilder, sång eller rörelse.</li>
-        <li><strong>Pyssel och skapande</strong> – något barnen kan ta med sig hem.</li>
-        <li><strong>Lek</strong> – både fria lekar och styrda aktiviteter.</li>
-        <li><strong>Fika</strong> – en stunds paus med frukt eller saft.</li>
+        <li><strong>เรื่องราวจากพระคัมภีร์</strong> – เล่าในแบบที่เหมาะกับเด็ก มักมีรูปภาพ เพลง หรือท่าทางประกอบ</li>
+        <li><strong>งานประดิษฐ์และงานสร้างสรรค์</strong> – สิ่งที่เด็ก ๆ นำกลับบ้านได้</li>
+        <li><strong>การเล่น</strong> – ทั้งการเล่นอิสระและกิจกรรมที่มีผู้นำ</li>
+        <li><strong>พักทานของว่าง</strong> – ช่วงพักสั้น ๆ พร้อมผลไม้หรือน้ำผลไม้</li>
     </ul>
 
-    <h2>Vem är det för?</h2>
-    <p>Hoppet är för barn upp till och med lågstadieåldern. När gruppen är stor delar vi ofta in efter ålder så att aktiviteterna passar. Föräldrar och syskon är alltid välkomna att vara med, särskilt med de yngsta.</p>
+    <h2>เหมาะสำหรับใคร?</h2>
+    <p>Hoppet เหมาะสำหรับเด็กจนถึงวัยประถมต้น เมื่อกลุ่มมีขนาดใหญ่ เรามักแบ่งกลุ่มตามอายุเพื่อให้กิจกรรมเหมาะสมกับแต่ละวัย พ่อแม่และพี่น้องสามารถมาร่วมด้วยได้เสมอ โดยเฉพาะกับเด็กเล็กที่สุด</p>
 
     <aside class="contact-card">
-        <h3>När och var?</h3>
-        <p><strong>Söndagar kl. 16:00</strong> – varannan vecka, jämna veckor.<br>Elimkyrkan, Klockvägen 1, Mantorp.</p>
-        <p>Titta gärna i <a href="/kalender">kalendern</a> så du ser nästa tillfälle.</p>
+        <h3>เมื่อไหร่และที่ไหน?</h3>
+        <p><strong>วันอาทิตย์ เวลา 16:00 น.</strong> – ทุก ๆ สองสัปดาห์ ในสัปดาห์เลขคู่<br>Elimkyrkan, Klockvägen 1, Mantorp</p>
+        <p>ดู<a href="/kalender">ปฏิทิน</a>เพื่อทราบครั้งถัดไปได้เลย</p>
     </aside>
 
     <aside class="contact-card">
-        <h3>Första gången?</h3>
-        <p>Ingen anmälan behövs – kom när du kan, och det kostar ingenting. Säg gärna till vid entrén att det är första gången så visar vi er till rätta.</p>
+        <h3>มาครั้งแรก?</h3>
+        <p>ไม่ต้องลงทะเบียนล่วงหน้า – มาได้เมื่อสะดวก และไม่มีค่าใช้จ่ายใด ๆ หากเป็นครั้งแรก บอกเราได้เลยที่ทางเข้า แล้วเราจะช่วยพาทุกคนไปยังที่ที่ใช่</p>
     </aside>
 
-    <p style="text-align:center; font-size:18px; margin-top:24px;"><strong>Vi ses på Hoppet!</strong></p>
+    <p style="text-align:center; font-size:18px; margin-top:24px;"><strong>แล้วพบกันที่ Hoppet!</strong></p>
 </div>

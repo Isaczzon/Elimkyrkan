@@ -51,14 +51,14 @@ missionLander:
     gavomarkning: Ukraina
 ---
 <div class="mission-intro" data-v="6">
-    <p>Mission är en viktig del av Elimförsamlingens liv och arbete. Sedan början av 1990-talet har vi på olika sätt fått vara med och stötta människor och församlingar i flera delar av världen.</p>
-    <p>Många i församlingen har även själva rest ut på missionsresor genom åren. Man kan säga att mission verkligen finns i Elimförsamlingens hjärta. Vi tror på Jesu uppdrag att gå ut och göra alla folk till lärjungar, och vi vill vara med och sprida hopp, tro och praktisk hjälp där det behövs.</p>
+    <p>La misión es una parte importante de la vida y el trabajo de la congregación de Elim. Desde principios de los años noventa hemos podido apoyar de distintas maneras a personas y congregaciones en varias partes del mundo.</p>
+    <p>A lo largo de los años, muchos miembros de la congregación también han salido en viajes misioneros. Se puede decir que la misión está verdaderamente en el corazón de la congregación de Elim. Creemos en el encargo de Jesús de ir y hacer discípulos a todas las naciones, y queremos contribuir a difundir esperanza, fe y ayuda práctica allí donde se necesite.</p>
 </div>
 
 <!-- ELIM-BLOCKS -->
 
 <aside class="mission-donation">
-    <h3>Stöd vårt missionsarbete</h3>
-    <p>Vill du stödja vårt missionsarbete går det bra att sätta in pengar på plusgiro eller Swisha. Märk gärna gåvan med landets namn så hamnar den rätt.</p>
-    <p><strong>Missionskassan</strong><br>Plusgiro: 33 93 04 - 8<br>Swish: 123 343 10 46</p>
+    <h3>Apoya nuestro trabajo misionero</h3>
+    <p>Si quieres apoyar nuestro trabajo misionero, puedes ingresar dinero por plusgiro o por Swish. Indica el nombre del país en la donación para que llegue al destino correcto.</p>
+    <p><strong>Fondo de misión</strong><br>Plusgiro: 33 93 04 - 8<br>Swish: 123 343 10 46</p>
 </aside>
