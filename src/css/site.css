@@ -682,7 +682,7 @@ main { padding-top: 72px; }
     display: block;
 }
 .subpage-content .mission-country-body { padding: 20px 24px; }
-.subpage-content .mission-country-body h3 {
+.subpage-content .mission-country-body h2 {
     font-family: 'Playfair Display', serif;
     color: var(--green-dark);
     font-size: 20px;
@@ -974,7 +974,7 @@ main { padding-top: 72px; }
     align-items: center;
     gap: 10px;
     padding: 12px 20px;
-    background: #1877F2;
+    background: #0B5FCC; /* mörkare Facebook-blå för AA-kontrast mot vit text */
     color: #ffffff !important;
     border-radius: 8px;
     text-decoration: none !important;
@@ -982,7 +982,7 @@ main { padding-top: 72px; }
     margin: 8px 0 24px;
     transition: background 0.2s, transform 0.15s;
 }
-.subpage-content .facebook-btn:hover { background: #1656c0; transform: translateY(-1px); }
+.subpage-content .facebook-btn:hover { background: #1877F2; transform: translateY(-1px); }
 .subpage-content .facebook-btn svg { flex-shrink: 0; }
 
 /* === MAP EMBED INSIDE CONTENT === */
@@ -1260,7 +1260,7 @@ footer a:hover { color: var(--white); }
 [data-theme="dark"] .calendar-month,
 [data-theme="dark"] .calendar-details h3,
 [data-theme="dark"] .calendar-event .title,
-[data-theme="dark"] .mission-country-body h3,
+[data-theme="dark"] .mission-country-body h2,
 [data-theme="dark"] .mission-donation h3,
 [data-theme="dark"] .about-text h2,
 [data-theme="dark"] .undervisning-card-body a,

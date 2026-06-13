@@ -25,7 +25,7 @@ layout: layout.njk
             <article class="mission-country">
                 <div class="mission-country-image"><img src="{{ land.flagga }}" alt="{{ land.namn }}" loading="lazy"></div>
                 <div class="mission-country-body">
-                    <h3>{{ land.namn }}</h3>
+                    <h2>{{ land.namn }}</h2>
                     <p>{{ land.beskrivning }}</p>
                     {% if land.gavomarkning %}
                     <p class="gift-mark">{{ ui.markGava }} <strong>&ldquo;{{ land.gavomarkning }}&rdquo;</strong>.</p>
@@ -59,7 +59,7 @@ layout: layout.njk
         <div class="image-gallery">
             {% for bildpost in galleri %}
             <figure>
-                <img src="{{ bildpost.bild | url }}" alt="{{ bildpost.text }}" loading="lazy">
+                <img src="{{ bildpost.bild }}" alt="{{ bildpost.text }}" loading="lazy">
                 <figcaption>{{ bildpost.text }}</figcaption>
             </figure>
             {% endfor %}
